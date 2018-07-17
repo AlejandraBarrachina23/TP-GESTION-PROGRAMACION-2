@@ -216,27 +216,38 @@ do{
 void Menues::menuVentas(char *usuario){
 
 do{
+    recuadro(20, 1,60, 25, cBLANCO, cAZUL);
+    recuadro(20, 1,60, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(43,2);cout << "MENU VENTAS"<<endl;
+    textcolor(cBLANCO, cGRIS);
+    recuadro(33, 7,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,8);cout << "AGREGAR VENTA"<<endl;
+    recuadro(33,10,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,11);cout << "CONSULTAR VENTA"<<endl;
+    recuadro(33,13,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,14);cout << "CIERRE DE CAJA"<<endl;
+    recuadro(33,16,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,17);cout << "CIERRE DE SESIÓN"<<endl;
 
-    cout << "MENU VENTAS"<<endl;
-    cout << "[1] AGREGAR VENTA"<<endl;
-    cout << "[2] CONSULTAR VENTA"<<endl;
-    cout << "[3] CIERRE DE CAJA"<<endl;
-    cout << "[0] CIERRE DE SESIÓN"<<endl;
     cout << endl;
-    cout << "INGRESE UNA OPCION:";
-    cin >> opcion;
+    recuadro(20,24,60, 2, cBLANCO, cAZUL);
+    gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
+    cout << endl;
+    y=navegacionMenu(35,8,8,17);
+
     system("cls");
-    switch(opcion) {
-    case 1:
+    switch(y) {
+    case 8:
         agregarVenta(usuario);
         break;
-    case 2:
+    case 11:
         listarVentasPorCodigo();
         break;
-    case 3:
+    case 14:
         cierreDeCaja(usuario);
         break;
-    case 0:
+    case 17:
         logIn();
         break;
     default:

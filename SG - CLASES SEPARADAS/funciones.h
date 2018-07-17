@@ -835,21 +835,22 @@ void listarComprasPorCodigo(){
 /// MENU VENTAS
 void agregarVenta(char *usuario){
 
-cout << "====================================================================================================="<<endl;
-cout << "                                           AGREGAR VENTA"<<endl;
-cout << "====================================================================================================="<<endl;
-
 CabeceraVentas unaCabeceraVenta;
 DetalleVentas unDetalleVenta;
 Producto unProducto;
 Validador validar;
 unaCabeceraVenta.cargarDatos(usuario);
-unaCabeceraVenta.mostrarArchivo();
 int cuentaLinea=1,pos,metodoDePago;
 bool seguir=true;
 char continuar;
 
 while(seguir==true){
+
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "AGREGAR VENTAS"<<endl;
+    textcolor(cBLANCO, cAZUL);
     unDetalleVenta.cargarArchivo(unaCabeceraVenta.getNrodeFactura(),cuentaLinea);
     pos=validar.existenciaCodigo(unDetalleVenta.getcodigoProducto());
     unProducto.leerArchivo(pos);
@@ -912,6 +913,7 @@ void cierreDeCaja(char *usuario){
     system("cls");
 }
 void listarVentasPorCodigo(){
+
     CabeceraVentas unaCabeceraVenta;
     DetalleVentas unDetalleVenta;
     int nroFactura;
@@ -930,6 +932,7 @@ void listarVentasPorCodigo(){
             if(!cabeceraImpresa){
                 unaCabeceraVenta.leerenDisco(nroFactura-1);
                 unaCabeceraVenta.mostrarArchivo();
+                unDetalleVenta.mostrarEncabezado();
                 cabeceraImpresa=true;
             }
             unDetalleVenta.mostrarArchivo();

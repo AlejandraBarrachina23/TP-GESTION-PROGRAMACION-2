@@ -346,6 +346,7 @@ public:
     bool grabarenDisco();
     bool leerenDisco(int pos);
     void mostrarArchivo();
+    void mostrarEncabezado();
     void cargarArchivo(int _codigoFactura,int _codigoLinea);
     int calculoConFormaDePago();
     void calculoDeVuelto();

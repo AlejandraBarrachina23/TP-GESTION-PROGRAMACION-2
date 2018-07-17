@@ -2,14 +2,13 @@
 #define CABECERAVENTAS_H_INCLUDED
 
 void CabeceraVentas::cargarDatos(char *_usuario){
-
     NrodeFactura=cuentaRegistros(rutaCabeceraVentas,tamanioCabeceraVentas)+1;
     strcpy(usuario,_usuario);
 }
 void CabeceraVentas::mostrarArchivo(){
 CabeceraDocumento::mostrarArchivo();
-cout << "\tCLIENTE: "<<cliente<<endl;
-cout <<"====================================================================================================="<<endl;
+gotoxy(43,3);cout << "\tCLIENTE: "<<cliente<<endl;
+cout<<endl;
 }
 bool CabeceraVentas::grabarenDisco(){
 bool escribio;

@@ -9,49 +9,72 @@ void DetalleVentas::cargarArchivo(int _codigoFactura,int _codigoLinea){
     nroFactura=_codigoFactura;
     nroLinea=_codigoLinea;
 
-    cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
-    cin >> codigoProducto;
+    gotoxy(30,5);cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
+    gotoxy(62,5);cin >> codigoProducto;
 
     while(codigoAceptado==false){
 
         if(validar.existenciaCodigo(codigoProducto)<0){
-        cout << "EL CODIGO INGRESADO NO EXISTE."<<endl;
-        cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
-        cin >> codigoProducto;
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(34,6);cout << "EL CODIGO INGRESADO NO EXISTE."<<endl;
+        getch();
+        gotoxy(34,6);cout << "                              "<<endl;
+        gotoxy(62,5);cout << "             ";
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(30,5);cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
+        gotoxy(62,5);cin >> codigoProducto;
         }
         else if(buscarStockSucursal(codigoProducto)==0){
-        cout << "EL PRODUCTO INGRESADO TIENE STOCK CERO."<<endl;
-        cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
-        cin >> codigoProducto;
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(29,6);cout << "EL PRODUCTO INGRESADO TIENE STOCK CERO."<<endl;
+        getch();
+        gotoxy(29,6);cout << "                                       "<<endl;
+        gotoxy(62,5);cout << "             ";
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(30,5);cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
+        gotoxy(62,5);cin >> codigoProducto;
         }
         else codigoAceptado=true;
 
     }
+    textcolor(cGRIS_CLARO,cAZUL);
     strcpy(descripcion,buscardescripcion(codigoProducto));
-    cout<<"PRODUCTO: "<<descripcion<<endl;
-    cout <<"STOCK: "<<buscarStockSucursal(codigoProducto)<<endl;
-    cout<<"INGRESE CANTIDAD: ";
-    cin>>cantidad;
+    gotoxy(30,6);cout<<"PRODUCTO: "<<descripcion<<endl;
+    gotoxy(30,7);cout <<"STOCK: "<<buscarStockSucursal(codigoProducto)<<endl;
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(30,8);cout<<"INGRESE CANTIDAD: ";
+    gotoxy(48,8);cin>>cantidad;
 
     while(validar.validarStockSucursal(codigoProducto,cantidad)==false){
-        cout << "LA CANTIDAD INGRESADA ES MAYOR AL STOCK QUE SE TIENE."<<endl;
-        cout<<"INGRESE CANTIDAD: ";
-        cin>>cantidad;
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(22,9);cout << "LA CANTIDAD INGRESADA ES MAYOR AL STOCK QUE SE TIENE."<<endl;
+        getch();
+        gotoxy(22,9);cout << "                                                     "<<endl;
+        gotoxy(48,8);cout << "      "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(30,8);cout<<"INGRESE CANTIDAD: ";
+        gotoxy(48,8);cin>>cantidad;
     }
+    textcolor(cGRIS_CLARO,cAZUL);
     precioVenta=buscarPV(codigoProducto);
-    cout<<"PRECIO UNITARIO: "<<precioVenta<<endl;
-    cout<<"IMPORTE"<<cantidad*precioVenta<<endl;
+    gotoxy(30,9);cout<<"PRECIO UNITARIO: $"<<precioVenta<<endl;
+    gotoxy(30,10);cout<<"IMPORTE: $"<<cantidad*precioVenta<<endl;
     subtotal+=(cantidad*precioVenta);
-    cout<<"TOTAL: "<<subtotal<<endl;
+    gotoxy(30,11);cout<<"TOTAL: $"<<subtotal<<endl;
     precioCosto=buscarPC(codigoProducto);
+}
+void DetalleVentas::mostrarEncabezado(){
+
+cout<<"    NRO  CODIGO    DETALLE             CANT      PU        SUBT      TOTAL"<<endl;
+cout<<"  ==================================================================================================="<<endl;
+
 }
 void DetalleVentas::mostrarArchivo(){
 float pv=buscarPV(codigoProducto);
 char descripcion[30];
 strcpy(descripcion,buscardescripcion(codigoProducto));
-cout <<"NRO\tCODIGO\tDETALLE\t\tCANTIDAD\tPU\tSUBTOTAL\tTOTAL"<<endl;
-cout <<nroLinea<<"\t"<<codigoProducto<<"\t"<<descripcion<<"\t"<<cantidad<<"\t\t"<<buscarPV(codigoProducto)<<"\t"<<pv*cantidad<<"\t"<<subtotal<<endl;
-cout << "-----------------------------------------------------------------------------------------------------"<<endl;
+std::cout << setiosflags(ios::left)<<"     "<<setw(4)<<nroLinea<<setw(10)<<codigoProducto<<setw(20)<<descripcion<<setw(10)<<cantidad;
+std::cout << setiosflags(ios::left)<<setw(10)<<buscarPV(codigoProducto)<<setw(10)<<pv*cantidad<<setw(10)<<subtotal<<endl;
 
 }
 bool DetalleVentas::grabarenDisco(){
