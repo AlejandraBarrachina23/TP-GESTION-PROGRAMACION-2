@@ -1,0 +1,3 @@
+
+gecth()no muestra el caracter ingresado.
+getche()si muestra el caracter ingresado.

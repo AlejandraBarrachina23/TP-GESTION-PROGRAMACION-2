@@ -1,0 +1,128 @@
+# depslib dependency file v1.0
+1527209373 source:c:\users\alejandra\desktop\gestion\sistema_de_gestion\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+
+1528987729 source:c:\users\administrador\downloads\gestion\gestion\sistema_de_gestion\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<ctime>
+	"menues.h"
+	"funciones.h"
+
+1528987819 c:\users\administrador\downloads\gestion\gestion\sistema_de_gestion\menues.h
+	"funciones.h"
+
+1528987933 c:\users\administrador\downloads\gestion\gestion\sistema_de_gestion\funciones.h
+
+1530183540 source:c:\users\alejandra\downloads\gestion\gestion\gestion\sistema_de_gestion\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<ctime>
+	<ctype.h>
+	"menues.h"
+	"funciones.h"
+
+1530183395 c:\users\alejandra\downloads\gestion\gestion\gestion\sistema_de_gestion\menues.h
+	"funciones.h"
+
+1530183235 c:\users\alejandra\downloads\gestion\gestion\gestion\sistema_de_gestion\funciones.h
+	"menues.h"
+
+1530794585 source:c:\users\alejandra\desktop\sistema_de_gestion\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<ctime>
+	<ctype.h>
+	"menues.h"
+	"funciones.h"
+
+1530786519 c:\users\alejandra\desktop\sistema_de_gestion\menues.h
+	"funciones.h"
+
+1530795762 c:\users\alejandra\desktop\sistema_de_gestion\funciones.h
+	"menues.h"
+
+1531785395 source:c:\users\alejandra\desktop\sg - clases separadas\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<ctime>
+	<ctype.h>
+	<iomanip>
+	"menues.h"
+	"funciones.h"
+
+1531715212 c:\users\alejandra\desktop\sg - clases separadas\menues.h
+	"funciones.h"
+	<stdlib.h>
+	<conio.h>
+	<iostream>
+	<windows.h>
+
+1531784844 c:\users\alejandra\desktop\sg - clases separadas\funciones.h
+	"menues.h"
+	<conio.h>
+	<windows.h>
+	"declaraciones.h"
+	"usuarios.h"
+	"retencionesImpositivas.h"
+	"productos.h"
+	"validador.h"
+	"fechas.h"
+	"cabeceraCompra.h"
+	"cabeceraDocumento.h"
+	"cabeceraVentas.h"
+	"cabeceraMovimientos.h"
+	"detalleCompra.h"
+	"detalleVentas.h"
+	"detalleMovimientos.h"
+	"proveedor.h"
+
+1531784157 c:\users\alejandra\desktop\sg - clases separadas\declaraciones.h
+
+1531414971 c:\users\alejandra\desktop\sg - clases separadas\usuarios.h
+	"funciones.h"
+
+1531320881 c:\users\alejandra\desktop\sg - clases separadas\retencionesimpositivas.h
+
+1531605866 c:\users\alejandra\desktop\sg - clases separadas\productos.h
+
+1531588399 c:\users\alejandra\desktop\sg - clases separadas\validador.h
+
+1531319637 c:\users\alejandra\desktop\sg - clases separadas\fechas.h
+
+1531348756 c:\users\alejandra\desktop\sg - clases separadas\cabeceradocumento.h
+
+1531591550 c:\users\alejandra\desktop\sg - clases separadas\cabeceracompra.h
+
+1531320276 c:\users\alejandra\desktop\sg - clases separadas\cabeceraventas.h
+
+1531320350 c:\users\alejandra\desktop\sg - clases separadas\cabeceramovimientos.h
+
+1531588423 c:\users\alejandra\desktop\sg - clases separadas\detallecompra.h
+
+1531320531 c:\users\alejandra\desktop\sg - clases separadas\detalleventas.h
+
+1531785889 c:\users\alejandra\desktop\sg - clases separadas\detallemovimientos.h
+
+1531320860 c:\users\alejandra\desktop\sg - clases separadas\proveedor.h
+
