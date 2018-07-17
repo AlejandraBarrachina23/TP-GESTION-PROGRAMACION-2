@@ -19,7 +19,8 @@ class Menues{
         void derivarMenu(char *);
         void logIn();
         void menuAdministrador(char *usuario);
-        void submenuAdministrador(char *usuario);
+        void submenuReportes(char *usuario);
+        void submenuConfiguracion(char *usuario);
         void menuVentas(char *usuario);
         void menuCompras(char *usuario);
         void submenuProductos(char *usuario);
@@ -87,11 +88,53 @@ void Menues::derivarMenu(char *usuario){
             break;
     }
 }
-void Menues::submenuAdministrador(char *usuario){
+void Menues::submenuReportes(char *usuario){
 
 do{
 
-    cout << "SUBMENU ADMINISTRADOR"<<endl;
+    cout << "SUBMENU REPORTES"<<endl;
+    cout << "[1] GANANCIAS"<<endl;
+    cout << "[2] PERDIDAS"<<endl;
+    cout << "[3] BACKUPS"<<endl;
+    cout << "[4] MAYORES VENTAS"<<endl;
+    cout << "[5] MENORES VENTAS"<<endl;
+    cout << "[0] VOLVER AL MENU ANTERIOR"<<endl;
+    cout << endl;
+    cout << "INGRESE UNA OPCION:";
+    cin >> opcion;
+    system("cls");
+    switch(opcion) {
+    case 1:
+        agregarUsuario();
+        break;
+    case 2:
+        borrarUsuario();
+        break;
+    case 3:
+        listarUsuarios();
+        break;
+    case 4:
+        listarUsuarioPorCodigo();
+        break;
+    case 5:
+        modificarUsuario();
+        break;
+    case 0:
+        menuAdministrador(usuario);
+        break;
+    default:
+        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        break;
+    }
+}
+    while(true);
+
+}
+void Menues::submenuConfiguracion(char *usuario){
+
+do{
+
+    cout << "SUBMENU CONFIGURACION"<<endl;
     cout << "[1] AGREGAR USUARIO"<<endl;
     cout << "[2] BORRAR USUARIO"<<endl;
     cout << "[3] LISTAR USUARIOS"<<endl;
@@ -155,10 +198,10 @@ do{
         menuTransferencias(usuario);
         break;
     case 4:
-        submenuAdministrador(usuario);
+        submenuConfiguracion(usuario);
         break;
     case 5:
-        cout << "NO DESARROLLADA."<<endl;
+        submenuReportes(usuario);
         break;
     case 0:
         logIn();

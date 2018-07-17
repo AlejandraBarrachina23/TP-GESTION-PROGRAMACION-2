@@ -1,13 +1,14 @@
 #ifndef CABECERAVENTAS_H_INCLUDED
 #define CABECERAVENTAS_H_INCLUDED
 
-void CabeceraVentas::cargarDatos(){
+void CabeceraVentas::cargarDatos(char *_usuario){
 
     NrodeFactura=cuentaRegistros(rutaCabeceraVentas,tamanioCabeceraVentas)+1;
+    strcpy(usuario,_usuario);
 }
 void CabeceraVentas::mostrarArchivo(){
 CabeceraDocumento::mostrarArchivo();
-cout << "\tCLIENTE: "<<cliente <<importeTotal<<endl;
+cout << "\tCLIENTE: "<<cliente<<endl;
 cout <<"====================================================================================================="<<endl;
 }
 bool CabeceraVentas::grabarenDisco(){

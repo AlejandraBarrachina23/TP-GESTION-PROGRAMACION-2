@@ -260,16 +260,17 @@ class CabeceraMovimientos:public CabeceraDocumento{
 class CabeceraVentas:public CabeceraDocumento{
 
 private:
-        float importeTotal;
         char cliente[20];
+        int metodoDePago; //1 -EFECTIVO 2-DEBITO 3- CREDITO
 public:
         CabeceraVentas(){
-            importeTotal=0;
             strcpy(cliente,"CONSUMIDOR FINAL");
         }
-        float getimporteTotal(){return importeTotal;}
+
+        int getMetodoDePago(){return metodoDePago;}
+        void setMetodoDePago(int _metodoDePago){metodoDePago=_metodoDePago;}
         void mostrarArchivo();
-        void cargarDatos();
+        void cargarDatos(char *_usuario);
         bool leerenDisco(int);
         bool grabarenDisco();
 
@@ -331,13 +332,22 @@ class DetalleVentas:public DetalleDocumento{
 private:
     float precioCosto;
     float precioVenta;
+    float subtotal;
 public:
+    DetalleVentas(){
+        precioCosto=0;
+        precioVenta=0;
+        subtotal=0;
+    }
+    int getsubtotal(){return subtotal;}
+    void setSubtotal(int _subtotal){subtotal=_subtotal;}
     int getPrecioVenta(){return precioVenta;}
     int getCantidad(){return cantidad;}
     bool grabarenDisco();
     bool leerenDisco(int pos);
     void mostrarArchivo();
-    void cargarArchivo();
+    void cargarArchivo(int _codigoFactura,int _codigoLinea);
+    int calculoConFormaDePago();
 };
 class Proveedor{
     private:

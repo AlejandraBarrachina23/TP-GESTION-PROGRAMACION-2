@@ -773,11 +773,12 @@ void agregarCompra(char *usuario){
                 if(unDetalleCompra.getNroFactura()==unaCabeceraCompra.getNrodeFactura()) unDetalleCompra.mostrarArchivo();
             pos++;
             }
+            cuentaLinea++;
         }
             unaCabeceraCompra.grabarArchivo();
             getch();
             limpiar();
-            cuentaLinea++;
+
     }
 void listarTodasLasCompras(){
 
@@ -842,20 +843,14 @@ CabeceraVentas unaCabeceraVenta;
 DetalleVentas unDetalleVenta;
 Producto unProducto;
 Validador validar;
-unProducto.leerArchivo(3);
-unProducto.setStockSucursal(12);
-unProducto.modificarArchivo(3);
-unaCabeceraVenta.cargarDatos();
-unaCabeceraVenta.setUsuario(usuario);
+unaCabeceraVenta.cargarDatos(usuario);
 unaCabeceraVenta.mostrarArchivo();
-int cuentaLinea=1,pos;
+int cuentaLinea=1,pos,metodoDePago;
 bool seguir=true;
 char continuar;
 
 while(seguir==true){
-    unDetalleVenta.setNroFactura(unaCabeceraVenta.getNrodeFactura()); //SET NRO DE FACTURA
-    unDetalleVenta.setNroLinea(cuentaLinea);
-    unDetalleVenta.cargarArchivo();
+    unDetalleVenta.cargarArchivo(unaCabeceraVenta.getNrodeFactura(),cuentaLinea);
     pos=validar.existenciaCodigo(unDetalleVenta.getcodigoProducto());
     unProducto.leerArchivo(pos);
     unProducto.setStockSucursal(unProducto.getStockSucursal()-unDetalleVenta.getCantidad());
@@ -875,12 +870,22 @@ while(seguir==true){
     if(continuar=='s' || continuar=='S') seguir=true;
     else if (continuar == 'n' || continuar == 'N') {
             seguir=false;
-            unaCabeceraVenta.grabarenDisco();}
+           }
 
     else {cout << "INCORRECTO";}
     limpiar();
+    cuentaLinea++;
 }
-cuentaLinea=0;
+
+    unaCabeceraVenta.mostrarArchivo();
+    pos=0;
+    while(unDetalleVenta.leerenDisco(pos++)){
+        if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) unDetalleVenta.mostrarArchivo();
+}
+
+unaCabeceraVenta.setMetodoDePago(unDetalleVenta.calculoConFormaDePago());
+unaCabeceraVenta.grabarenDisco();
+
 getch();
 limpiar();
 
@@ -945,12 +950,14 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
     int cantidadATransferir, pos=0, nroLinea=1, totalATransferir=0;
     char descripcion[20];
     char continuar;
+    bool mostrarCabecera=false;
     Producto unProducto;
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimiento;
     unaCabeceraMovimiento.cargarDatos(usuario,tipo);
     unDetalleMovimiento.mostrarEncabezadoFaltantes();
     while(unProducto.leerArchivo(pos)){
+
             if(unProducto.getStockSucursal()<unProducto.getStockCritico()&&unProducto.getStockDeposito()>0&&unProducto.getEstado()==true){
                 unDetalleMovimiento.mostrarFaltantes(pos);
             }
@@ -1023,7 +1030,6 @@ void devolucionDeMercaderia(char *usuario, int tipo){
     }
     }
 }
-
 void listadoDeMovimientos(){
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimiento;
@@ -1036,7 +1042,7 @@ void listadoDeMovimientos(){
 
     cout << "¿QUE DESEA LISTAR?"<<endl;
     cin >> opcion;
-
+    limpiar();
     int pos=0, pos2=0;
     while(unaCabeceraMovimiento.leerArchivo(pos++)){
         if(unaCabeceraMovimiento.getTipo()==opcion){
@@ -1046,10 +1052,11 @@ void listadoDeMovimientos(){
                     unDetalleMovimiento.mostrarArchivo();
                 }
             }
+    getch();
+    limpiar();
         }
 
     pos2=0;
-
 }
 }
 #endif // FUNCIONES_H_INCLUDE

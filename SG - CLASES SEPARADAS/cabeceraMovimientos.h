@@ -3,7 +3,8 @@
 
 void CabeceraMovimientos::mostrarArchivo(){
 CabeceraDocumento::mostrarArchivo();
-cout << "\tTIPO: "<<tipo<<endl;
+if(tipo==1)cout << "\tTIPO: "<<"TRANSFERENCIA"<<endl;
+else cout << "\tTIPO: "<<"DEVOLUCION"<<endl;
 cout <<"====================================================================================================="<<endl;
 
 }
