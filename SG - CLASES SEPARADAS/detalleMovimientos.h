@@ -4,10 +4,10 @@
 bool DetalleMovimientos::leerArchivo(int pos){
     bool leyo;
     FILE *p;
-    p=fopen("archivos/detalleMovimiento.dat","rb");
+    p=fopen("archivos/detalleMovimento.dat","rb");
     if(p==NULL)return false;
     fseek(p,sizeof(DetalleMovimientos)*pos,0);
-    leyo=fread(p,sizeof(DetalleMovimientos),1,p);
+    leyo=fread(this,sizeof(DetalleMovimientos),1,p);
     fclose(p);
     return leyo;
 }
@@ -36,7 +36,6 @@ void DetalleMovimientos::cargarDatos(int _nroFactura, int _nroLinea, int _codigo
     codigoProducto=_codigoProducto;
     cantidad=cantidadTransferida;
 }
-
 void DetalleMovimientos::mostrarEncabezadoFaltantes(){
 cout <<"---------------------------------------------------------------------------"<<endl;
 cout << "                      CODIGO  DESCRIPCION         SC    SS    SD    MOV"<<endl;
@@ -50,7 +49,6 @@ void DetalleMovimientos::mostrarFaltantes(int pos){
     std::cout << setiosflags(ios::left)<<"                      "<<setw(8)<<unProducto.getCodigoProducto()<<setw(20)<<unProducto.getDescripcion()<<setw(6)<<unProducto.getStockCritico()<<setw(6)<<unProducto.getStockSucursal()<<setw(6)<<unProducto.getStockDeposito()<<setw(6)<<endl;
 
 }
-
 void DetalleMovimientos::cargarDatosDevoluciones(int _nroFactura, int _nroLinea){
 
     Validador validar;

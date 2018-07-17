@@ -984,6 +984,8 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
 void devolucionDeMercaderia(char *usuario, int tipo){
 
     int codigo, pos,nroLinea=1, pos2;
+    bool seguir=true;
+    char continuar;
     Validador validar;
     Producto unProducto;
     CabeceraMovimientos unaCabeceraMovimiento;
@@ -994,22 +996,36 @@ void devolucionDeMercaderia(char *usuario, int tipo){
     cout << "====================================================================================================="<<endl;
     cout << endl;
 
+
     unaCabeceraMovimiento.cargarDatos(usuario,tipo); //CARGO LA CABECERA
+    while(seguir==true){
     unDetalleMovimiento.cargarDatosDevoluciones(unaCabeceraMovimiento.getNrodeFactura(),nroLinea); //PIDO LOS DATOS, CARGO EL DETALLE
     pos=validar.existenciaCodigo(unDetalleMovimiento.getcodigoProducto()); //BUSCO EL PRODUCTO
     unProducto.leerArchivo(pos);
     unProducto.setStockSucursal(unProducto.getStockSucursal()-unDetalleMovimiento.getCantidad());//RESTO EL STOCK
     unProducto.modificarArchivo(pos);
-
     unDetalleMovimiento.grabarArchivo();
-    unaCabeceraMovimiento.grabarArchivo();
+    nroLinea++;
+    cout << "¿DESEA CONTINUAR? <S/N>";
+    cin >> continuar;
+    getch();
+    limpiar();
+    if(continuar=='s' || continuar=='S') seguir=true;
+    else if (continuar == 'n' || continuar == 'N') {
+            seguir=false;
+            unaCabeceraMovimiento.grabarArchivo();
+    }
+    }
     pos=0;
     pos2=0;
     while(unaCabeceraMovimiento.leerArchivo(pos++)){
         unaCabeceraMovimiento.mostrarArchivo();
-        while(unDetalleMovimiento.leerArchivo(pos2++))
-        unDetalleMovimiento.mostrarArchivo();
+        while(unDetalleMovimiento.leerArchivo(pos2++)){
+            if(unaCabeceraMovimiento.getNrodeFactura()==unDetalleMovimiento.getNroFactura()){
+                unDetalleMovimiento.mostrarArchivo();
+        }
     }
+pos2=0;
 }
-
+}
 #endif // FUNCIONES_H_INCLUDE
