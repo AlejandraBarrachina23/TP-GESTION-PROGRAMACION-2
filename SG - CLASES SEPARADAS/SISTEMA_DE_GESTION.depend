@@ -126,3 +126,71 @@
 
 1531320860 c:\users\alejandra\desktop\sg - clases separadas\proveedor.h
 
+1531788127 source:c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<windows.h>
+	<ctime>
+	<ctype.h>
+	<iomanip>
+	"menues.h"
+	"funciones.h"
+
+1531715212 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
+	"funciones.h"
+	<stdlib.h>
+	<conio.h>
+	<iostream>
+	<windows.h>
+
+1531788922 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
+	"menues.h"
+	<conio.h>
+	<windows.h>
+	"declaraciones.h"
+	"usuarios.h"
+	"retencionesImpositivas.h"
+	"productos.h"
+	"validador.h"
+	"fechas.h"
+	"cabeceraCompra.h"
+	"cabeceraDocumento.h"
+	"cabeceraVentas.h"
+	"cabeceraMovimientos.h"
+	"detalleCompra.h"
+	"detalleVentas.h"
+	"detalleMovimientos.h"
+	"proveedor.h"
+
+1531789149 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\declaraciones.h
+
+1531414971 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\usuarios.h
+	"funciones.h"
+
+1531320881 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\retencionesimpositivas.h
+
+1531605866 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\productos.h
+
+1531588399 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\validador.h
+
+1531319637 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\fechas.h
+
+1531591550 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\cabeceracompra.h
+
+1531348756 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\cabeceradocumento.h
+
+1531320276 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\cabeceraventas.h
+
+1531789127 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\cabeceramovimientos.h
+
+1531588423 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detallecompra.h
+
+1531787695 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detalleventas.h
+
+1531788611 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detallemovimientos.h
+
+1531320860 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\proveedor.h
+

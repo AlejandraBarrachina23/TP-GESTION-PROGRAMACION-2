@@ -26,6 +26,18 @@ bool CabeceraMovimientos::grabarArchivo(){
 
 }
 
+bool CabeceraMovimientos::leerArchivo(int pos){
+    bool leyo;
+    FILE *p;
+    p=fopen("archivos/cabeceraMovimientos.dat","rb");
+    if(p==NULL)return false;
+    fseek(p,sizeof(CabeceraMovimientos)*pos,0);
+    leyo=fread(this,sizeof(CabeceraMovimientos),1,p);
+    fclose(p);
+    return leyo;
+
+}
+
 
 
 #endif // CABECERAMOVIMIENTOS_H_INCLUDED

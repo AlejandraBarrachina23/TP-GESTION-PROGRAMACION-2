@@ -11,12 +11,11 @@
 #include "funciones.h"
 
 using namespace std;
-//PRUEBA
 
 int main(){
 
     Menues principal;
-    principal.menuCompras("ale");
+    principal.menuTransferencias("ale");
     principal.logIn();
     return 0;
 

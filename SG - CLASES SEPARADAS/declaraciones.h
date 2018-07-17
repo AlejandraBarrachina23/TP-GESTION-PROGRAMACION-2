@@ -253,6 +253,7 @@ class CabeceraMovimientos:public CabeceraDocumento{
         int getTipo(){return tipo;}
         void setTipo(int _tipo){tipo=_tipo;}
         void mostrarArchivo();
+        bool leerArchivo(int pos);
         void cargarDatos(char *_usuario, int _tipo);
         bool grabarArchivo();
 };
@@ -382,6 +383,7 @@ void gotoxy(int x, int y);
 void cuentaRegresiva(int tam);
 void mostrarEncabezado();
 char *buscardescripcion(int cod);
+int buscarStockSucursal(int cod);
 char *buscarProveedor(int cod);
 char *buscarRubro(int cod);
 float buscarPV(int cod);

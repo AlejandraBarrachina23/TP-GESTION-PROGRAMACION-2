@@ -55,19 +55,28 @@ void DetalleMovimientos::cargarDatosDevoluciones(int _nroFactura, int _nroLinea)
 
     Validador validar;
     char descripcion[20];
+    bool codigoAceptado=false;
 
     cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
     cin >> codigoProducto;
 
+    while(codigoAceptado==false){
 
-    while(validar.existenciaCodigo(codigoProducto)<0){
+        if(validar.existenciaCodigo(codigoProducto)<0){
         cout << "EL CODIGO INGRESADO NO EXISTE."<<endl;
         cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
         cin >> codigoProducto;
+        }
+        else if(buscarStockSucursal(codigoProducto)==0){
+        cout << "EL PRODUCTO INGRESADO TIENE STOCK CERO."<<endl;
+        cout << "INGRESE EL CODIGO DEL PRODUCTO: ";
+        cin >> codigoProducto;
+        }
+        else codigoAceptado=true;
 
     }
-    cout << strcpy(descripcion,buscardescripcion(codigoProducto))<<endl;
-    cout << "STOCK: "<<buscar
+    cout << "DESCRIPCION:" <<strcpy(descripcion,buscardescripcion(codigoProducto))<<endl;
+    cout << "STOCK: "<< buscarStockSucursal(codigoProducto)<<endl;
 
     cout << "INGRESE CANTIDAD A DESCONTAR: ";
     cin >> cantidad;

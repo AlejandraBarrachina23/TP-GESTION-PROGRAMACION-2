@@ -230,6 +230,14 @@ char *buscardescripcion(int cod){
         if(unProducto.getCodigoProducto()==cod) return unProducto.getDescripcion();
     }
 }
+int buscarStockSucursal(int cod){
+    Producto unProducto;
+    int pos=0;
+    while(unProducto.leerArchivo(pos++)){
+        if(unProducto.getCodigoProducto()==cod) return unProducto.getStockSucursal();
+
+    }
+}
 char *buscarProveedor(int cod){
     Proveedor unProveedor;
     int pos=0;
@@ -975,7 +983,7 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
 }
 void devolucionDeMercaderia(char *usuario, int tipo){
 
-    int codigo, pos,nroLinea=1;
+    int codigo, pos,nroLinea=1, pos2;
     Validador validar;
     Producto unProducto;
     CabeceraMovimientos unaCabeceraMovimiento;
@@ -995,8 +1003,13 @@ void devolucionDeMercaderia(char *usuario, int tipo){
 
     unDetalleMovimiento.grabarArchivo();
     unaCabeceraMovimiento.grabarArchivo();
-
-
+    pos=0;
+    pos2=0;
+    while(unaCabeceraMovimiento.leerArchivo(pos++)){
+        unaCabeceraMovimiento.mostrarArchivo();
+        while(unDetalleMovimiento.leerArchivo(pos2++))
+        unDetalleMovimiento.mostrarArchivo();
+    }
 }
 
 #endif // FUNCIONES_H_INCLUDE
