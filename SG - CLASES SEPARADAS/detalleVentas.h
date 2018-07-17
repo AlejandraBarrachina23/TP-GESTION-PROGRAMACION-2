@@ -76,7 +76,7 @@ return leyo;
 int DetalleVentas::calculoConFormaDePago(){
 
     int cuotas,metodoDePago;
-    cout<<"METODO DE PAGO: "<<endl;
+    cout<<"METODO DE PAGO: ";
     cin>>metodoDePago;
 
     if(metodoDePago==3){
@@ -85,9 +85,15 @@ int DetalleVentas::calculoConFormaDePago(){
     if(cuotas==2) subtotal=subtotal*1.06;
     if(cuotas==3) subtotal=subtotal*1.08;
     }
-    cout << "EL TOTAL AL PAGAR ES: "<<subtotal;
+    cout << "EL TOTAL AL PAGAR ES: "<<subtotal<<endl;
 
     return metodoDePago;
 }
+void DetalleVentas::calculoDeVuelto(){
+    float importe;
+    cout << "INGRESE EL DINERO RECIBIDO: ";
+    cin >>importe;
+    cout << "VUELTO:"<<importe-subtotal<<endl;
 
+}
 #endif // DETALLEVENTAS_H_INCLUDED

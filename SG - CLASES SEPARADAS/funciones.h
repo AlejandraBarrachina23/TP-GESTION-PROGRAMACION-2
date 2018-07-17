@@ -885,6 +885,7 @@ while(seguir==true){
 
 unaCabeceraVenta.setMetodoDePago(unDetalleVenta.calculoConFormaDePago());
 unaCabeceraVenta.grabarenDisco();
+unDetalleVenta.calculoDeVuelto();
 
 getch();
 limpiar();

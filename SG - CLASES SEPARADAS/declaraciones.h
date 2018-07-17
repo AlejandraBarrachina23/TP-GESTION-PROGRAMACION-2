@@ -348,6 +348,7 @@ public:
     void mostrarArchivo();
     void cargarArchivo(int _codigoFactura,int _codigoLinea);
     int calculoConFormaDePago();
+    void calculoDeVuelto();
 };
 class Proveedor{
     private:
