@@ -949,9 +949,18 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimiento;
     unaCabeceraMovimiento.cargarDatos(usuario,tipo);
+    unDetalleMovimiento.mostrarEncabezadoFaltantes();
+    while(unProducto.leerArchivo(pos)){
+            if(unProducto.getStockSucursal()<unProducto.getStockCritico()&&unProducto.getStockDeposito()>0&&unProducto.getEstado()==true){
+                unDetalleMovimiento.mostrarFaltantes(pos);
+            }
+        pos++;
+     }
+
     cout << "¿DESEA CARGAR LOS DATOS? <S/N>"<<endl;
     cin >> continuar;
     if(continuar=='s'||continuar=='S'){
+    pos=0;
         while(unProducto.leerArchivo(pos)){
             if(unProducto.getStockSucursal()<unProducto.getStockCritico()&&unProducto.getStockDeposito()>0&&unProducto.getEstado()==true){//SI EL SS ES MENOR AL CRITICO Y SI HAY PARA TRANSFERIR EN DEPOSITO
                 cantidadATransferir= unProducto.getStockCritico()-unProducto.getStockSucursal();
@@ -966,17 +975,14 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
                 unDetalleMovimiento.cargarDatos(unaCabeceraMovimiento.getNrodeFactura(),nroLinea,unProducto.getCodigoProducto(),totalATransferir);
                 unDetalleMovimiento.grabarArchivo();
                 unProducto.modificarArchivo(pos);
-                unDetalleMovimiento.mostrarArchivo();
                 totalATransferir=0;
             }
             nroLinea++;
             pos++;
         }
         unaCabeceraMovimiento.grabarArchivo();
-        unDetalleMovimiento.grabarArchivo();
     }
     else {accionCancelada();}
-
 
     getch();
     limpiar();
@@ -1016,16 +1022,34 @@ void devolucionDeMercaderia(char *usuario, int tipo){
             unaCabeceraMovimiento.grabarArchivo();
     }
     }
-    pos=0;
-    pos2=0;
+}
+
+void listadoDeMovimientos(){
+    CabeceraMovimientos unaCabeceraMovimiento;
+    DetalleMovimientos unDetalleMovimiento;
+
+    int opcion;
+    cout << "====================================================================================================="<<endl;
+    cout << "                                           LISTADO DE MOVIMIENTOS"<<endl;
+    cout << "====================================================================================================="<<endl;
+    cout << endl;
+
+    cout << "¿QUE DESEA LISTAR?"<<endl;
+    cin >> opcion;
+
+    int pos=0, pos2=0;
     while(unaCabeceraMovimiento.leerArchivo(pos++)){
-        unaCabeceraMovimiento.mostrarArchivo();
-        while(unDetalleMovimiento.leerArchivo(pos2++)){
-            if(unaCabeceraMovimiento.getNrodeFactura()==unDetalleMovimiento.getNroFactura()){
-                unDetalleMovimiento.mostrarArchivo();
+        if(unaCabeceraMovimiento.getTipo()==opcion){
+            unaCabeceraMovimiento.mostrarArchivo();
+            while(unDetalleMovimiento.leerArchivo(pos2++)){
+                if(unaCabeceraMovimiento.getNrodeFactura()==unDetalleMovimiento.getNroFactura()){
+                    unDetalleMovimiento.mostrarArchivo();
+                }
+            }
         }
-    }
-pos2=0;
+
+    pos2=0;
+
 }
 }
 #endif // FUNCIONES_H_INCLUDE

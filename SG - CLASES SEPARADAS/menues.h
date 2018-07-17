@@ -26,7 +26,6 @@ class Menues{
         void submenuProveedores(char *usuario);
         void menuTransferencias(char *usuario);
 };
-
 void Menues::logIn(){
     system("color 1D");
     Usuario unUsuario,aux;
@@ -371,7 +370,7 @@ do{
         devolucionDeMercaderia(usuario,2);
         break;
     case 3:
-        cout << "LISTAR"<<endl;
+        listadoDeMovimientos();
         break;
     case 0:
         logIn();

@@ -139,14 +139,14 @@
 	"menues.h"
 	"funciones.h"
 
-1531715212 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
+1531799139 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
 	"funciones.h"
 	<stdlib.h>
 	<conio.h>
 	<iostream>
 	<windows.h>
 
-1531794930 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
+1531799528 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
 	"menues.h"
 	<conio.h>
 	<windows.h>
