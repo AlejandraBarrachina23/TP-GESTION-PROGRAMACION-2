@@ -3,9 +3,8 @@
 
 void CabeceraMovimientos::mostrarArchivo(){
 CabeceraDocumento::mostrarArchivo();
-if(tipo==1)cout << "\tTIPO: "<<"TRANSFERENCIA"<<endl;
-else cout << "\tTIPO: "<<"DEVOLUCION"<<endl;
-cout <<"====================================================================================================="<<endl;
+if(tipo==1){gotoxy(50,3);cout << "TIPO: "<<"TRANSFERENCIA"<<endl;}
+else {gotoxy(50,3);cout << "TIPO: "<<"DEVOLUCION"<<endl;}
 
 }
 void CabeceraMovimientos::cargarDatos(char *_usuario, int _tipo){
@@ -26,7 +25,6 @@ bool CabeceraMovimientos::grabarArchivo(){
     return grabo;
 
 }
-
 bool CabeceraMovimientos::leerArchivo(int pos){
     bool leyo;
     FILE *p;

@@ -406,27 +406,36 @@ do{
 void Menues::menuTransferencias(char *usuario){
 
 do{
-
-    cout << "MENU MOVIMIENTOS"<<endl;
-    cout << "[1] TRANSFERENCIA DE MERCADERIA"<<endl;
-    cout << "[2] DEVOLUCION DE MERCADERIA"<<endl;
-    cout << "[3] CONSULTAR TRANSFERENCIAS Y DEVOLUCIONES"<<endl;
-    cout << "[0] CIERRE DE SESIÓN"<<endl;
+    recuadro(20, 1,60, 25, cBLANCO, cAZUL);
+    recuadro(20, 1,60, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(43,2);cout << "MENU MOVIMIENTOS"<<endl;
+    recuadro(35, 7,30, 2, cBLANCO, cGRIS);
+    textcolor(cBLANCO, cGRIS);
+    gotoxy(40,8);cout << "TRANSFERIR MERCADERIA"<<endl;
+    recuadro(35,10,30, 2, cBLANCO, cGRIS);
+    gotoxy(40,11);cout << "DEVOLVER MERCADERIA"<<endl;
+    recuadro(35,13,30, 2, cBLANCO, cGRIS);
+    gotoxy(40,14);cout << "CONSULTAR MOVIMIENTOS"<<endl;
+    recuadro(35,16,30, 2, cBLANCO, cGRIS);
+    gotoxy(40,17);cout << "CIERRE DE SESION"<<endl;
+    recuadro(20,24,60, 2, cBLANCO, cAZUL);
+    gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
-    cout << "INGRESE UNA OPCION:";
-    cin >> opcion;
+    y=navegacionMenu(37,8,8,17);
+
     system("cls");
-    switch(opcion) {
-    case 1:
+    switch(y) {
+    case 8:
         transferenciaDeMercaderia(usuario,1);
         break;
-    case 2:
+    case 11:
         devolucionDeMercaderia(usuario,2);
         break;
-    case 3:
+    case 14:
         listadoDeMovimientos();
         break;
-    case 0:
+    case 17:
         logIn();
         break;
     default:

@@ -981,30 +981,31 @@ void listarVentasPorCodigo(){
 /// MENU MOVIMIENTOS
 void transferenciaDeMercaderia(char*usuario, int tipo){
 
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           TRANSFERENCIA DE MERCADERIA"<<endl;
-    cout << "====================================================================================================="<<endl;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "TRANSFERENCIA DE MERCADERIA"<<endl;
+    textcolor(cBLANCO, cAZUL);
 
     int cantidadATransferir, pos=0, nroLinea=1, totalATransferir=0;
     char descripcion[20];
-    char continuar;
-    bool mostrarCabecera=false;
+    bool continuar;
+    bool mostrarCabecera=false, muestraCabecera=false;
     Producto unProducto;
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimiento;
     unaCabeceraMovimiento.cargarDatos(usuario,tipo);
-    unDetalleMovimiento.mostrarEncabezadoFaltantes();
-    while(unProducto.leerArchivo(pos)){
-
+    while(unProducto.leerArchivo(pos)){ //IMPRIME LOS FALTANTES
             if(unProducto.getStockSucursal()<unProducto.getStockCritico()&&unProducto.getStockDeposito()>0&&unProducto.getEstado()==true){
+                if(muestraCabecera==false) unDetalleMovimiento.mostrarEncabezadoFaltantes();
                 unDetalleMovimiento.mostrarFaltantes(pos);
+                muestraCabecera=true;
             }
         pos++;
-     }
-
-    cout << "¿DESEA CARGAR LOS DATOS? <S/N>"<<endl;
-    cin >> continuar;
-    if(continuar=='s'||continuar=='S'){
+    }
+    if(muestraCabecera==true){
+    continuar=consultaParaContinuar();
+    if(continuar==true){ //REALIZA LA TRANSFERENCIA DE TODOS LOS PROUDCTOS QUE HACE FALTA
     pos=0;
         while(unProducto.leerArchivo(pos)){
             if(unProducto.getStockSucursal()<unProducto.getStockCritico()&&unProducto.getStockDeposito()>0&&unProducto.getEstado()==true){//SI EL SS ES MENOR AL CRITICO Y SI HAY PARA TRANSFERIR EN DEPOSITO
@@ -1015,7 +1016,6 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
                 while(totalATransferir<cantidadATransferir&&totalATransferir<unProducto.getStockDeposito()){
                     totalATransferir+=1;
                 }
-
                 unProducto.cargarStock(totalATransferir);
                 unDetalleMovimiento.cargarDatos(unaCabeceraMovimiento.getNrodeFactura(),nroLinea,unProducto.getCodigoProducto(),totalATransferir);
                 unDetalleMovimiento.grabarArchivo();
@@ -1026,9 +1026,11 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
             pos++;
         }
         unaCabeceraMovimiento.grabarArchivo();
+        accionAceptada();
     }
     else {accionCancelada();}
-
+    }
+    else {gotoxy(38,5);textcolor(cROJO_CLARO,cAZUL);cout << "NO HAY PRODUCTOS A TRANSFERIR"<<endl;}
     getch();
     limpiar();
 }
@@ -1036,50 +1038,45 @@ void devolucionDeMercaderia(char *usuario, int tipo){
 
     int codigo, pos,nroLinea=1, pos2;
     bool seguir=true;
-    char continuar;
     Validador validar;
     Producto unProducto;
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimiento;
-
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           DEVOLUCION DE MERCADERIA"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
-
-
     unaCabeceraMovimiento.cargarDatos(usuario,tipo); //CARGO LA CABECERA
+
     while(seguir==true){
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "DEVOLUCION DE MERCADERIA"<<endl;
+    textcolor(cBLANCO, cAZUL);
     unDetalleMovimiento.cargarDatosDevoluciones(unaCabeceraMovimiento.getNrodeFactura(),nroLinea); //PIDO LOS DATOS, CARGO EL DETALLE
     pos=validar.existenciaCodigo(unDetalleMovimiento.getcodigoProducto()); //BUSCO EL PRODUCTO
     unProducto.leerArchivo(pos);
     unProducto.setStockSucursal(unProducto.getStockSucursal()-unDetalleMovimiento.getCantidad());//RESTO EL STOCK
     unProducto.modificarArchivo(pos);
     unDetalleMovimiento.grabarArchivo();
+    seguir=consultaParaContinuar();
     nroLinea++;
-    cout << "¿DESEA CONTINUAR? <S/N>";
-    cin >> continuar;
-    getch();
     limpiar();
-    if(continuar=='s' || continuar=='S') seguir=true;
-    else if (continuar == 'n' || continuar == 'N') {
-            seguir=false;
-            unaCabeceraMovimiento.grabarArchivo();
     }
-    }
+    unaCabeceraMovimiento.grabarArchivo();
 }
 void listadoDeMovimientos(){
+
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimiento;
 
     int opcion;
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           LISTADO DE MOVIMIENTOS"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "LISTADO DE MOVIMIENTOS"<<endl;
+    textcolor(cBLANCO, cAZUL);
 
     cout << "¿QUE DESEA LISTAR?"<<endl;
     cin >> opcion;
+
     limpiar();
     int pos=0, pos2=0;
     while(unaCabeceraMovimiento.leerArchivo(pos++)){
