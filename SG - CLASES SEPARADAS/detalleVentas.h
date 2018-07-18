@@ -69,7 +69,23 @@ cout<<"    NRO  CODIGO    DETALLE             CANT      PU        SUBT      TOTA
 cout<<"  ==================================================================================================="<<endl;
 
 }
+void DetalleVentas::mostrarPieDePagina(int nroFactura){
+    int metodoPago;
+    metodoPago=buscarMetodoDePago(nroFactura);
+
+    recuadro(1, 23,100, 3, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(2,24);cout<<"METODO DE PAGO: ";
+    if(metodoPago==1){gotoxy(18,24);cout<<"EFECTIVO(+0%)"<<endl;}
+    else if(metodoPago==2){gotoxy(18,24);cout<<"DEBITO(+0%)"<<endl;}
+    else {gotoxy(18,24);cout<<"CREDITO(+8%)"<<endl;}
+    if(metodoPago==3){gotoxy(60,24);cout<<"TOTAL: $"<<int(buscarSumatoriaVentas(nroFactura)*1.08)<<endl;}
+    else{gotoxy(60,24);cout<<"TOTAL: $"<<buscarSumatoriaVentas(nroFactura)<<endl;}
+    cout <<endl;
+
+}
 void DetalleVentas::mostrarArchivo(){
+
 float pv=buscarPV(codigoProducto);
 char descripcion[30];
 strcpy(descripcion,buscardescripcion(codigoProducto));
@@ -97,7 +113,7 @@ fclose(p);
 return leyo;
 }
 int DetalleVentas::calculoConFormaDePago(){
-
+    Validador validar;
     int cuotas,metodoDePago;
     cout<<"METODO DE PAGO: ";
     cin>>metodoDePago;
@@ -105,6 +121,12 @@ int DetalleVentas::calculoConFormaDePago(){
     if(metodoDePago==3){
     cout << "INGRESE CUOTAS: ";
     cin >> cuotas;
+
+    while(!validar.intervaloDeNumeros(cuotas,1,3)){
+        cout << "SOLO SE ADMITE 2 O 3 CUOTAS."<<endl;
+        cout << "INGRESE CUOTAS: ";
+        cin >> cuotas;
+    }
     if(cuotas==2) subtotal=subtotal*1.06;
     if(cuotas==3) subtotal=subtotal*1.08;
     }
@@ -116,7 +138,14 @@ void DetalleVentas::calculoDeVuelto(){
     float importe;
     cout << "INGRESE EL DINERO RECIBIDO: ";
     cin >>importe;
-    cout << "VUELTO:"<<importe-subtotal<<endl;
 
+    while(importe<subtotal){
+
+    cout << "LA CANTIDAD INGRESADA ES MENOR A LA QUE SE TIENE QUE PAGAR."<<endl;
+    cout << "INGRESE EL DINERO RECIBIDO: ";
+    cin >>importe;
+
+    }
+    cout << "VUELTO:"<<importe-subtotal<<endl;
 }
 #endif // DETALLEVENTAS_H_INCLUDED

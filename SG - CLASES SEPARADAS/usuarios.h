@@ -51,7 +51,6 @@ bool Usuario::grabarArchivo(){
 void Usuario::cargarDatos(){
 
     Validador validar;
-    int intentos=1;
     cout << "CODIGO DE USUARIO: ";
     cin >> codigo;
     while(validar.existenciaCodigoUsuario(codigo)>=0){

@@ -254,6 +254,22 @@ char *buscarRubro(int cod){
     }
 
 }
+int buscarMetodoDePago(int cod){
+    CabeceraVentas unaCabeceraVenta;
+    int pos=0;
+    while(unaCabeceraVenta.leerenDisco(pos++)){
+        if(unaCabeceraVenta.getNrodeFactura()==cod) return unaCabeceraVenta.getMetodoDePago();
+    }
+}
+int buscarSumatoriaVentas(int cod){
+    DetalleVentas unDetalleVenta;
+    int pos=0,total=0;
+    while(unDetalleVenta.leerenDisco(pos++)){
+
+        if(unDetalleVenta.getNroFactura()==cod) total+=(unDetalleVenta.getCantidad()*unDetalleVenta.getPrecioVenta());
+    }
+    return total;
+}
 float buscarPV(int cod){
     Producto unProducto;
     int pos=0;
@@ -268,24 +284,23 @@ float buscarPC(int cod){
         if (unProducto.getCodigoProducto()==cod) return unProducto.getPrecioCosto();
     }
 }
-float cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario){
+void cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario, int &pEfectivo, int &pDebito, int &pCredito){
 
     int pos=0,pos2=0;
-    float totalVenta=0;
     CabeceraVentas unaCabeceraVenta;
     DetalleVentas unDetalleVenta;
     while(unaCabeceraVenta.leerenDisco(pos++)){
-        if(unaCabeceraVenta.getFechaDeEmision()==fechaDeHoy&&(strcmp(usuario,unaCabeceraVenta.getUsuario())==0)){
-
+        if(unaCabeceraVenta.getFechaDeEmision()==fechaDeHoy&&(strcmp(usuario,unaCabeceraVenta.getUsuario())==0)){//COINCIDEN LA FECHA Y EL USUARIO
             while(unDetalleVenta.leerenDisco(pos2++)){
                 if(unDetalleVenta.getNroFactura()==unaCabeceraVenta.getNrodeFactura()){
-                        totalVenta+=(unDetalleVenta.getPrecioVenta()*unDetalleVenta.getCantidad());
-                        cout << totalVenta<<endl;}
+                    if(unaCabeceraVenta.getMetodoDePago()==1) pEfectivo+=(unDetalleVenta.getPrecioVenta()*unDetalleVenta.getCantidad());
+                    else if(unaCabeceraVenta.getMetodoDePago()==2) pDebito+=(unDetalleVenta.getPrecioVenta()*unDetalleVenta.getCantidad());
+                    else pCredito+=(unDetalleVenta.getPrecioVenta()*unDetalleVenta.getCantidad());
+                }
             }
             pos2=0;
         }
     }
-return totalVenta;
 }
 void ocultarContrasenia(char *password){
 
@@ -840,7 +855,7 @@ DetalleVentas unDetalleVenta;
 Producto unProducto;
 Validador validar;
 unaCabeceraVenta.cargarDatos(usuario);
-int cuentaLinea=1,pos,metodoDePago;
+int cuentaLinea=1,pos;
 bool seguir=true;
 char continuar;
 
@@ -858,23 +873,18 @@ while(seguir==true){
     unProducto.modificarArchivo(pos);
     unDetalleVenta.grabarenDisco();
     getch();
-    limpiar();
+    cout << "¿DESEA CONTINUAR? <S/N>";
+    cin >> continuar;
+    if(continuar=='s' || continuar=='S') seguir=true;
+    else if (continuar == 'n' || continuar == 'N') seguir=false;
+    else cout << "INCORRECTO";
 
     unaCabeceraVenta.mostrarArchivo();
     pos=0;
     while(unDetalleVenta.leerenDisco(pos++)){
         if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) unDetalleVenta.mostrarArchivo();
     }
-
-    cout << "¿DESEA CONTINUAR? <S/N>";
-    cin >> continuar;
-    if(continuar=='s' || continuar=='S') seguir=true;
-    else if (continuar == 'n' || continuar == 'N') {
-            seguir=false;
-           }
-
-    else {cout << "INCORRECTO";}
-    limpiar();
+    getch();
     cuentaLinea++;
 }
 
@@ -882,7 +892,7 @@ while(seguir==true){
     pos=0;
     while(unDetalleVenta.leerenDisco(pos++)){
         if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) unDetalleVenta.mostrarArchivo();
-}
+    }
 
 unaCabeceraVenta.setMetodoDePago(unDetalleVenta.calculoConFormaDePago());
 unaCabeceraVenta.grabarenDisco();
@@ -895,20 +905,24 @@ limpiar();
 void cierreDeCaja(char *usuario){
 
     Fecha fechaDeHoy;
-    float inicioDeCaja, totalVentas;
+    float inicioDeCaja;
+    int totalVentasEfectivo=0, totalVentasDebito=0, totalVentasCredito=0;
 
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           CIERRE DE CAJA "<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
-
-    cout << "USUARIO: "<< usuario<<endl;
-    cout << "FECHA: "<< fechaDeHoy.getDia()<<"/"<<fechaDeHoy.getMes()<<"/"<<fechaDeHoy.getAnio()<<endl;
-    cout << "INICIO DE CAJA: ";
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "CIERRE DE CAJA"<<endl;
+    textcolor(cGRIS_CLARO,cAZUL);
+    gotoxy(40,5);cout << "USUARIO: "<< usuario<<endl;
+    gotoxy(40,6);cout << "FECHA: "<< fechaDeHoy.getDia()<<"/"<<fechaDeHoy.getMes()<<"/"<<fechaDeHoy.getAnio()<<endl;
+    textcolor(cBLANCO, cAZUL);
+    gotoxy(40,7);cout << "INICIO DE CAJA: ";
     cin >> inicioDeCaja;
-    totalVentas=cuentaVentaUsuario(fechaDeHoy,usuario);
-    cout << "TOTAL VENTAS: "<<totalVentas<<endl;
-    cout << "TOTAL A ENTREGAR: "<< inicioDeCaja+totalVentas<<endl;
+    cuentaVentaUsuario(fechaDeHoy,usuario,totalVentasEfectivo,totalVentasDebito,totalVentasCredito);
+    gotoxy(40,8);cout << "TOTAL VENTAS EN EFECTIVO: "<<totalVentasEfectivo<<endl;
+    gotoxy(40,9);cout << "TOTAL VENTAS EN CON TARJETA DE DEBITO: "<<totalVentasDebito<<endl;
+    gotoxy(40,10);cout << "TOTAL VENTAS CON TARJETA DE CREDITO: "<<totalVentasCredito*1.08<<endl;
+    gotoxy(40,11);cout << "TOTAL A ENTREGAR: "<< inicioDeCaja+totalVentasDebito+totalVentasDebito+totalVentasCredito<<endl;
     getch();
     system("cls");
 }
@@ -918,15 +932,16 @@ void listarVentasPorCodigo(){
     DetalleVentas unDetalleVenta;
     int nroFactura;
     int pos=0;
-    bool cabeceraImpresa=false;
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           LISTADO VENTAS POR CODIGO"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
+    bool cabeceraImpresa=false,detalleImpreso=false;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "CONSULTAR VENTAS"<<endl;
+    textcolor(cBLANCO, cAZUL);
 
-    cout << "INGRESE EL NUMERO DE LA FACTURA QUE DESEA CONSULTAR: ";
+    gotoxy(20,4);cout << "INGRESE EL NUMERO DE LA FACTURA QUE DESEA CONSULTAR: ";
     cin >> nroFactura;
-    limpiar();
+
     while(unDetalleVenta.leerenDisco(pos)){
         if(unDetalleVenta.getNroFactura()==nroFactura) {
             if(!cabeceraImpresa){
@@ -936,10 +951,13 @@ void listarVentasPorCodigo(){
                 cabeceraImpresa=true;
             }
             unDetalleVenta.mostrarArchivo();
+            detalleImpreso=true;
         }
         pos++;
     }
-    if(!cabeceraImpresa) cout << "EL CODIGO INGRESADO NO EXISTE."<<endl;
+    if(detalleImpreso) unDetalleVenta.mostrarPieDePagina(nroFactura);
+    textcolor(cROJO_CLARO,cAZUL);
+    if(!cabeceraImpresa) {gotoxy(35,5);cout << "EL CODIGO INGRESADO NO EXISTE."<<endl;}
     getch();
     limpiar();
 }

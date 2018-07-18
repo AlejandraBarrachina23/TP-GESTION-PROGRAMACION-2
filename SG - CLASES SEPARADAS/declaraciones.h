@@ -347,9 +347,11 @@ public:
     bool leerenDisco(int pos);
     void mostrarArchivo();
     void mostrarEncabezado();
+    void mostrarPieDePagina(int nroFactura);
     void cargarArchivo(int _codigoFactura,int _codigoLinea);
     int calculoConFormaDePago();
     void calculoDeVuelto();
+
 };
 class Proveedor{
     private:
@@ -399,8 +401,10 @@ int buscarStockSucursal(int cod);
 char *buscarProveedor(int cod);
 char *buscarRubro(int cod);
 float buscarPV(int cod);
+int buscarMetodoDePago(int cod);
+int buscarSumatoriaVentas(int cod);
 float buscarPC(int cod);
-float cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario);
+void cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario, int *pEfectivo, int *pDebito, int *pCredito);
 int cuentaRegistros(char *ruta, int tamanio);
 void ocultarContrasenia(char *password);
 void pantallaBienvenida(char *nombre,int sector);
