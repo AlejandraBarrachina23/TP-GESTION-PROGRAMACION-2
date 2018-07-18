@@ -218,11 +218,11 @@ void cuentaRegresiva(int tam){
         Sleep(1000);
     }
 }
-void mostrarEncabezado(){
+/*void mostrarEncabezado(){
 
     cout << "\t\tLISTADO DE USUARIOS"<<endl;
     cout << "\t|  USUARIO  |"    "\t|  CONTRASEÑA  |"<<endl;
-}
+}*/
 char *buscardescripcion(int cod){
     Producto unProducto;
     int pos=0;
@@ -634,6 +634,7 @@ void agregarProducto(){
     limpiar();
 }
 void listarProductos(){
+
     int pos=0;
     Producto unProducto;
     unProducto.mostrarEncabezado();
@@ -752,24 +753,22 @@ void modificarProducto(){
 
 /// MENU COMPRAS
 void agregarCompra(char *usuario){
-
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "AGREGAR COMPRA"<<endl;
-    textcolor(cBLANCO, cAZUL);
-    bool seguir;
+
+    bool seguir=true;
     Validador validar;
     Producto unProducto;
     CabeceraCompra unaCabeceraCompra;
     DetalleCompra unDetalleCompra;
     int stockAnterior,pos=0, cuentaLinea=1;
-    char continuar='S';
     float stockValorizado,subTotalCompra,costoReal;
     fflush(stdin);
     unaCabeceraCompra.cargarDatos(usuario);
 
-        while(continuar=='s'||continuar=='S'){
+        while(seguir==true){
             unDetalleCompra.cargarDatos(unaCabeceraCompra.getNrodeFactura(),cuentaLinea,unaCabeceraCompra.getCodigoProveedor()); //SET NRO FACTURA, NRO DE LINEA, PROVEEDOR
             pos=validar.existenciaCodigo(unDetalleCompra.getcodigoProducto());//BUSCA EL PRODUCTO A TRAVES DEL CODIGO
             unProducto.leerArchivo(pos);//CARGA OBJETO
@@ -789,29 +788,24 @@ void agregarCompra(char *usuario){
             cout << "RENTABILIDAD: "<< unProducto.getRentabilidad()<<endl;
             cout << "PRECIO VENTA:" << unDetalleCompra.getPrecioVenta()<<endl;
             */
-            cout << "DATOS CARGADOS."<<endl;
-            cout <<endl;
-
             seguir=consultaParaContinuar();
-            cout << "¿DESEA CONTINUAR? <S/N>";
-            cin >> continuar;
-            getch();
             limpiar();
-
             unDetalleCompra.grabarArchivo();
             unProducto.modificarArchivo(pos);
             unaCabeceraCompra.leerArchivo(unDetalleCompra.getNroFactura()-1);
             unaCabeceraCompra.mostrarArchivo();
+
             pos=0;
             while(unDetalleCompra.leerArchivo(pos)){
                 if(unDetalleCompra.getNroFactura()==unaCabeceraCompra.getNrodeFactura()) unDetalleCompra.mostrarArchivo();
             pos++;
             }
             cuentaLinea++;
-        }
-            unaCabeceraCompra.grabarArchivo();
             getch();
             limpiar();
+        }
+            unaCabeceraCompra.grabarArchivo();
+
 
     }
 void listarTodasLasCompras(){
@@ -823,6 +817,7 @@ void listarTodasLasCompras(){
 
     while(unaCabeceraCompra.leerArchivo(posC)){
         unaCabeceraCompra.mostrarArchivo();
+        unDetalleCompra.mostrarEncabezado();
             while(unDetalleCompra.leerArchivo(posD)){
                 if(unaCabeceraCompra.getNrodeFactura()==unDetalleCompra.getNroFactura()){
                     unDetalleCompra.mostrarArchivo();
@@ -842,12 +837,12 @@ void listarComprasPorCodigo(){
     int nroFactura;
     int pos=0;
     bool cabeceraImpresa=false;
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           LISTADO COMPRAS POR CODIGO"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
-
-    cout << "INGRESE EL NUMERO DE LA FACTURA QUE DESEA CONSULTAR: ";
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "LISTAR COMPRAS POR CODIGO"<<endl;
+    textcolor(cBLANCO, cAZUL);
+    gotoxy(25,4);cout << "INGRESE EL NUMERO DE LA FACTURA QUE DESEA CONSULTAR: ";
     cin >> nroFactura;
     limpiar();
     while(unDetalleCompra.leerArchivo(pos)){

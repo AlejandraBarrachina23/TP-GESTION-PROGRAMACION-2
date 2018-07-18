@@ -313,6 +313,7 @@ class DetalleCompra:public DetalleDocumento{
         bool grabarArchivo();
         bool leerArchivo(int pos);
         void mostrarArchivo();
+        void mostrarEncabezado();
 
 };
 class DetalleMovimientos:public DetalleDocumento{

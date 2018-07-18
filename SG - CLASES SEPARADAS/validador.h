@@ -66,7 +66,7 @@ int Validador::existenciaProveedor(int codigo){
     Proveedor unProveedor;
     int pos=0;
     while(unProveedor.leerArchivo(pos)){
-        if(unProveedor.getCodigoProveedor()==codigo) return pos;
+        if(unProveedor.getCodigoProveedor()==codigo&&unProveedor.getEstado()==true) return pos;
         pos++;
     }
     return -1;

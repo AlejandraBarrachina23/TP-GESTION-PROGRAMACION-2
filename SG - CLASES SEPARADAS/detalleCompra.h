@@ -10,15 +10,17 @@ bool DetalleCompra::grabarArchivo(){
     fclose(p);
     return true;
 }
+void DetalleCompra::mostrarEncabezado(){
+
+    cout<<" "<<(char)186<<"NRO     DETALLE             CANT     PN        PB        PV  "<<endl;
+    cout<<" "<<(char)186<<"==================================================================================================="<<endl;
+
+}
 void DetalleCompra::mostrarArchivo(){
-    Producto unProducto;
-    Validador validar;
-    int pos;
-    pos=validar.existenciaCodigo(codigoProducto);
-    unProducto.leerArchivo(pos);
-    cout <<"NRO\tDETALLE\t\tCANTIDAD\t\tPN\t\tPB\t\tPV"<<endl;
-    cout <<nroLinea<<"\t\t"<<unProducto.getDescripcion()<<"\t\t"<<cantidad<<"\t\t\t"<<precioNeto<<"\t\t"<<precioBruto<<"\t\t"<<precioVenta<<endl;
-    cout << "-----------------------------------------------------------------------------------------------------"<<endl;
+    char descripcion[20];
+    strcpy(descripcion,buscardescripcion(codigoProducto));
+
+    std::cout << setiosflags(ios::left)<<" "<<(char)186<<setw(8)<<codigoProducto<<setw(20)<<descripcion<<setw(8)<<cantidad<<fixed<<setprecision(2)<<setw(10)<<precioNeto<<setw(10)<<precioBruto<<setw(10)<<precioVenta<<endl;
 }
 bool DetalleCompra::leerArchivo(int cod){
 
@@ -105,22 +107,23 @@ void DetalleCompra::calculoPrecioBruto(Producto &unProducto){
     cin >> descuento;
     while(!validar.intervaloDeNumeros(descuento,0,100)){
         textcolor(cROJO_CLARO,cAZUL);
-        gotoxy(20,13);cout << "NUMERO INVALIDO. INGRESE UN VALOR DE 0 AL 100."<<endl;
+        gotoxy(15,13);cout << "NUMERO INVALIDO. INGRESE UN VALOR DE 0 AL 100."<<endl;
+        getch();
         gotoxy(20,13);cout<< "                                               "<<endl;
         gotoxy(46,12);cout<< "         "<<endl;
-        getch();
+        textcolor(cBLANCO,cAZUL);
         gotoxy(35,12);cout << "DESCUENTO: ";
         gotoxy(46,12);cin >> descuento;
         }
     precioNeto=precioNeto*((100-descuento)/100);
-    cout << "PRECIO NETO-DESCUENTO: "<<precioNeto<<endl;
+    //cout << "PRECIO NETO-DESCUENTO: "<<precioNeto<<endl;
     ri.setIVA(unProducto.getPorcentuales().getIVA()/100*precioNeto);
-    cout << "PRECIO CON IVA: "<< ri.getIVA()<<endl;
+    //cout << "PRECIO CON IVA: "<< ri.getIVA()<<endl;
     ri.setPercepcion(ri.getIVA()*unProducto.getPorcentuales().getPercepcion()/100);
-    cout << "PRECIO PERCEPCION SOBRE IVA: "<<ri.getPercepcion()<<endl;
+    //cout << "PRECIO PERCEPCION SOBRE IVA: "<<ri.getPercepcion()<<endl;
     ri.setIB(precioNeto*unProducto.getPorcentuales().getIB()/100);
-    cout << "PRECIO CON IB:" <<ri.getIB()<<endl;
+    //cout << "PRECIO CON IB:" <<ri.getIB()<<endl;
     setPrecioBruto(ri.getIVA()+ri.getPercepcion()+ri.getIB()+precioNeto);
-    cout << "PRECIO BRUTO:" << getPrecioBruto() <<endl;
+    //cout << "PRECIO BRUTO:" << getPrecioBruto() <<endl;
 }
 #endif // DETALLECOMPRA_H_INCLUDED

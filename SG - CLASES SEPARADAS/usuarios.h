@@ -82,7 +82,6 @@ bool Usuario::operator!=(Usuario &aux){
 
     if(strcmp(aux.getNombre(),nombre)!=0)return true;
     if(strcmp(aux.getPassword(),password)!=0)return true;
-    if(aux.getEstado()!=true)return true;
     return false;
 }
 #endif // USUARIOS_H_INCLUDED

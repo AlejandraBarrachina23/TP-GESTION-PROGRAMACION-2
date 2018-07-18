@@ -39,15 +39,13 @@ void CabeceraCompra::cargarDatos(char *_usuario){
     textcolor(cBLANCO,cAZUL);
 }
 void CabeceraCompra::mostrarArchivo(){
-
-    Proveedor unProveedor;
-    Validador validar;
-    int pos;
-    pos=validar.existenciaProveedor(codigoProveedor);
-    unProveedor.leerArchivo(pos);
+    char proveedor[20];
+    strcpy(proveedor,buscarProveedor(codigoProveedor));
     CabeceraDocumento::mostrarArchivo();
-    cout << "\tTIPO: "<<tipo<< "\t\t\t\tPROVEEDOR: "<<unProveedor.getNombre()<<endl;
-    cout << "====================================================================================================="<<endl;
+    gotoxy(50,3);cout << "PROVEEDOR: "<<proveedor<<endl;
+    gotoxy(80,3);cout << "TIPO: "<<tipo;
+    cout <<endl;
+    cout <<endl;
 }
 bool CabeceraCompra::leerArchivo(int pos){
 

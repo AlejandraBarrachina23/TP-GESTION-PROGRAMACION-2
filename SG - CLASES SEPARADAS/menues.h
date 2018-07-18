@@ -58,7 +58,7 @@ void Menues::logIn(){
         aux.setPassword(password);
         while(unUsuario.leerArchivo(pos++)){ //COMPARO EL USUARIOS Y CONTRASEÑA DE AMBOS OBJETOS
 
-              if(!(unUsuario!=aux)) {
+              if(!(unUsuario!=aux)&&unUsuario.getEstado()==true) {
                     limpiar();
                     intentos=0;
                     opcion=unUsuario.getSector(); // GUARDO LA OPCION QUE LE CORRESPONDA AL USUARIO ASI LO DERIVO AL MENU CORRESPONDIENTE
