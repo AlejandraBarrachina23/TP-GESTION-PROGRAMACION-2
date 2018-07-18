@@ -11,16 +11,20 @@ bool DetalleMovimientos::leerArchivo(int pos){
     fclose(p);
     return leyo;
 }
-void DetalleMovimientos::mostrarArchivo(){
+void DetalleMovimientos::mostrarEncabezado(){
 
-char descripcion[30];
-strcpy(descripcion,buscardescripcion(codigoProducto));
+
 recuadro(1, 4,100, 2, cBLANCO, cAZUL);
 textcolor(cBLANCO,cAZUL);
 gotoxy(4,5);std::cout << setiosflags(ios::left)<<"         "<<setw(8)<<"NRO"<<setw(12)<<"CODIGO"<<setw(20)<<"DETALLE"<<setw(8)<<"CANTIDAD"<<endl;
 cout<<endl;
-std::cout<<setiosflags(ios::left)<<"              "<<setw(8)<<nroLinea<<setw(12)<<codigoProducto<<setw(20)<<descripcion<<setw(8)<<cantidad<<endl;
 
+}
+void DetalleMovimientos::mostrarArchivo(){
+mostrarEncabezado();
+char descripcion[30];
+strcpy(descripcion,buscardescripcion(codigoProducto));
+cout<<setiosflags(ios::left)<<"              "<<setw(8)<<nroLinea<<setw(12)<<codigoProducto<<setw(20)<<descripcion<<setw(8)<<cantidad<<endl;
 }
 bool DetalleMovimientos::grabarArchivo(){
 

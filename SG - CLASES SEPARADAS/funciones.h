@@ -1045,20 +1045,19 @@ void devolucionDeMercaderia(char *usuario, int tipo){
     unaCabeceraMovimiento.cargarDatos(usuario,tipo); //CARGO LA CABECERA
 
     while(seguir==true){
-    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
-    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
-    textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "DEVOLUCION DE MERCADERIA"<<endl;
-    textcolor(cBLANCO, cAZUL);
-    unDetalleMovimiento.cargarDatosDevoluciones(unaCabeceraMovimiento.getNrodeFactura(),nroLinea); //PIDO LOS DATOS, CARGO EL DETALLE
-    pos=validar.existenciaCodigo(unDetalleMovimiento.getcodigoProducto()); //BUSCO EL PRODUCTO
-    unProducto.leerArchivo(pos);
-    unProducto.setStockSucursal(unProducto.getStockSucursal()-unDetalleMovimiento.getCantidad());//RESTO EL STOCK
-    unProducto.modificarArchivo(pos);
-    unDetalleMovimiento.grabarArchivo();
-    seguir=consultaParaContinuar();
-    nroLinea++;
-    limpiar();
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "DEVOLUCION DE MERCADERIA"<<endl;
+        unDetalleMovimiento.cargarDatosDevoluciones(unaCabeceraMovimiento.getNrodeFactura(),nroLinea); //PIDO LOS DATOS, CARGO EL DETALLE
+        pos=validar.existenciaCodigo(unDetalleMovimiento.getcodigoProducto()); //BUSCO EL PRODUCTO
+        unProducto.leerArchivo(pos);
+        unProducto.setStockSucursal(unProducto.getStockSucursal()-unDetalleMovimiento.getCantidad());//RESTO EL STOCK
+        unProducto.modificarArchivo(pos);
+        unDetalleMovimiento.grabarArchivo();
+        seguir=consultaParaContinuar();
+        nroLinea++;
+        limpiar();
     }
     unaCabeceraMovimiento.grabarArchivo();
 }
@@ -1087,10 +1086,9 @@ void listadoDeMovimientos(){
                     unDetalleMovimiento.mostrarArchivo();
                 }
             }
-    getch();
-    limpiar();
+getch();
+limpiar();
         }
-
     pos2=0;
 }
 }

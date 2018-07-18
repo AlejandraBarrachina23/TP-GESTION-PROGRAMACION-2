@@ -326,6 +326,7 @@ class DetalleMovimientos:public DetalleDocumento{
         void cargarDatos(int _nroFactura, int _nroLinea, int _codigoProducto, int cantidadTransferida);
         void mostrarFaltantes (int);
         void mostrarEncabezadoFaltantes();
+        void mostrarEncabezado();
         void cargarDatosDevoluciones(int _nroFactura, int _nroLinea);
 };
 class DetalleVentas:public DetalleDocumento{
