@@ -758,7 +758,7 @@ void agregarCompra(char *usuario){
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "AGREGAR COMPRA"<<endl;
     textcolor(cBLANCO, cAZUL);
-
+    bool seguir;
     Validador validar;
     Producto unProducto;
     CabeceraCompra unaCabeceraCompra;
@@ -782,16 +782,17 @@ void agregarCompra(char *usuario){
             unDetalleCompra.setPrecioVenta((int)unDetalleCompra.getPrecioVenta());//SET PRECIOVENTA.
             unProducto.cargarDatosCompra(unDetalleCompra.getPrecioVenta(),unDetalleCompra.getPrecioBruto(),unDetalleCompra.getCantidad()+unProducto.getStockDeposito()); //SET DE STOCK-COSTO-VENTA DEL PRODUCTO CARGADO
 
-            cout << "STOCK ANTERIOR: " << stockAnterior <<endl;
+            /*cout << "STOCK ANTERIOR: " << stockAnterior <<endl;
             cout << "STOCK VALORIZADO: " << stockValorizado <<endl;
             cout << "SUBTOTAL: " << subTotalCompra <<endl;
             cout << "COSTO REAL: "<<costoReal<<endl;
             cout << "RENTABILIDAD: "<< unProducto.getRentabilidad()<<endl;
             cout << "PRECIO VENTA:" << unDetalleCompra.getPrecioVenta()<<endl;
-
+            */
             cout << "DATOS CARGADOS."<<endl;
             cout <<endl;
 
+            seguir=consultaParaContinuar();
             cout << "¿DESEA CONTINUAR? <S/N>";
             cin >> continuar;
             getch();

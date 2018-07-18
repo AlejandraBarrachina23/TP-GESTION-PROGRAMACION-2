@@ -45,43 +45,53 @@ void DetalleCompra::cargarDatos(int codFactura,int lineas, int codProveedor){
     while(pertenencia!=1){
         if(pertenencia==0){
             textcolor(cROJO_CLARO,cAZUL);
-            cout << "EL PRODUCTO INGRESADO NO PERTENECE A ESE PROVEEDOR."<<endl;
+            gotoxy(25,9);cout << "EL PRODUCTO INGRESADO NO PERTENECE A ESE PROVEEDOR."<<endl;
             getch();
+            gotoxy(25,9);cout << "                                                   "<<endl;
+            gotoxy(55,8);cout << "           "<<endl;
             textcolor(cBLANCO,cAZUL);
-            cout << "CODIGO DE PRODUCTO: ";
-            cin >> codigoProducto;
+            gotoxy(35,8);cout << "CODIGO DE PRODUCTO: ";
+            gotoxy(55,8);cin >> codigoProducto;
         }
         else if(pertenencia==-1){
             textcolor(cROJO_CLARO,cAZUL);
-            cout << "EL CODIGO INGRESADO NO EXISTE."<<endl;
+            gotoxy(34,9);cout << "EL CODIGO INGRESADO NO EXISTE."<<endl;
             getch();
+            gotoxy(34,9);cout << "                              "<<endl;
+            gotoxy(55,8);cout << "           "<<endl;
             textcolor(cBLANCO,cAZUL);
-            cout << "CODIGO DE PRODUCTO: ";
-            cin >> codigoProducto;
+            gotoxy(35,8);cout << "CODIGO DE PRODUCTO: ";
+            gotoxy(55,8);cin >> codigoProducto;
         }
         pertenencia=validar.perteneceAproveedor(codigoProducto,codProveedor);
     }
 
-    cout << strcpy(detalle,buscardescripcion(codigoProducto))<<endl;
-    cout << "CANTIDAD:";
+    textcolor(cGRIS_CLARO,cAZUL);
+    gotoxy(35,9);cout << "DETALLE: "<<strcpy(detalle,buscardescripcion(codigoProducto))<<endl;
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(35,10);cout << "CANTIDAD: ";
     cin >> cantidad;
     while(!validar.intervaloDeNumeros(cantidad,1,999)){
         textcolor(cROJO_CLARO,cAZUL);
-        cout << "NUMERO INVALIDO. INGRESE UN VALOR DEL 1 AL 999."<<endl;
+        gotoxy(28,11);cout << "NUMERO INVALIDO. INGRESE UN VALOR DEL 1 AL 999."<<endl;
         getch();
+        gotoxy(28,11);cout << "                                               "<<endl;
+        gotoxy(45,10);cout << "             "<<endl;
         textcolor(cBLANCO,cAZUL);
-        cout << "CANTIDAD:";
-        cin >> cantidad;
+        gotoxy(35,10);cout << "CANTIDAD:";
+        gotoxy(45,10);cin >> cantidad;
     }
-    cout << "PRECIO NETO: ";
+    gotoxy(35,11);cout << "PRECIO NETO: ";
     cin >> precioNeto;
     while(!validar.intervaloDeNumeros(precioNeto,1,9999)){
         textcolor(cROJO_CLARO,cAZUL);
-        cout << "NUMERO INVALIDO. INGRESE UN VALOR DEL 1 AL 9999."<<endl;
+        gotoxy(25,12);cout << "NUMERO INVALIDO. INGRESE UN VALOR DEL 1 AL 9999."<<endl;
         getch();
+        gotoxy(25,12);cout << "                                                "<<endl;
+        gotoxy(48,11);cout << "         "<<endl;
         textcolor(cBLANCO,cAZUL);
-        cout << "PRECIO NETO: ";
-        cin >> precioNeto;
+        gotoxy(35,11);cout << "PRECIO NETO: ";
+        gotoxy(48,11);cin >> precioNeto;
     }
     nroFactura=codFactura;
     nroLinea=lineas;
@@ -91,12 +101,16 @@ void DetalleCompra::calculoPrecioBruto(Producto &unProducto){
     Validador validar;
     RetencionesImpositivas ri;
     float descuento;
-    cout << "DESCUENTO: ";
+    gotoxy(35,12);cout << "DESCUENTO: ";
     cin >> descuento;
     while(!validar.intervaloDeNumeros(descuento,0,100)){
-        cout << "NUMERO INVALIDO. INGRESE UN VALOR DE 0 AL 100."<<endl;
-        cout << "DESCUENTO: ";
-        cin >> descuento;
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(20,13);cout << "NUMERO INVALIDO. INGRESE UN VALOR DE 0 AL 100."<<endl;
+        gotoxy(20,13);cout<< "                                               "<<endl;
+        gotoxy(46,12);cout<< "         "<<endl;
+        getch();
+        gotoxy(35,12);cout << "DESCUENTO: ";
+        gotoxy(46,12);cin >> descuento;
         }
     precioNeto=precioNeto*((100-descuento)/100);
     cout << "PRECIO NETO-DESCUENTO: "<<precioNeto<<endl;
