@@ -375,7 +375,6 @@ int navegacionMenuHorizontal(int cX, int cY, int limiteA, int limiteB, int valor
     int x=cX;
     int y=cY;
     bool derivar=false;
-    textcolor(cGRIS_CLARO,cAZUL);
     while(derivar==false){
         gotoxy(x,y);cout << "->";
         c=getch();
@@ -406,6 +405,18 @@ bool advertenciaDeBorrado(){
     opcion=navegacionMenuHorizontal(38,10,38,48,10);
         if(opcion==38)return true;
         return false;
+}
+bool consultaParaContinuar(){
+
+    int opcion;
+    gotoxy(40,13);cout << "¿DESEA CONTINUAR?"<<endl;
+    recuadro(40,15,7,2, cAMARILLO, cROJO);
+    recuadro(50,15,7,2, cAMARILLO, cROJO);
+    gotoxy(44,16);cout << "SI"<<endl;
+    gotoxy(54,16);cout << "NO"<<endl;
+    opcion=navegacionMenuHorizontal(41,16,41,51,10);
+    if(opcion==41)return true;
+    return false;
 }
 void accionCancelada(){
 
@@ -870,42 +881,46 @@ while(seguir==true){
     pos=validar.existenciaCodigo(unDetalleVenta.getcodigoProducto());
     unProducto.leerArchivo(pos);
     unProducto.setStockSucursal(unProducto.getStockSucursal()-unDetalleVenta.getCantidad());
+    seguir=consultaParaContinuar();
     unProducto.modificarArchivo(pos);
     unDetalleVenta.grabarenDisco();
-    getch();
-    cout << "¿DESEA CONTINUAR? <S/N>";
-    cin >> continuar;
-    if(continuar=='s' || continuar=='S') seguir=true;
-    else if (continuar == 'n' || continuar == 'N') seguir=false;
-    else cout << "INCORRECTO";
-
-    unaCabeceraVenta.mostrarArchivo();
-    pos=0;
-    while(unDetalleVenta.leerenDisco(pos++)){
-        if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) unDetalleVenta.mostrarArchivo();
+    if(seguir==true){//SI RESPONDE QUE SI MUESTRA COMO VA QUEDANDO LA FACTURA
+        unaCabeceraVenta.mostrarArchivo();
+        unDetalleVenta.mostrarEncabezado();
+        pos=0;
+        while(unDetalleVenta.leerenDisco(pos++)){
+            if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) unDetalleVenta.mostrarArchivo();
+        }
+        getch();
     }
-    getch();
     cuentaLinea++;
-}
+    }
+    limpiar();
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "AGREGAR VENTAS"<<endl;
+    textcolor(cBLANCO, cAZUL);
 
+    unaCabeceraVenta.setMetodoDePago(unDetalleVenta.calculoConFormaDePago());
+    unaCabeceraVenta.grabarenDisco();
+    unDetalleVenta.calculoDeVuelto();
+    getch();
     unaCabeceraVenta.mostrarArchivo();
+    unDetalleVenta.mostrarEncabezado();
     pos=0;
     while(unDetalleVenta.leerenDisco(pos++)){
         if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) unDetalleVenta.mostrarArchivo();
     }
-
-unaCabeceraVenta.setMetodoDePago(unDetalleVenta.calculoConFormaDePago());
-unaCabeceraVenta.grabarenDisco();
-unDetalleVenta.calculoDeVuelto();
-
-getch();
-limpiar();
+    unDetalleVenta.mostrarPieDePagina(unaCabeceraVenta.getNrodeFactura());
+    getch();
+    limpiar();
 
 }
 void cierreDeCaja(char *usuario){
 
     Fecha fechaDeHoy;
-    float inicioDeCaja;
+    int inicioDeCaja;
     int totalVentasEfectivo=0, totalVentasDebito=0, totalVentasCredito=0;
 
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
@@ -919,10 +934,11 @@ void cierreDeCaja(char *usuario){
     gotoxy(40,7);cout << "INICIO DE CAJA: ";
     cin >> inicioDeCaja;
     cuentaVentaUsuario(fechaDeHoy,usuario,totalVentasEfectivo,totalVentasDebito,totalVentasCredito);
+    textcolor(cGRIS_CLARO,cAZUL);
     gotoxy(40,8);cout << "TOTAL VENTAS EN EFECTIVO: "<<totalVentasEfectivo<<endl;
     gotoxy(40,9);cout << "TOTAL VENTAS EN CON TARJETA DE DEBITO: "<<totalVentasDebito<<endl;
-    gotoxy(40,10);cout << "TOTAL VENTAS CON TARJETA DE CREDITO: "<<totalVentasCredito*1.08<<endl;
-    gotoxy(40,11);cout << "TOTAL A ENTREGAR: "<< inicioDeCaja+totalVentasDebito+totalVentasDebito+totalVentasCredito<<endl;
+    gotoxy(40,10);cout << "TOTAL VENTAS CON TARJETA DE CREDITO: "<<int(totalVentasCredito*1.08)<<endl;
+    gotoxy(40,11);cout << "TOTAL A ENTREGAR: "<< inicioDeCaja+totalVentasEfectivo+totalVentasDebito+totalVentasCredito<<endl;
     getch();
     system("cls");
 }

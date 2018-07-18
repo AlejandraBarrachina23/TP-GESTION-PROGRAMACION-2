@@ -403,6 +403,7 @@ char *buscarRubro(int cod);
 float buscarPV(int cod);
 int buscarMetodoDePago(int cod);
 int buscarSumatoriaVentas(int cod);
+bool advertenciaDeBorrado();
 float buscarPC(int cod);
 void cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario, int *pEfectivo, int *pDebito, int *pCredito);
 int cuentaRegistros(char *ruta, int tamanio);

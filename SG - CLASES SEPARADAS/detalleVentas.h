@@ -35,7 +35,6 @@ void DetalleVentas::cargarArchivo(int _codigoFactura,int _codigoLinea){
         gotoxy(62,5);cin >> codigoProducto;
         }
         else codigoAceptado=true;
-
     }
     textcolor(cGRIS_CLARO,cAZUL);
     strcpy(descripcion,buscardescripcion(codigoProducto));
@@ -113,39 +112,56 @@ fclose(p);
 return leyo;
 }
 int DetalleVentas::calculoConFormaDePago(){
+
     Validador validar;
     int cuotas,metodoDePago;
-    cout<<"METODO DE PAGO: ";
+    gotoxy(35,4);cout<<"INGRESE METODO DE PAGO: ";
     cin>>metodoDePago;
 
+    while(!validar.intervaloDeNumeros(metodoDePago,1,3)){
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(30,5);cout<<"NUMERO INVALIDO. SOLO SE ADMITE DEL 1 AL 3"<<endl;
+        getch();
+        gotoxy(30,5);cout<<"                                          "<<endl;
+        gotoxy(59,4);cout <<"           "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(35,4);cout<<"INGRESE METODO DE PAGO: ";
+        gotoxy(59,4);cin>>metodoDePago;
+    }
     if(metodoDePago==3){
-    cout << "INGRESE CUOTAS: ";
+    gotoxy(35,5);cout <<"INGRESE CUOTAS: ";
     cin >> cuotas;
-
-    while(!validar.intervaloDeNumeros(cuotas,1,3)){
-        cout << "SOLO SE ADMITE 2 O 3 CUOTAS."<<endl;
-        cout << "INGRESE CUOTAS: ";
-        cin >> cuotas;
+    while(cuotas!=3){
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(30,6);cout <<"SOLO SE ADMITE 3 CUOTAS."<<endl;
+        getch();
+        gotoxy(30,6);cout<< "                         "<<endl;
+        gotoxy(51,5);cout<< "         "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(35,5);cout << "INGRESE CUOTAS: ";
+        gotoxy(51,5);cin >> cuotas;
     }
-    if(cuotas==2) subtotal=subtotal*1.06;
-    if(cuotas==3) subtotal=subtotal*1.08;
+    subtotal=subtotal*1.08;
     }
-    cout << "EL TOTAL AL PAGAR ES: "<<subtotal<<endl;
+    gotoxy(35,6);cout << "EL TOTAL AL PAGAR ES: $"<<subtotal<<endl;
 
     return metodoDePago;
 }
 void DetalleVentas::calculoDeVuelto(){
     float importe;
-    cout << "INGRESE EL DINERO RECIBIDO: ";
+    gotoxy(35,7);cout << "INGRESE EL DINERO RECIBIDO: $";
     cin >>importe;
 
     while(importe<subtotal){
-
-    cout << "LA CANTIDAD INGRESADA ES MENOR A LA QUE SE TIENE QUE PAGAR."<<endl;
-    cout << "INGRESE EL DINERO RECIBIDO: ";
-    cin >>importe;
-
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(20,8);cout << "LA CANTIDAD INGRESADA ES MENOR A LA QUE SE TIENE QUE COBRAR."<<endl;
+        getch();
+        gotoxy(20,8);cout<<"                                                             "<<endl;
+        gotoxy(63,7);cout<<"            "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(35,7);cout << "INGRESE EL DINERO RECIBIDO: $";
+        gotoxy(63,7);cin >>importe;
     }
-    cout << "VUELTO:"<<importe-subtotal<<endl;
+    gotoxy(35,8);cout << "VUELTO: $"<<importe-subtotal<<endl;
 }
 #endif // DETALLEVENTAS_H_INCLUDED
