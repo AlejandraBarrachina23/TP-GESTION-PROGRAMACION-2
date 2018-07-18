@@ -14,7 +14,6 @@ class Menues{
         int y;
         char identificador[20];
     public:
-        main();
         void setOpcion(int _opcion){opcion=_opcion;};
         void derivarMenu(char *);
         void logIn();

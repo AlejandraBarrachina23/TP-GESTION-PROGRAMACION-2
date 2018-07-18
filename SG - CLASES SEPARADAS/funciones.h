@@ -1065,7 +1065,7 @@ void listadoDeMovimientos(){
 
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimiento;
-
+    bool cabeceraActiva=false;
     int opcion;
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
@@ -1083,13 +1083,18 @@ void listadoDeMovimientos(){
             unaCabeceraMovimiento.mostrarArchivo();
             while(unDetalleMovimiento.leerArchivo(pos2++)){
                 if(unaCabeceraMovimiento.getNrodeFactura()==unDetalleMovimiento.getNroFactura()){
-                    unDetalleMovimiento.mostrarArchivo();
+                    if(cabeceraActiva==false){
+                       unDetalleMovimiento.mostrarEncabezado();
+                       cabeceraActiva=true;
+                    }
+                unDetalleMovimiento.mostrarArchivo();
                 }
             }
 getch();
 limpiar();
         }
     pos2=0;
+    cabeceraActiva=false;
 }
 }
 #endif // FUNCIONES_H_INCLUDE
