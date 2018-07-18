@@ -39,9 +39,9 @@ int Validador::longitudVector(char *v,int tamanioMaximo){
 bool Validador::intentosDeInicio(int intentos, int valorLimite){
 
     if(intentos==valorLimite) {
-        gotoxy(30,14);cout << "SE HAN REGISTRADO VARIOS INTENTOS DE"<<endl;
-        gotoxy(28,15);cout << "ACCESO SIN EXITO, EL PROGRAMA SE CERRARA."<<endl;
-        gotoxy(35,16);cout << " CONTACTE AL ADMINISTRADOR."<<endl;
+        gotoxy(32,18);cout << "SE HAN REGISTRADO VARIOS INTENTOS DE"<<endl;
+        gotoxy(30,19);cout << "ACCESO SIN EXITO, EL PROGRAMA SE CERRARA."<<endl;
+        gotoxy(37,20);cout << " CONTACTE AL ADMINISTRADOR."<<endl;
         return true;
     }
     else return false;

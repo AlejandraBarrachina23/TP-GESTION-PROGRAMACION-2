@@ -27,7 +27,7 @@ class Menues{
         void menuTransferencias(char *usuario);
 };
 void Menues::logIn(){
-    system("color 1D");
+
     Usuario unUsuario,aux;
     Validador validar;
     char nombre[20], password[20];
@@ -35,20 +35,25 @@ void Menues::logIn(){
     do{
         pos=0;
         fflush(stdin);
-        recuadro(25, 1,45, 20, cBLANCO, cAZUL);
-        recuadro(25, 1,45, 2, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        recuadro(1, 25,100, 2, cBLANCO, cAZUL);
         textcolor(cBLANCO,cAZUL);
-        gotoxy(40,2);cout << "-INICIO SESION-"<<endl;
+        gotoxy(3,26);cout << "UTN FRGP - TSP - PROGRAMACION II";
+        gotoxy(73,26);cout << "BARRACHINA, MARIA ALEJANDRA";
+        gotoxy(40,2);cout << "-SISTEMA DE GESTION-"<<endl;
+        recuadro(27,5,46, 18, cBLANCO, cAZUL);
+        gotoxy(42,5);cout << "INICIO DE SESION"<<endl;
         textcolor(cBLANCO, cAZUL);
-        gotoxy(44,5);cout << "-NOMBRE-";
-        gotoxy(42,9);cout << "-CONTRASEÑA-";
-        recuadro(33,6,30, 2, cBLANCO, cGRIS);
-        recuadro(33,10,30, 2, cBLANCO, cGRIS);
-        gotoxy(45,7);cin.getline(nombre,20);
+        gotoxy(45,8);cout << "-NOMBRE-";
+        gotoxy(44,13);cout << "-CONTRASEÑA-";
+        recuadro(35,9,30, 2, cBLANCO, cGRIS);
+        recuadro(35,14,30, 2, cBLANCO, cGRIS);
+        gotoxy(46,10);cin.getline(nombre,20);
         convierteAMiniscula(nombre);
         aux.setNombre(nombre); //CARGO EL NOMBRE
         fflush(stdin);
-        gotoxy(45,11);
+        gotoxy(46,15);
         ocultarContrasenia(password);
         aux.setPassword(password);
         while(unUsuario.leerArchivo(pos++)){ //COMPARO EL USUARIOS Y CONTRASEÑA DE AMBOS OBJETOS
@@ -61,10 +66,9 @@ void Menues::logIn(){
                 }
         }
         textcolor(cROJO_CLARO, cAZUL);
-        gotoxy(35,14);
-        cout << "USUARIO/PASSWORD INCORRECTO"<<endl;
+        gotoxy(38,18);cout << "USUARIO/PASSWORD INCORRECTO"<<endl;
         intentos++;
-        if(validar.intentosDeInicio(intentos,3)) exit (0);
+        if(validar.intentosDeInicio(intentos,3)) {limpiar();exit(0);}
         getch();
     }
 
@@ -259,38 +263,48 @@ do{
 void Menues::submenuProveedores(char *usuario){
 
 do{
-    cout << "SUBMENU PROVEEDORES"<<endl;
-    cout << "[1] AGREGAR PROVEEDORES"<<endl;
-    cout << "[2] BORRAR PROVEEDORES"<<endl;
-    cout << "[3] LISTAR TODOS LOS PROVEEDORES"<<endl;
-    cout << "[4] LISTAR PROVEEDORES POR CODIGO"<<endl;
-    cout << "[5] MODIFICAR PROVEEDOR"<<endl;
-    cout << "[6] MODIFICAR PORCENTUALES"<<endl;
-    cout << "[0] VOLVER AL MENU ANTERIOR"<<endl;
+
+    recuadro(20, 1,60, 25, cBLANCO, cAZUL);
+    recuadro(20, 1,60, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(43,2);cout << "SUBMENU PROVEEDORES"<<endl;
+    recuadro(33, 4,35, 2, cBLANCO, cGRIS);
+    textcolor(cBLANCO, cGRIS);
+    gotoxy(43,5);cout << "AGREGAR PROVEDOR"<<endl;
+    recuadro(33,7,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,8);cout << "BORRAR PROVEEDOR"<<endl;
+    recuadro(33,10,35, 2, cBLANCO, cGRIS);
+    gotoxy(38,11);cout << "LISTAR TODOS LOS PROVEEDORES"<<endl;
+    recuadro(33,13,35, 2, cBLANCO, cGRIS);
+    gotoxy(38,14);cout << "LISTAR PROVEEDOR POR CODIGO"<<endl;
+    recuadro(33,16,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,17);cout << "MODIFICAR PROVEEDOR"<<endl;
+    recuadro(33,19,35, 2, cBLANCO, cGRIS);
+    gotoxy(40,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
+    recuadro(20,24,60, 2, cBLANCO, cAZUL);
+    gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
-    cout << "INGRESE UNA OPCION:";
-    cin >> opcion;
+    y=navegacionMenu(35,5,5,20);
+
     system("cls");
-    switch(opcion) {
-    case 1:
+    switch(y) {
+    case 5:
         agregarProveedor();
         break;
-    case 2:
+    case 8:
         borrarProveedor();
         break;
-    case 3:
+    case 11:
         listarProveedores();
         break;
-    case 4:
+    case 14:
         listarProveedorPorCodigo();
         break;
-    case 5:
+    case 17:
         modificarProveedor();
         break;
-    case 6:
-        modificarPorcentuales();
-    case 0:
-        menuCompras(usuario);
+    case 20:
+       menuCompras(usuario);
         break;
     default:
         cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;

@@ -398,12 +398,12 @@ int navegacionMenuHorizontal(int cX, int cY, int limiteA, int limiteB, int valor
 bool advertenciaDeBorrado(){
     int opcion;
     gotoxy(40,7);cout << "¿DESEA ELIMINARLO?"<<endl;
-    recuadro(41,9,5,2, cAMARILLO, cROJO);
-    recuadro(51,9,5,2, cAMARILLO, cROJO);
-    gotoxy(43,10);cout << "SI"<<endl;
-    gotoxy(53,10);cout << "NO"<<endl;
-    opcion=navegacionMenuHorizontal(38,10,38,48,10);
-        if(opcion==38)return true;
+    recuadro(41,9,7,2, cAMARILLO, cROJO);
+    recuadro(51,9,7,2, cAMARILLO, cROJO);
+    gotoxy(45,10);cout << "SI"<<endl;
+    gotoxy(55,10);cout << "NO"<<endl;
+    opcion=navegacionMenuHorizontal(43,10,43,53,10);
+        if(opcion==43)return true;
         return false;
 }
 bool consultaParaContinuar(){
@@ -444,14 +444,15 @@ void accionAceptada(){
 void agregarProveedor(){
 
     Proveedor unProveedor;
-    cout << "====================================================================================================="<<endl;
-    cout << "                                    AGREGAR PROVEEDOR"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "AGREGAR PROVEEDOR"<<endl;
+    textcolor(cBLANCO, cAZUL);
     unProveedor.cargarDatos();
 
     if(unProveedor.grabarArchivo()){
-        cout << "GUARDADO EXITOSAMENTE."<<endl;
+        accionAceptada();
     }
     else {cout <<"HA OCURRIDO UN ERROR DURANTE LA GRABACION."<<endl;}
     getch();
@@ -460,28 +461,34 @@ void agregarProveedor(){
 }
 void borrarProveedor(){
 
-    cout << "====================================================================================================="<<endl;
-    cout << "                                    BORRAR PROVEEDOR"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
 
-    Validador validar;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "BORRAR PROVEEDOR"<<endl;
+    textcolor(cBLANCO, cAZUL);
     Proveedor unProveedor;
-    int codigo;
-    int pos;
-    cout << "INGRESE EL CODIGO DEL PROVEEDOR QUE SE DESEE ELIMINAR: "<<endl;
-    cin >> codigo;
+    Validador validar;
+    int codigo, pos;
+    char proveedorAborrar[20];
+    gotoxy(25,4);cout << "INGRESE EL CODIGO DEL PROVEEDOR QUE SE DESEE ELIMINAR: "<<endl;
+    gotoxy(80,4);cin >> codigo;
+
     if((pos=validar.existenciaProveedor(codigo))>=0){
         unProveedor.leerArchivo(pos);
-        if(unProveedor.getEstado()==true){
-        unProveedor.setEstado(false);
-        unProveedor.modificarArchivo(pos);
-        cout << "PROVEEDOR ELIMINADO CON EXITO."<<endl;
+        textcolor(cGRIS_CLARO,cAZUL);
+        gotoxy(25,5);cout <<"EL PROVEEDOR CORRESPONDIENTE AL CODIGO ES: "<<strcpy(proveedorAborrar,buscarProveedor(unProveedor.getCodigoProveedor()));
+        textcolor(cBLANCO,cAZUL);
+        if(advertenciaDeBorrado()){//SE BORRA
+
+            unProveedor.setEstado(false);
+            unProveedor.modificarArchivo(pos);
+            accionAceptada();
         }
-        else {cout << "EL PROVEEDOR INGRESADO NO EXISTE."<<endl;}
+        else accionCancelada();//NO SE BORRA
     }
 
-    else {cout << "EL PROVEEDOR INGRESADO NO EXISTE."<<endl;}
+    else {textcolor(cROJO_CLARO,cAZUL);gotoxy(35,5);cout << "EL PROVEEDOR INGRESADO NO EXISTE."<<endl;}
 
     getch();
     limpiar();
@@ -600,7 +607,6 @@ void modificarProveedor(){
 /// MENU COMPRAS - SUBMENU PRODUCTOS
 void agregarProducto(){
 
-    system("color 1D");
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
@@ -747,10 +753,11 @@ void modificarProducto(){
 /// MENU COMPRAS
 void agregarCompra(char *usuario){
 
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           AGREGAR COMPRA"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "AGREGAR COMPRA"<<endl;
+    textcolor(cBLANCO, cAZUL);
 
     Validador validar;
     Producto unProducto;

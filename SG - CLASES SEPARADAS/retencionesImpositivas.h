@@ -7,33 +7,47 @@ RetencionesImpositivas::RetencionesImpositivas(){ //CONSTRUCTOR
     percepcion = 0;
     IB = 0;
 }
-
 void RetencionesImpositivas::cargarDatos(){
 
     Validador validar;
 
-    cout << "IVA: ";
+    gotoxy(33,8);cout << "IVA: ";
     cin >> IVA;
-    while(!validar.intervaloDeNumeros(IVA,0.1,21)){
-        cout << "VALOR INCORRECTO. DEBE INGRESAR UN VALOR DE 1 A 21."<<endl;
-        cout << "IVA: ";
-        cin >> IVA;
+    while(!validar.intervaloDeNumeros(IVA,0,21)){
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(25,9);cout << "VALOR INCORRECTO. DEBE INGRESAR UN VALOR DE 1 A 21."<<endl;
+        getch();
+        gotoxy(25,9);cout << "                                                   "<<endl;
+        gotoxy(38,8);cout << "           "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(33,8);cout << "IVA: ";
+        gotoxy(38,8);cin >> IVA;
     }
-    cout << "PERCEPCION: ";
+
+    gotoxy(33,9);cout << "PERCEPCION: ";
     cin >>percepcion;
-
-    while(!validar.intervaloDeNumeros(percepcion,0.1,100)){
-        cout << "VALOR INCORRECTO. DEBE INGRESAR UN VALOR ENTRE 1 Y 100."<<endl;
-        cout << "PERCEPCION: ";
-        cin >>percepcion;
+    while(!validar.intervaloDeNumeros(percepcion,0,100)){
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(25,10);cout << "VALOR INCORRECTO. DEBE INGRESAR UN VALOR ENTRE 1 Y 100."<<endl;
+        getch();
+        gotoxy(25,10);cout << "                                                       "<<endl;
+        gotoxy(45,9);cout << "           "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(33,9);cout << "PERCEPCION: ";
+        gotoxy(45,9);cin >>percepcion;
     }
-    cout << "IB: ";
-    cin >>IB;
 
-    while(!validar.intervaloDeNumeros(IB,0.1,100)){
-        cout << "VALOR INCORRECTO. DEBE INGRESAR UN VALOR ENTRE 1 Y 100."<<endl;
-        cout << "IB: ";
-        cin >>IB;
+    gotoxy(33,10);cout << "IB: ";
+    cin >>IB;
+    while(!validar.intervaloDeNumeros(IB,0,100)){
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(25,11);cout << "VALOR INCORRECTO. DEBE INGRESAR UN VALOR ENTRE 1 Y 100."<<endl;
+        getch();
+        gotoxy(25,11);cout << "                                                       "<<endl;
+        gotoxy(37,10);cout << "           "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(33,10);cout << "IB: ";
+        gotoxy(37,10);cin >>IB;
     }
 }
 

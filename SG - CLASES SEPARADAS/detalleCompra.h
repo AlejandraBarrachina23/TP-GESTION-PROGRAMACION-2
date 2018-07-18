@@ -38,18 +38,24 @@ void DetalleCompra::cargarDatos(int codFactura,int lineas, int codProveedor){
     char detalle [30];
     int pertenencia;
 
-    cout << "CODIGO DE PRODUCTO: ";
+    gotoxy(35,8);cout << "CODIGO DE PRODUCTO: ";
     cin >> codigoProducto;
 
     pertenencia=validar.perteneceAproveedor(codigoProducto,codProveedor);
     while(pertenencia!=1){
         if(pertenencia==0){
+            textcolor(cROJO_CLARO,cAZUL);
             cout << "EL PRODUCTO INGRESADO NO PERTENECE A ESE PROVEEDOR."<<endl;
+            getch();
+            textcolor(cBLANCO,cAZUL);
             cout << "CODIGO DE PRODUCTO: ";
             cin >> codigoProducto;
         }
         else if(pertenencia==-1){
+            textcolor(cROJO_CLARO,cAZUL);
             cout << "EL CODIGO INGRESADO NO EXISTE."<<endl;
+            getch();
+            textcolor(cBLANCO,cAZUL);
             cout << "CODIGO DE PRODUCTO: ";
             cin >> codigoProducto;
         }
@@ -60,14 +66,20 @@ void DetalleCompra::cargarDatos(int codFactura,int lineas, int codProveedor){
     cout << "CANTIDAD:";
     cin >> cantidad;
     while(!validar.intervaloDeNumeros(cantidad,1,999)){
+        textcolor(cROJO_CLARO,cAZUL);
         cout << "NUMERO INVALIDO. INGRESE UN VALOR DEL 1 AL 999."<<endl;
+        getch();
+        textcolor(cBLANCO,cAZUL);
         cout << "CANTIDAD:";
         cin >> cantidad;
     }
     cout << "PRECIO NETO: ";
     cin >> precioNeto;
     while(!validar.intervaloDeNumeros(precioNeto,1,9999)){
+        textcolor(cROJO_CLARO,cAZUL);
         cout << "NUMERO INVALIDO. INGRESE UN VALOR DEL 1 AL 9999."<<endl;
+        getch();
+        textcolor(cBLANCO,cAZUL);
         cout << "PRECIO NETO: ";
         cin >> precioNeto;
     }
