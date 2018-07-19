@@ -400,6 +400,8 @@ char rutaDetalleCompra[30]="archivos/detalleCompra.dat";
 int tamanioDetalleCompra=sizeof(DetalleCompra);
 char rutaProveedores[30]="archivos/proveedores.dat";
 int tamanioProveedor = sizeof(Proveedor);
+char rutaBackupProducto[30]="backup/producto.dat";
+char rutaBackupProveedores[30]="backup/proveedores.dat";
 
 
 void convierteAMiniscula(char *mayuscula);

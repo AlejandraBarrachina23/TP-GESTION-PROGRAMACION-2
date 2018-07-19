@@ -222,7 +222,7 @@ bool grabarBackupProducto(Producto *Vector,int cantidad){
 
     bool grabo;
     FILE *p;
-    p=fopen("backup/producto.dat","ab");
+    p=fopen("backup/producto.dat","wb");
     if(p==NULL) return false;
     grabo=fwrite(Vector,sizeof(Producto),cantidad,p);
     fclose(p);
@@ -232,7 +232,27 @@ bool grabarBackupProveedores(Proveedor *Vector,int cantidad){
 
     bool grabo;
     FILE *p;
-    p=fopen("backup/proveedores.dat","ab");
+    p=fopen("backup/proveedores.dat","wb");
+    if(p==NULL) return false;
+    grabo=fwrite(Vector,sizeof(Proveedor),cantidad,p);
+    fclose(p);
+    return grabo;
+}
+bool grabarRestauracionProductos(Producto *Vector,int cantidad){
+
+    bool grabo;
+    FILE *p;
+    p=fopen("archivos/producto.dat","wb");
+    if(p==NULL) return false;
+    grabo=fwrite(Vector,sizeof(Producto),cantidad,p);
+    fclose(p);
+    return grabo;
+}
+bool grabarRestauracionProveedor(Proveedor *Vector,int cantidad){
+
+    bool grabo;
+    FILE *p;
+    p=fopen("archivos/proveedores.dat","wb");
     if(p==NULL) return false;
     grabo=fwrite(Vector,sizeof(Proveedor),cantidad,p);
     fclose(p);
@@ -245,6 +265,7 @@ void backupProductos(){
     Producto unProducto;
     Producto *Vproductos;
     totalRegistros=cuentaRegistros(rutaProducto,tamanioProducto);
+    cout << totalRegistros<<endl;
     Vproductos=new Producto[totalRegistros];
     while(unProducto.leerArchivo(pos++)){
         Vproductos[i]=unProducto;
@@ -266,6 +287,38 @@ void backupProveedores(){
     }
     grabarBackupProveedores(Vproveedores,totalRegistros);
     delete(Vproveedores);
+}
+void restaurarProductos(){
+
+    int totalRegistros;
+    int pos=0, i=0;
+    Producto unProducto;
+    Producto *Vproductos;
+    totalRegistros=cuentaRegistros(rutaBackupProducto,tamanioProducto);
+    Vproductos=new Producto[totalRegistros];
+    while(unProducto.leerBackup(pos++)){
+        Vproductos[i]=unProducto;
+        i++;
+    }
+    grabarRestauracionProductos(Vproductos,totalRegistros);
+    delete(Vproductos);
+
+}
+void restaurarProveedor(){
+
+    int totalRegistros;
+    int pos=0, i=0;
+    Proveedor unProveedor;
+    Proveedor *Vproveedor;
+    totalRegistros=cuentaRegistros(rutaBackupProveedores,tamanioProveedor);
+    Vproveedor=new Proveedor[totalRegistros];
+    while(unProveedor.leerBackup(pos++)){
+        Vproveedor[i]=unProveedor;
+        i++;
+    }
+    grabarRestauracionProveedor(Vproveedor,totalRegistros);
+    delete(Vproveedor);
+
 }
 /*void mostrarEncabezado(){
 
@@ -1242,8 +1295,9 @@ void backupDeArchivos(){
     cout << "¿DE QUE DESEA HACER BACKUP?"<<endl;
     cout << "PROVEEDORES"<<endl;
     cout << "PRODUCTOS"<<endl;
-    backupProductos();
-    backupProveedores();
-
+    //backupProductos();
+    //backupProveedores();
+    //restaurarProductos();
+    restaurarProveedor();
 }
 #endif // FUNCIONES_H_INCLUDE

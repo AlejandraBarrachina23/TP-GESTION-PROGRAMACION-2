@@ -13,12 +13,6 @@
 using namespace std;
 
 int main(){
-    /*Proveedor unProducto;
-    int pos=0;
-    while(unProducto.leerBackup(pos++)){
-        unProducto.mostrarArchivo();
-
-    }*/
     Menues principal;
     principal.submenuReportes("ale");
     principal.logIn();
