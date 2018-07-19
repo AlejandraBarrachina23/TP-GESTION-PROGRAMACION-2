@@ -323,8 +323,10 @@ class DetalleCompra:public DetalleDocumento{
 class DetalleMovimientos:public DetalleDocumento{
 
     private:
-
+        float precioCosto;
     public:
+        float getPrecioCosto(){return precioCosto;}
+        void setPrecioCosto(float _precioCosto){precioCosto=_precioCosto;}
         void mostrarArchivo();
         bool grabarArchivo();
         bool leerArchivo(int);
@@ -382,6 +384,7 @@ class Proveedor{
         void setPorcentuales(RetencionesImpositivas ri){porcentuales=ri;}
         RetencionesImpositivas getPorcentuales(){return porcentuales;}
 };
+
 
 char rutaProducto[30]="archivos/producto.dat";
 int tamanioProducto = sizeof(Producto);

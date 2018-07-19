@@ -1057,6 +1057,7 @@ void devolucionDeMercaderia(char *usuario, int tipo){
         unProducto.leerArchivo(pos);
         unProducto.setStockSucursal(unProducto.getStockSucursal()-unDetalleMovimiento.getCantidad());//RESTO EL STOCK
         unProducto.modificarArchivo(pos);
+        unDetalleMovimiento.setPrecioCosto(unProducto.getPrecioCosto());
         unDetalleMovimiento.grabarArchivo();
         seguir=consultaParaContinuar();
         nroLinea++;
@@ -1100,17 +1101,15 @@ limpiar();
     cabeceraActiva=false;
 }
 }
-
 void reporteDeganancia(){
 
     Fecha fechaInicio;
     Fecha fechaFin;
     CabeceraVentas unaCabeceraVenta;
     DetalleVentas unDetalleVenta;
-    int acumulaPV=0, acumulaPC=0;
+    int acumulaPV=0;
+    float acumulaPC=0.00;
     int pos=0, pos2=0;
-    int vMeses[12]={31,28,31,30,31,30,31,31,30,31,30,31};
-    int dia,mes,anio;
     /*recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
@@ -1130,7 +1129,7 @@ void reporteDeganancia(){
             while(unDetalleVenta.leerenDisco(pos2++)){
                 if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) {
                     acumulaPV+=(buscarPV(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
-                    acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
+                    acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*(float)unDetalleVenta.getCantidad());
                 }
 
             }
@@ -1142,8 +1141,44 @@ void reporteDeganancia(){
     cout<<"PRECIO VENTA: "<< acumulaPV<<endl;
     cout << "GANANCIA: "<<acumulaPV-acumulaPC;
 
-
     getch();
     limpiar();
+}
+void reporteDePerdida(){
+
+    Fecha fechaInicio;
+    Fecha fechaFin;
+    CabeceraMovimientos unaCabeceraMovimiento;
+    DetalleMovimientos unDetalleMovimientos;
+    float acumulaPC=0;
+    int pos=0, pos2=0;
+    /*recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+    textcolor(cBLANCO, cAZUL);*/
+    cout << "REPORTE DE GANANCIAS"<<endl;
+    cout <<"INDIQUE FECHA DE INICIO DE CONSULTA: "<<endl;
+    fechaInicio.cargarDatos();
+    cout <<"INDIQUE FECHA DE FIN DE CONSULTA: "<<endl;
+    fechaFin.cargarDatos();
+    fechaInicio.mostrarArchivo();
+    fechaFin.mostrarArchivo();
+
+    while(unaCabeceraMovimiento.leerArchivo(pos)){
+        if(unaCabeceraMovimiento.getFechaDeEmision()>=fechaInicio&&unaCabeceraMovimiento.getFechaDeEmision()<=fechaFin){
+            while(unDetalleMovimientos.leerArchivo(pos++)){
+                if(unaCabeceraMovimiento.getNrodeFactura()==unDetalleMovimientos.getNroFactura()) {
+                    acumulaPC+=(unDetalleMovimientos.getPrecioCosto()*unDetalleMovimientos.getCantidad());
+                }
+            }
+            pos2=0;
+        }
+        pos++;
+    }
+    cout << "TOTAL PERDIDA: "<<acumulaPC<<endl;
+    getch();
+    limpiar();
+
 }
 #endif // FUNCIONES_H_INCLUDE

@@ -139,14 +139,14 @@
 	"menues.h"
 	"funciones.h"
 
-1531949793 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
+1531963249 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
 	"funciones.h"
 	<stdlib.h>
 	<conio.h>
 	<iostream>
 	<windows.h>
 
-1531961658 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
+1531963642 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
 	"menues.h"
 	<conio.h>
 	<windows.h>
@@ -165,7 +165,7 @@
 	"detalleMovimientos.h"
 	"proveedor.h"
 
-1531954097 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\declaraciones.h
+1531962528 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\declaraciones.h
 
 1531942028 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\usuarios.h
 	"funciones.h"
@@ -190,7 +190,7 @@
 
 1531883843 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detalleventas.h
 
-1531920045 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detallemovimientos.h
+1531962817 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detallemovimientos.h
 
 1531923799 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\proveedor.h
 

@@ -111,16 +111,16 @@ do{
         reporteDeganancia();
         break;
     case 2:
-        borrarUsuario();
+        reporteDePerdida();
         break;
     case 3:
-        listarUsuarios();
+
         break;
     case 4:
-        listarUsuarioPorCodigo();
+
         break;
     case 5:
-        modificarUsuario();
+
         break;
     case 0:
         menuAdministrador(usuario);
