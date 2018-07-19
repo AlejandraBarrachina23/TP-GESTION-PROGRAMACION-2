@@ -24,13 +24,14 @@ using namespace std;
 void agregarUsuario(){
 
     Usuario unUsuario;
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           AGREGAR USUARIO"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "AGREGAR USUARIO"<<endl;
+    textcolor(cBLANCO, cAZUL);
     unUsuario.cargarDatos();
     unUsuario.grabarArchivo();
-    cout <<"EL USUARIO HA SIDO CARGADO EN FORMA EXITOSA."<<endl;
+    accionAceptada();
     getch();
     limpiar();
     }

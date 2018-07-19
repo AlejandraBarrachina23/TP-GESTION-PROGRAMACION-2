@@ -51,32 +51,54 @@ bool Usuario::grabarArchivo(){
 void Usuario::cargarDatos(){
 
     Validador validar;
-    cout << "CODIGO DE USUARIO: ";
+    gotoxy(20,6);cout << "-->>COMPLETE LOS DATOS PARA AGREGAR EL NUEVO USUARIO<<--"<<endl;
+    gotoxy(35,8);cout << "INGRESE CODIGO DE USUARIO: ";
     cin >> codigo;
     while(validar.existenciaCodigoUsuario(codigo)>=0){
-        cout << "EL CODIGO INGRESADO YA EXISTE."<<endl;
-        cout << "CODIGO DE USUARIO: ";
-        cin >> codigo;
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(34,9);cout << "EL CODIGO INGRESADO YA EXISTE."<<endl;
+        getch();
+        gotoxy(34,9);cout << "                              "<<endl;
+        gotoxy(62,8);cout << "         "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(35,8);cout << "INGRESE CODIGO DE USUARIO: ";
+        gotoxy(62,8);cin >> codigo;
     }
-    cout << "NOMBRE DE USUARIO: ";
+    gotoxy(35,9);cout << "NOMBRE DE USUARIO: ";
     cin >> nombre;
     convierteAMiniscula(nombre);
+
     while(validar.existenciaUsuario(nombre)>=0){
-        cout << "EL USUARIO INGRESADO YA EXISTE."<<endl;
-        cout << "NOMBRE DE USUARIO: ";
-        cin >> nombre;
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(33,10);cout << "EL USUARIO INGRESADO YA EXISTE."<<endl;
+        getch();
+        gotoxy(33,10);cout << "                               "<<endl;
+        gotoxy(54,9);cout << "                   "<<endl;
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(35,9);cout << "NOMBRE DE USUARIO: ";
+        gotoxy(54,9);cin >> nombre;
+        convierteAMiniscula(nombre);
     }
         fflush(stdin);
-        cout << "CONTRASEÑA: ";
+        gotoxy(35,10);cout << "CONTRASEÑA: ";
         cin >> password;
-        cout << "SECTOR: ";
-        cin >> sector;
-        while(!validar.intervaloDeNumeros(sector,1,4)){
-            cout << "NUMERO DE SECTOR ERRONEO. DEBE INGRESAR UN VALOR DEL 1 AL 4."<<endl;
-            cout << "SECTOR: ";
-            cin >> sector;
+        gotoxy(35,11);cout << "SECTOR: ";
+        textcolor(cGRIS_CLARO,cAZUL);
+        gotoxy(25,12);cout << "[1-ADMINISTRACION 2-VENTAS 3-COMPRAS 4-MOVIMIENTOS]"<<endl;
+        gotoxy(43,11);cin >> sector;
+        textcolor(cBLANCO,cAZUL);
+
+    while(!validar.intervaloDeNumeros(sector,1,4)){
+            textcolor(cROJO_CLARO,cAZUL);
+            gotoxy(25,13);cout << "NUMERO INVALIDO. DEBE INGRESAR UN VALOR DEL 1 AL 4."<<endl;
+            getch();
+            gotoxy(25,13);cout << "                                                   "<<endl;
+            gotoxy(43,11);cout << "                   "<<endl;
+            textcolor(cBLANCO,cAZUL);
+            gotoxy(35,11);cout << "SECTOR: ";
+            gotoxy(43,11);cin >> sector;
         }
-       estado = true;
+    estado = true;
 }
 bool Usuario::operator!=(Usuario &aux){
 
