@@ -190,5 +190,17 @@ bool Producto::leerArchivo(int pos){
     return leyo;
 
 }
+bool Producto::leerBackup(int pos){
+
+    bool leyo;
+    FILE *p;
+    p=fopen("backup/producto.dat","rb");
+    if(p==NULL) return false;
+    fseek(p,sizeof(Producto)*pos,0);
+    leyo=fread(this,sizeof(Producto),1,p);
+    fclose(p);
+    return leyo;
+
+}
 
 #endif // PRODUCTOS_H_INCLUDED

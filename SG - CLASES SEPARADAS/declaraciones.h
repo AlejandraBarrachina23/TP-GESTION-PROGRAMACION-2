@@ -200,6 +200,7 @@ private:
         void cargarStock(int cantidadATransferir);
         bool leerArchivo(int pos);
         void mostrarProducto();
+        bool leerBackup(int pos);
         void mostrarStock();
         void mostrarEncabezado();
 };
@@ -374,6 +375,7 @@ class Proveedor{
         void mostrarEncabezado();
         bool grabarArchivo();
         bool leerArchivo(int pos);
+        bool leerBackup(int pos);
         void modificarArchivo(int pos);
         int getCodigoProveedor(){return codigo;}
         void setNombre(char *_nombre){strcpy(nombre,_nombre);}
@@ -396,6 +398,9 @@ char rutaCabeceraMovimientos[35]="archivos/cabeceraMovimientos.dat";
 int tamanioCabeceraMovimientos=sizeof(CabeceraMovimientos);
 char rutaDetalleCompra[30]="archivos/detalleCompra.dat";
 int tamanioDetalleCompra=sizeof(DetalleCompra);
+char rutaProveedores[30]="archivos/proveedores.dat";
+int tamanioProveedor = sizeof(Proveedor);
+
 
 void convierteAMiniscula(char *mayuscula);
 void mostrarVector(Producto *v,int tam);
@@ -420,6 +425,8 @@ void ocultarContrasenia(char *password);
 void pantallaBienvenida(char *nombre,int sector);
 int navegacionMenu(int cX, int cY, int limiteA, int limiteB);
 int navegacionMenuHorizontal(int cX, int cY, int limiteA, int limiteB,int valor);
+bool grabarBackupProducto(Producto *Vector,int cantidad);
+void backupProductos();
 bool advertenciaDeBorrado();
 void accionCancelada();
 void accionAceptada();

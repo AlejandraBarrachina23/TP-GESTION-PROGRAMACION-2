@@ -218,6 +218,55 @@ void cuentaRegresiva(int tam){
         Sleep(1000);
     }
 }
+bool grabarBackupProducto(Producto *Vector,int cantidad){
+
+    bool grabo;
+    FILE *p;
+    p=fopen("backup/producto.dat","ab");
+    if(p==NULL) return false;
+    grabo=fwrite(Vector,sizeof(Producto),cantidad,p);
+    fclose(p);
+    return grabo;
+}
+bool grabarBackupProveedores(Proveedor *Vector,int cantidad){
+
+    bool grabo;
+    FILE *p;
+    p=fopen("backup/proveedores.dat","ab");
+    if(p==NULL) return false;
+    grabo=fwrite(Vector,sizeof(Proveedor),cantidad,p);
+    fclose(p);
+    return grabo;
+}
+void backupProductos(){
+
+    int totalRegistros;
+    int pos=0, i=0;
+    Producto unProducto;
+    Producto *Vproductos;
+    totalRegistros=cuentaRegistros(rutaProducto,tamanioProducto);
+    Vproductos=new Producto[totalRegistros];
+    while(unProducto.leerArchivo(pos++)){
+        Vproductos[i]=unProducto;
+        i++;
+    }
+    grabarBackupProducto(Vproductos,totalRegistros);
+    delete(Vproductos);
+}
+void backupProveedores(){
+    int totalRegistros;
+    int pos=0, i=0;
+    Proveedor unProveedor;
+    Proveedor *Vproveedores;
+    totalRegistros=cuentaRegistros(rutaProveedores,tamanioProveedor);
+    Vproveedores=new Proveedor[totalRegistros];
+    while(unProveedor.leerArchivo(pos++)){
+        Vproveedores[i]=unProveedor;
+        i++;
+    }
+    grabarBackupProveedores(Vproveedores,totalRegistros);
+    delete(Vproveedores);
+}
 /*void mostrarEncabezado(){
 
     cout << "\t\tLISTADO DE USUARIOS"<<endl;
@@ -1101,6 +1150,8 @@ limpiar();
     cabeceraActiva=false;
 }
 }
+
+///SUBMENU REPORTES
 void reporteDeganancia(){
 
     Fecha fechaInicio;
@@ -1179,6 +1230,20 @@ void reporteDePerdida(){
     cout << "TOTAL PERDIDA: "<<acumulaPC<<endl;
     getch();
     limpiar();
+
+}
+void backupDeArchivos(){
+
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "BACKUPS DE ARCHIVOS"<<endl;
+    textcolor(cGRIS_CLARO,cAZUL);
+    cout << "¿DE QUE DESEA HACER BACKUP?"<<endl;
+    cout << "PROVEEDORES"<<endl;
+    cout << "PRODUCTOS"<<endl;
+    backupProductos();
+    backupProveedores();
 
 }
 #endif // FUNCIONES_H_INCLUDE

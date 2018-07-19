@@ -126,7 +126,7 @@
 
 1531320860 c:\users\alejandra\desktop\sg - clases separadas\proveedor.h
 
-1531961549 source:c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\main.cpp
+1531968986 source:c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\main.cpp
 	<iostream>
 	<stdio.h>
 	<stdlib.h>
@@ -139,14 +139,14 @@
 	"menues.h"
 	"funciones.h"
 
-1531963249 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
+1531966456 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
 	"funciones.h"
 	<stdlib.h>
 	<conio.h>
 	<iostream>
 	<windows.h>
 
-1531963642 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
+1531968919 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
 	"menues.h"
 	<conio.h>
 	<windows.h>
@@ -165,14 +165,14 @@
 	"detalleMovimientos.h"
 	"proveedor.h"
 
-1531962528 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\declaraciones.h
+1531969148 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\declaraciones.h
 
 1531942028 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\usuarios.h
 	"funciones.h"
 
 1531925223 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\retencionesimpositivas.h
 
-1531946508 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\productos.h
+1531967661 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\productos.h
 
 1531939240 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\validador.h
 
@@ -192,5 +192,5 @@
 
 1531962817 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detallemovimientos.h
 
-1531923799 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\proveedor.h
+1531969158 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\proveedor.h
 

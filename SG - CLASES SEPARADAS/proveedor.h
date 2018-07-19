@@ -104,7 +104,17 @@ void Proveedor::mostrarEncabezado(){
     cout << "====================================================================================================="<<endl;
 
 }
+bool Proveedor::leerBackup(int pos){
+    bool leyo;
+    FILE *p;
+    p=fopen("backup/proveedores.dat","rb");
+    if(p==NULL)return false;
+    fseek(p,sizeof(Proveedor)*pos,0);
+    leyo=fread(this,sizeof(Proveedor),1,p);
+    fclose(p);
+    return leyo;
 
+}
 
 
 
