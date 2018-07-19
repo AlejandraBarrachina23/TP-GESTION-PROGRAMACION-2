@@ -139,9 +139,19 @@ void modificarUsuario(){
         gotoxy(80,11);cout << "SALIR";
         opcion=navegacionMenuHorizontal(15,11,15,75,20);
         textcolor(cBLANCO,cAZUL);
+
         if(opcion==15){
             gotoxy(35,14);cout << "INGRESE EL NUEVO NOMBRE: ";
             cin.getline(nombre,20);
+            while(validar.existenciaUsuario(nombre)>=0){
+                textcolor(cROJO_CLARO,cAZUL);gotoxy(34,15);cout << "EL NOMBRE INGRESADO YA EXISTE"<<endl;
+                getch();
+                gotoxy(34,15);cout << "                                      "<<endl;
+                gotoxy(60,14);cout << "                   "<<endl;
+                textcolor(cBLANCO,cAZUL);
+                gotoxy(35,14);cout << "INGRESE EL NUEVO NOMBRE: ";
+                gotoxy(60,14);cin.getline(nombre,20);
+            }
             unUsuario.setNombre(nombre);
             unUsuario.modificarRegistro(pos);
             accionAceptada();
@@ -377,12 +387,6 @@ void restaurarProveedor(){
     delete(Vproveedor);
 
 }
-/*void mostrarEncabezado(){
-
-    cout << "\t\tLISTADO DE USUARIOS"<<endl;
-    cout << "\t|  USUARIO  |"    "\t|  CONTRASEÑA  |"<<endl;
-}*/
-
 char *buscarUsuario(int cod){
 
     Usuario unUsuario;
@@ -972,6 +976,7 @@ void agregarCompra(char *usuario){
             cuentaLinea++;
             getch();
             limpiar();
+
         }
             unaCabeceraCompra.grabarArchivo();
 
@@ -1281,18 +1286,43 @@ void reporteDeganancia(){
     int acumulaPV=0;
     float acumulaPC=0.00;
     int pos=0, pos2=0;
-    /*recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
-    textcolor(cBLANCO, cAZUL);*/
-    cout << "REPORTE DE GANANCIAS"<<endl;
-    cout <<"INDIQUE FECHA DE INICIO DE CONSULTA: "<<endl;
+    textcolor(cBLANCO, cAZUL);
+
+    gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
     fechaInicio.cargarDatos();
-    cout <<"INDIQUE FECHA DE FIN DE CONSULTA: "<<endl;
+    limpiar();
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+    gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
     fechaFin.cargarDatos();
-    fechaInicio.mostrarArchivo();
-    fechaFin.mostrarArchivo();
+
+    while(fechaFin<fechaInicio){
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(20,10);cout << "LA FECHA INGRESADA DEBE SER MAYOR A LA DE INICIO."<<endl;
+        getch();
+        limpiar();
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+        textcolor(cBLANCO, cAZUL);
+        gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
+        fechaFin.cargarDatos();
+    }
+    limpiar();
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+    textcolor(cBLANCO, cAZUL);
+    gotoxy(30,5);cout << "FECHA INICIO: "; fechaInicio.mostrarArchivo();
+    gotoxy(30,6);cout << "FECHA DE FINALIZACION: ";fechaFin.mostrarArchivo();
 
     while(unaCabeceraVenta.leerenDisco(pos)){
         if(unaCabeceraVenta.getFechaDeEmision()>=fechaInicio&&unaCabeceraVenta.getFechaDeEmision()<=fechaFin){
@@ -1302,15 +1332,14 @@ void reporteDeganancia(){
                     acumulaPV+=(buscarPV(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
                     acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*(float)unDetalleVenta.getCantidad());
                 }
-
             }
             pos2=0;
         }
         pos++;
     }
-    cout<<"PRECIO COSTO: "<< acumulaPC<<endl;
-    cout<<"PRECIO VENTA: "<< acumulaPV<<endl;
-    cout << "GANANCIA: "<<acumulaPV-acumulaPC;
+    gotoxy(30,7);cout<<"PRECIO COSTO: "<< acumulaPC<<endl;
+    gotoxy(30,8);cout<<"PRECIO VENTA: "<< acumulaPV<<endl;
+    gotoxy(30,9);cout << "GANANCIA: "<<acumulaPV-acumulaPC;
 
     getch();
     limpiar();

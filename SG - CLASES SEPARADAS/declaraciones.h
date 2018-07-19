@@ -220,6 +220,7 @@ class Fecha {
         bool operator == (Fecha aux);
         bool operator >= (Fecha aux);
         bool operator <= (Fecha aux);
+        bool operator < (Fecha aux);
         void cargarDatos();
         void mostrarArchivo();
 };

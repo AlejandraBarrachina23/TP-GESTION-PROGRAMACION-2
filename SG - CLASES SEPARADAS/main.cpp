@@ -14,7 +14,7 @@ using namespace std;
 
 int main(){
     Menues principal;
-    principal.submenuConfiguracion("ale");
+    principal.submenuReportes("ale");
     principal.logIn();
     return 0;
 
