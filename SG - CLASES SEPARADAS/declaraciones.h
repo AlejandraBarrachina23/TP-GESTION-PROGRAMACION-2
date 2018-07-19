@@ -418,6 +418,7 @@ char *buscarProveedor(int cod);
 char *buscarRubro(int cod);
 float buscarPV(int cod);
 int buscarMetodoDePago(int cod);
+char *buscarUsuario(int cod);
 int buscarSumatoriaVentas(int cod);
 bool advertenciaDeBorrado();
 float buscarPC(int cod);

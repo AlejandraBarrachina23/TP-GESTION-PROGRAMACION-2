@@ -4,8 +4,6 @@
 
 using namespace std;
 
-
-
 void Usuario::modificarRegistro(int pos){
 
         FILE *p;
@@ -28,14 +26,17 @@ bool Usuario::leerArchivo(int pos){
 }
 void Usuario::mostrarArchivo(){
     if(estado==true){
-    cout <<codigo<<"\t"<<nombre <<"\t\t"<< password<<"\t\t\t"<<estado<<"\t\t\t"<<sector<<endl;
-    cout << "-------------------------------------------------------------------------"<<endl;
+    std::cout << setiosflags(ios::left)<<"      "<<setw(12)<<codigo<<setw(25)<<nombre<<setw(25)<<password<<setw(12)<<sector<<endl;
     }
 }
 void Usuario::mostrarEncabezado(){
 
-    cout << "CODIGO\tNOMBRE\t\tCONTRASEÑA\t\tESTADO\t\tSECTOR"<<endl;
-    cout << "========================================================================="<<endl;
+    recuadro(0, 0,102, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,1);cout << "LISTADO DE USUARIOS"<<endl;
+    cout<<endl;
+    cout << "      CODIGO      NOMBRE                   CONTRASEÑA              SECTOR"<<endl;
+    cout << "   =================================================================================================="<<endl;
 
 }
 bool Usuario::grabarArchivo(){

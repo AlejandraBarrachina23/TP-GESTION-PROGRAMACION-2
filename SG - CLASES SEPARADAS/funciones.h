@@ -39,31 +39,38 @@ void borrarUsuario(){
 
     Usuario unUsuario;
     Validador validar;
+    char usuarioAborrar[20];
     int pos,codigo;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "BORRAR USUARIO"<<endl;
 
-    cout << "====================================================================================================="<<endl;
-    cout << "                                           BORRAR USUARIO"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
-
-    cout << "INGRESE CODIGO DEL USUARIO: ";
-    cin >> codigo;
+    gotoxy(25,4);cout << "INGRESE EL CODIGO DEL USUARIO QUE DESEA BORRAR: "<<endl;
+    gotoxy(73,4);cin >> codigo;
 
     if((pos=validar.existenciaCodigoUsuario(codigo))>=0){
         unUsuario.leerArchivo(pos);
-        unUsuario.setEstado(false);
-        unUsuario.modificarRegistro(pos);
-        cout << "EL USUARIO HA SIDO ELIMINADO EN FORMA EXITOSA."<<endl;
-        system("pause");
-        system("cls");
+        textcolor(cGRIS_CLARO,cAZUL);
+        gotoxy(25,5);cout <<"EL USUARIO CORRESPONDIENTE AL CODIGO ES: "<<strcpy(usuarioAborrar,buscarUsuario(unUsuario.getCodigo()));
+        textcolor(cBLANCO,cAZUL);
+        if(advertenciaDeBorrado()){
+            unUsuario.setEstado(false);
+            unUsuario.modificarRegistro(pos);
+            accionAceptada();
+        }
+        else accionCancelada();
     }
-    else {cout << "EL NOMBRE INGRESADO NO PERTENECE A UN EMPLEADO EXISTENTE."<<endl;}
+    else {textcolor(cROJO_CLARO,cAZUL);gotoxy(22,5);cout << "EL CODIGO INGRESADO NO PERTENECE A UN EMPLEADO EXISTENTE."<<endl;}
+    getch();
+    limpiar();
 }
 void listarUsuarios(){
 
-    cout << "========================================================================="<<endl;
-    cout << "                              USUARIOS      "<<endl;
-    cout << "========================================================================="<<endl;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "LISTADO DE USUARIOS"<<endl;
 
     Usuario unUsuario;
     unUsuario.mostrarEncabezado();
@@ -80,47 +87,96 @@ void listarUsuarioPorCodigo(){
     Validador validar;
     int pos,codigo;
     fflush(stdin);
-    cout << "INGRESE EL CODIGO DEL USUARIO QUE DESEE LISTAR: ";
+    recuadro(0, 0,102, 25, cBLANCO, cAZUL);
+    recuadro(0, 0,102, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,1);cout << "LISTAR USUARIO POR CODIGO"<<endl;
+    cout << endl;
+    cout << "INGRESE EL CODIGO DEL USUARIO QUE DESEA LISTAR: ";
     cin >> codigo;
 
     if((pos=validar.existenciaCodigoUsuario(codigo))>=0){
         limpiar();
+        recuadro(0, 0,102, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,1);cout << "LISTAR USUARIO POR CODIGO"<<endl;
         Unusuario.leerArchivo(pos);
         Unusuario.mostrarEncabezado();
         Unusuario.mostrarArchivo();
     }
-    else {cout << "EL CODIGO DE USUARIO INGRESADO NO EXISTE."<<endl;}
+    else {textcolor(cROJO_CLARO,cAZUL);gotoxy(22,5);cout << "EL CODIGO DE USUARIO INGRESADO NO EXISTE."<<endl;}
     getch();
     limpiar();
 }
 void modificarUsuario(){
-
-
     Validador validar;
     Usuario unUsuario;
-    int pos=0, codigo;
-    char nombre[20];
+    int pos=0, codigo,opcion,sector;
+    char nombre[20], password[20];
 
-    cout << "====================================================================================================="<<endl;
-    cout << "                                    MODIFICAR USUARIO"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
-
-    cout << "INGRESE EL CODIGO DEL USUARIO A MODIFICAR: ";
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "MODIFICAR USUARIO"<<endl;
+    textcolor(cBLANCO, cAZUL);
+    gotoxy(25,4);cout << "INGRESE EL CODIGO DEL USUARIO A MODIFICAR: ";
     cin >> codigo;
      if((pos=validar.existenciaCodigoUsuario(codigo))>=0){
-        limpiar();
-        unUsuario.leerArchivo(pos);
-        unUsuario.mostrarEncabezado();
-        unUsuario.mostrarArchivo();
         fflush(stdin);
-        cout << "INGRESE EL NOMBRE NUEVO: ";
-        cin.getline(nombre,20);
-        unUsuario.setNombre(nombre);
-        unUsuario.modificarRegistro(pos);
-        cout << "MODIFICADO CON EXITO."<<endl;
+        unUsuario.leerArchivo(pos);
+        textcolor(cGRIS_CLARO,cAZUL);
+        gotoxy(25,5);cout << "NOMBRE: "<< unUsuario.getNombre()<<endl;
+        gotoxy(25,6);cout << "CONTRASEÑA: "<<unUsuario.getPassword()<<endl;
+        gotoxy(25,7);cout << "SECTOR: "<< unUsuario.getSector()<<endl;
+        textcolor(cBLANCO,cAZUL);gotoxy(40,8);cout << "¿QUE DESEA MODIFICAR?"<<endl;
+        recuadro(14,10,16,2, cAMARILLO, cROJO);
+        recuadro(34,10,16,2, cAMARILLO, cROJO);
+        recuadro(54,10,16,2, cAMARILLO, cROJO);
+        recuadro(74,10,16,2, cAMARILLO, cROJO);
+        gotoxy(20,11);cout << "NOMBRE";
+        gotoxy(38,11);cout << "CONTRASEÑA";
+        gotoxy(60,11);cout<<"SECTOR";
+        gotoxy(80,11);cout << "SALIR";
+        opcion=navegacionMenuHorizontal(15,11,15,75,20);
+        textcolor(cBLANCO,cAZUL);
+        if(opcion==15){
+            gotoxy(35,14);cout << "INGRESE EL NUEVO NOMBRE: ";
+            cin.getline(nombre,20);
+            unUsuario.setNombre(nombre);
+            unUsuario.modificarRegistro(pos);
+            accionAceptada();
+        }
+        else if(opcion==35){
+            gotoxy(35,14);cout << "INGRESE LA NUEVA CONTRASEÑA: ";
+            cin.getline(password,20);
+            unUsuario.setPassword(password);
+            unUsuario.modificarRegistro(pos);
+            accionAceptada();
+        }
+        else if(opcion==55){
+            gotoxy(35,14);cout << "INGRESE EL NUEVO SECTOR: ";
+            gotoxy(23,15);cout << "[1-ADMINISTRACION 2-VENTAS 3-COMPRAS 4-MOVIMIENTOS]"<<endl;
+            gotoxy(60,14);cin>>sector;
+            while(!validar.intervaloDeNumeros(sector,1,4)){
+                textcolor(cROJO_CLARO,cAZUL);gotoxy(25,16);cout << "CODIGO ERRONEO. INGRESE UN VALOR DEL 1 AL 4"<<endl;
+                getch();
+                textcolor(cBLANCO,cAZUL);
+                gotoxy(25,16);cout << "                                              "<<endl;
+                gotoxy(60,14);cout << "                   "<<endl;
+                gotoxy(35,14);cout << "INGRESE EL NUEVO SECTOR: ";
+                gotoxy(23,15);cout << "[1-ADMINISTRACION 2-VENTAS 3-COMPRAS 4-MOVIMIENTOS]"<<endl;
+                gotoxy(60,14);cin>>sector;
+
+            }
+            unUsuario.setSector(sector);
+            unUsuario.modificarRegistro(pos);
+            accionAceptada();
+        }
+        else{ accionCancelada();
+        }
+
     }
-    else {cout << "EL CODIGO INGRESADO NO EXISTE"<<endl;}
+    else {textcolor(cROJO_CLARO,cAZUL);gotoxy(33,5);cout << "EL CODIGO INGRESADO NO EXISTE"<<endl;}
     getch();
     limpiar();
 }
@@ -326,6 +382,16 @@ void restaurarProveedor(){
     cout << "\t\tLISTADO DE USUARIOS"<<endl;
     cout << "\t|  USUARIO  |"    "\t|  CONTRASEÑA  |"<<endl;
 }*/
+
+char *buscarUsuario(int cod){
+
+    Usuario unUsuario;
+    int pos=0;
+    while(unUsuario.leerArchivo(pos++)){
+        if(unUsuario.getCodigo()==cod) return unUsuario.getNombre();
+    }
+
+}
 char *buscardescripcion(int cod){
     Producto unProducto;
     int pos=0;
