@@ -94,31 +94,41 @@ void Menues::derivarMenu(char *usuario){
 void Menues::submenuReportes(char *usuario){
 
 do{
-
-    cout << "SUBMENU REPORTES"<<endl;
-    cout << "[1] GANANCIAS"<<endl;
-    cout << "[2] PERDIDAS"<<endl;
-    cout << "[3] BACKUPS"<<endl;
-    cout << "[4] RESTAURACIONES"<<endl;
-    cout << "[0] VOLVER AL MENU ANTERIOR"<<endl;
+    recuadro(20, 1,60, 25, cBLANCO, cAZUL);
+    recuadro(20, 1,60, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(43,2);cout << "SUBMENU REPORTES"<<endl;
+    recuadro(33, 6,35, 2, cBLANCO, cGRIS);
+    textcolor(cBLANCO, cGRIS);
+    gotoxy(45,7);cout << "GANANCIAS"<<endl;
+    recuadro(33,9,35, 2, cBLANCO, cGRIS);
+    gotoxy(45,10);cout << "PERDIDAS"<<endl;
+    recuadro(33,12,35, 2, cBLANCO, cGRIS);
+    gotoxy(45,13);cout << "BACKUPS"<<endl;
+    recuadro(33,15,35, 2, cBLANCO, cGRIS);
+    gotoxy(45,16);cout << "RESTAURACIONES"<<endl;
+    recuadro(33,18,35, 2, cBLANCO, cGRIS);
+    gotoxy(42,19);cout << "VOLVER AL MENU ANTERIOR"<<endl;
+    recuadro(20,24,60, 2, cBLANCO, cAZUL);
+    gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
-    cout << "INGRESE UNA OPCION:";
-    cin >> opcion;
+    y=navegacionMenu(35,7,7,19);
+
     system("cls");
-    switch(opcion) {
-    case 1:
+    switch(y) {
+    case 7:
         reporteDeganancia();
         break;
-    case 2:
+    case 10:
         reporteDePerdida();
         break;
-    case 3:
+    case 13:
         backupDeArchivos();
         break;
-    case 4:
+    case 16:
 
         break;
-    case 0:
+    case 19:
         menuAdministrador(usuario);
         break;
     default:
@@ -132,35 +142,46 @@ do{
 void Menues::submenuConfiguracion(char *usuario){
 
 do{
-
-    cout << "SUBMENU CONFIGURACION"<<endl;
-    cout << "[1] AGREGAR USUARIO"<<endl;
-    cout << "[2] BORRAR USUARIO"<<endl;
-    cout << "[3] LISTAR USUARIOS"<<endl;
-    cout << "[4] LISTAR USUARIO POR CODIGO"<<endl;
-    cout << "[5] MODIFICAR USUARIO"<<endl;
-    cout << "[0] VOLVER AL MENU ANTERIOR"<<endl;
+    recuadro(20, 1,60, 25, cBLANCO, cAZUL);
+    recuadro(20, 1,60, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(43,2);cout << "SUBMENU CONFIGURACION"<<endl;
+    recuadro(33, 4,35, 2, cBLANCO, cGRIS);
+    textcolor(cBLANCO, cGRIS);
+    gotoxy(43,5);cout << "AGREGAR USUARIO"<<endl;
+    recuadro(33,7,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,8);cout << "BORRAR USUARIO"<<endl;
+    recuadro(33,10,35, 2, cBLANCO, cGRIS);
+    gotoxy(38,11);cout << "LISTAR TODOS LOS USUARIOS"<<endl;
+    recuadro(33,13,35, 2, cBLANCO, cGRIS);
+    gotoxy(38,14);cout << "LISTAR USUARIO POR CODIGO"<<endl;
+    recuadro(33,16,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,17);cout << "MODIFICAR USUARIO"<<endl;
+    recuadro(33,19,35, 2, cBLANCO, cGRIS);
+    gotoxy(40,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
+    recuadro(20,24,60, 2, cBLANCO, cAZUL);
+    gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
-    cout << "INGRESE UNA OPCION:";
-    cin >> opcion;
+    y=navegacionMenu(35,5,5,20);
+
     system("cls");
-    switch(opcion) {
-    case 1:
+    switch(y) {
+    case 5:
         agregarUsuario();
         break;
-    case 2:
+    case 8:
         borrarUsuario();
         break;
-    case 3:
+    case 11:
         listarUsuarios();
         break;
-    case 4:
+    case 14:
         listarUsuarioPorCodigo();
         break;
-    case 5:
+    case 17:
         modificarUsuario();
         break;
-    case 0:
+    case 20:
         menuAdministrador(usuario);
         break;
     default:
@@ -175,34 +196,47 @@ void Menues::menuAdministrador(char *usuario){
 
 do{
 
-    cout << "MENU ADMINISTRADOR"<<endl;
-    cout << "[1] MENU COMPRAS"<<endl;
-    cout << "[2] MENU VENTAS"<<endl;
-    cout << "[3] MENU MOVIMIENTOS"<<endl;
-    cout << "[4] CONFIGURACON"<<endl;
-    cout << "[5] REPORTES"<<endl;
-    cout << "[0] CIERRE DE SESIÓN"<<endl;
+    recuadro(20, 1,60, 25, cBLANCO, cAZUL);
+    recuadro(20, 1,60, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(43,2);cout << "MENU ADMINISTRADOR"<<endl;
+    recuadro(33, 4,35, 2, cBLANCO, cGRIS);
+    textcolor(cBLANCO, cGRIS);
+    gotoxy(43,5);cout << "MENU COMPRAS"<<endl;
+    recuadro(33,7,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,8);cout << "MENU VENTAS"<<endl;
+    recuadro(33,10,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,11);cout << "MENU MOVIMIENTOS"<<endl;
+    recuadro(33,13,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,14);cout << "CONFIGURACION"<<endl;
+    recuadro(33,16,35, 2, cBLANCO, cGRIS);
+    gotoxy(43,17);cout << "REPORTES"<<endl;
+    recuadro(33,19,35, 2, cBLANCO, cGRIS);
+    gotoxy(40,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
+    recuadro(20,24,60, 2, cBLANCO, cAZUL);
+    gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
-    cout << "INGRESE UNA OPCION:";
-    cin >> opcion;
+    y=navegacionMenu(35,5,5,20);
+
+
     system("cls");
-    switch(opcion) {
-    case 1:
+    switch(y) {
+    case 5:
         menuCompras(usuario);
         break;
-    case 2:
+    case 8:
         menuVentas(usuario);
         break;
-    case 3:
+    case 11:
         menuTransferencias(usuario);
         break;
-    case 4:
+    case 14:
         submenuConfiguracion(usuario);
         break;
-    case 5:
+    case 17:
         submenuReportes(usuario);
         break;
-    case 0:
+    case 20:
         logIn();
         break;
     default:
