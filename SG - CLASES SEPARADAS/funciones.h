@@ -1100,4 +1100,50 @@ limpiar();
     cabeceraActiva=false;
 }
 }
+
+void reporteDeganancia(){
+
+    Fecha fechaInicio;
+    Fecha fechaFin;
+    CabeceraVentas unaCabeceraVenta;
+    DetalleVentas unDetalleVenta;
+    int acumulaPV=0, acumulaPC=0;
+    int pos=0, pos2=0;
+    int vMeses[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+    int dia,mes,anio;
+    /*recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+    textcolor(cBLANCO, cAZUL);*/
+    cout << "REPORTE DE GANANCIAS"<<endl;
+    cout <<"INDIQUE FECHA DE INICIO DE CONSULTA: "<<endl;
+    fechaInicio.cargarDatos();
+    cout <<"INDIQUE FECHA DE FIN DE CONSULTA: "<<endl;
+    fechaFin.cargarDatos();
+    fechaInicio.mostrarArchivo();
+    fechaFin.mostrarArchivo();
+
+    while(unaCabeceraVenta.leerenDisco(pos)){
+        if(unaCabeceraVenta.getFechaDeEmision()>=fechaInicio&&unaCabeceraVenta.getFechaDeEmision()<=fechaFin){
+
+            while(unDetalleVenta.leerenDisco(pos2++)){
+                if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) {
+                    acumulaPV+=(buscarPV(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
+                    acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
+                }
+
+            }
+            pos2=0;
+        }
+        pos++;
+    }
+    cout<<"PRECIO COSTO: "<< acumulaPC<<endl;
+    cout<<"PRECIO VENTA: "<< acumulaPV<<endl;
+    cout << "GANANCIA: "<<acumulaPV-acumulaPC;
+
+
+    getch();
+    limpiar();
+}
 #endif // FUNCIONES_H_INCLUDE

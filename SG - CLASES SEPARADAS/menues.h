@@ -108,7 +108,7 @@ do{
     system("cls");
     switch(opcion) {
     case 1:
-        agregarUsuario();
+        reporteDeganancia();
         break;
     case 2:
         borrarUsuario();

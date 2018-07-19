@@ -13,9 +13,36 @@ Fecha::Fecha(int d,int m,int a){
 bool Fecha::operator == (Fecha aux) {
 
     if(dia!=aux.dia) return false;
-    if(mes!=aux.mes) return mes;
-    if(anio!=aux.anio) return anio;
+    if(mes!=aux.mes) return false;
+    if(anio!=aux.anio) return false;
     return true;
+}
+
+
+bool Fecha::operator >= (Fecha aux){
+    if(10000*anio+100*mes+dia >= 10000*aux.anio+100*aux.mes+aux.dia) return true;
+    return false;
+}
+
+bool Fecha::operator <= (Fecha aux){
+    if(10000*anio+100*mes+dia <= 10000*aux.anio+100*aux.mes+aux.dia) return true;
+    return false;
+}
+
+void Fecha::cargarDatos(){
+
+    cout << "DIA: ";
+    cin >>dia;
+    cout << "MES ";
+    cin >>mes;
+    cout << "AÑO: ";
+    cin >> anio;
+
+}
+
+void Fecha::mostrarArchivo(){
+
+    cout<<dia<<"/"<<mes<<"/"<<anio<<endl;
 }
 
 #endif // FECHAS_H_INCLUDED

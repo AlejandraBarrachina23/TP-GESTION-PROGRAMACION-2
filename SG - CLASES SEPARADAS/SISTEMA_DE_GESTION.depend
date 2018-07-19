@@ -126,7 +126,7 @@
 
 1531320860 c:\users\alejandra\desktop\sg - clases separadas\proveedor.h
 
-1531934209 source:c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\main.cpp
+1531961549 source:c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\main.cpp
 	<iostream>
 	<stdio.h>
 	<stdlib.h>
@@ -139,14 +139,14 @@
 	"menues.h"
 	"funciones.h"
 
-1531942059 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
+1531949793 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
 	"funciones.h"
 	<stdlib.h>
 	<conio.h>
 	<iostream>
 	<windows.h>
 
-1531947252 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
+1531961658 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
 	"menues.h"
 	<conio.h>
 	<windows.h>
@@ -165,7 +165,7 @@
 	"detalleMovimientos.h"
 	"proveedor.h"
 
-1531940598 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\declaraciones.h
+1531954097 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\declaraciones.h
 
 1531942028 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\usuarios.h
 	"funciones.h"
@@ -176,7 +176,7 @@
 
 1531939240 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\validador.h
 
-1531319637 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\fechas.h
+1531954007 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\fechas.h
 
 1531942648 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\cabeceracompra.h
 
@@ -186,7 +186,7 @@
 
 1531892413 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\cabeceramovimientos.h
 
-1531947398 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detallecompra.h
+1531947411 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detallecompra.h
 
 1531883843 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\detalleventas.h
 

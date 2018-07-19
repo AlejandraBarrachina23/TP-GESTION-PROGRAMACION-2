@@ -217,6 +217,10 @@ class Fecha {
         void setMes(int _mes){mes = _mes;}
         void setAnio(int _anio){anio = _anio;}
         bool operator == (Fecha aux);
+        bool operator >= (Fecha aux);
+        bool operator <= (Fecha aux);
+        void cargarDatos();
+        void mostrarArchivo();
 };
 class CabeceraDocumento {
 
