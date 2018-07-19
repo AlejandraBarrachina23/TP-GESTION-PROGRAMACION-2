@@ -53,8 +53,7 @@ void RetencionesImpositivas::cargarDatos(){
 
 void RetencionesImpositivas::mostrarArchivo(){
 
-    cout <<"\t"<<IVA<<"\t"<<percepcion<<"\t"<<IB<<endl;
-    cout << "-----------------------------------------------------------------------------------------------------"<<endl;
+    std::cout << setiosflags(ios::left)<<setw(6)<<IVA<<setw(6)<<percepcion<<setw(6)<<IB<<endl;
 }
 
 #endif // RETENCIONESIMPOSITIVAS_H_INCLUDED

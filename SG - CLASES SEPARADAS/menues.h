@@ -126,7 +126,7 @@ do{
         backupDeArchivos();
         break;
     case 16:
-
+        restaurarArchivos();
         break;
     case 19:
         menuAdministrador(usuario);

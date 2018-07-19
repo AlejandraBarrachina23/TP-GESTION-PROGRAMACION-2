@@ -634,7 +634,6 @@ void agregarProveedor(){
 }
 void borrarProveedor(){
 
-
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
@@ -684,13 +683,14 @@ void listarProveedorPorCodigo(){
         Proveedor unProveedor;
         Validador validar;
         int pos,codigo;
-        cout << "====================================================================================================="<<endl;
-        cout << "                                    LISTAR PROVEEDOR POR CODIGO"<<endl;
-        cout << "====================================================================================================="<<endl;
-        cout << endl;
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "BORRAR PROVEEDOR"<<endl;
+        textcolor(cBLANCO, cAZUL);
         fflush(stdin);
-        cout << "INGRESE EL CODIGO DEL PROVEEDOR QUE DESEA LISTAR: "<<endl;
-        cin >> codigo;
+        gotoxy(25,4);cout << "INGRESE EL CODIGO DEL PROVEEDOR QUE DESEA LISTAR: "<<endl;
+        gotoxy(75,4);cin >> codigo;
 
         if((pos=validar.existenciaProveedor(codigo))>=0){
             unProveedor.leerArchivo(pos);
@@ -701,31 +701,53 @@ void listarProveedorPorCodigo(){
             }
             else cout << "EL CODIGO INGRESADO NO EXISTE"<<endl;
         }
-        else cout << "EL CODIGO INGRESADO NO EXISTE"<<endl;
+        else {textcolor(cROJO_CLARO,cAZUL);gotoxy(35,5); cout << "EL CODIGO INGRESADO NO EXISTE"<<endl;}
 
     getch();
     limpiar();
 }
-void modificarPorcentuales(){
+void modificarProveedor(){
 
     Validador validar;
     Proveedor unProveedor;
     RetencionesImpositivas ri;
     Producto unProducto;
-    cout << "====================================================================================================="<<endl;
-    cout << "                                    MODIFICAR PORCENTUALES"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
-    int pos,codigo;
-    fflush(stdin);
-    cout << "INGRESE EL CODIGO DEL PROVEEDOR: "<<endl;
-    cin >>codigo;
+    int codigo,pos,opcion;
+    char nombre [20];
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "MODIFICAR PROVEEDOR"<<endl;
+    textcolor(cBLANCO, cAZUL);
+
+    gotoxy(35,4);cout << "INGRESE CODIGO DE PROVEEDOR: ";
+    cin >> codigo;
     if((pos=validar.existenciaProveedor(codigo))>=0){
         unProveedor.leerArchivo(pos);
-        if(unProveedor.getEstado()==true){
-            limpiar();
-            unProveedor.mostrarEncabezado();
-            unProveedor.mostrarArchivo();
+        textcolor(cGRIS_CLARO,cAZUL);
+        gotoxy(35,5);cout << "NOMBRE: "<<unProveedor.getNombre()<<endl;
+        gotoxy(35,6);cout << "RETENCIONES IMPOSITIVAS: "<<endl;
+        gotoxy(35,7);cout << "IVA: "<<unProveedor.getPorcentuales().getIVA()<<endl;
+        gotoxy(35,8);cout << "IB: "<<unProveedor.getPorcentuales().getIB()<<endl;
+        gotoxy(35,9);cout << "PERCEPCION: "<<unProveedor.getPorcentuales().getPercepcion()<<endl;
+        textcolor(cBLANCO,cAZUL);gotoxy(40,11);cout << "¿QUE DESEA MODIFICAR?"<<endl;
+        recuadro(24,13,16,2, cAMARILLO, cROJO);
+        recuadro(44,13,16,2, cAMARILLO, cROJO);
+        recuadro(64,13,16,2, cAMARILLO, cROJO);
+        gotoxy(30,14);cout << "NOMBRE";
+        gotoxy(48,14);cout << "RETENCIONES";
+        gotoxy(73,14);cout << "SALIR";
+        opcion=navegacionMenuHorizontal(25,14,25,65,20);
+        textcolor(cBLANCO,cAZUL);
+        if(opcion==25){
+            fflush(stdin);
+            gotoxy(35,17);cout << "INGRESE LA NUEVA DESCRIPCION: ";
+            cin.getline(nombre,20);
+            unProveedor.setNombre(nombre);
+            unProveedor.modificarArchivo(pos);
+            accionAceptada();
+        }
+        else if(opcion==45){
             ri.cargarDatos();
             unProveedor.setPorcentuales(ri);
             unProveedor.modificarArchivo(pos);
@@ -737,38 +759,10 @@ void modificarPorcentuales(){
                 }
                 pos++;
             }
-            cout << "MODIFICADO CON EXITO."<<endl;
+            accionAceptada();
         }
-        else cout << "EL CODIGO DEL PROVEEDOR INGRESADO NO EXISTE."<<endl;
-    }
-    else cout << "EL CODIGO DEL PROVEEDOR INGRESADO NO EXISTE."<<endl;
+        else {accionCancelada();}
 
-getch();
-limpiar();
-
-}
-void modificarProveedor(){
-
-    Validador validar;
-    Proveedor unProveedor;
-    int codigo;
-    int pos;
-    char nombre [20];
-    cout << "====================================================================================================="<<endl;
-    cout << "                                    MODIFICAR PROVEEDOR"<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << endl;
-    cout << "INGRESE CODIGO DE PROVEEDOR: ";
-    cin >> codigo;
-    if((pos=validar.existenciaProveedor(codigo))>=0){
-        unProveedor.leerArchivo(pos);
-        unProveedor.mostrarArchivo();
-        fflush(stdin);
-        cout << "INGRESE LA NUEVA DESCRIPCION: ";
-        cin.getline(nombre,20);
-        unProveedor.setNombre(nombre);
-        unProveedor.modificarArchivo(pos);
-        cout << "MODIFICADO CON EXITO."<<endl;
     }
     else {cout << "EL CODIGO INGRESADO NO EXISTE"<<endl;}
     getch();
@@ -1289,30 +1283,26 @@ void reporteDeganancia(){
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+    gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
     textcolor(cBLANCO, cAZUL);
-
     gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
     fechaInicio.cargarDatos();
-    limpiar();
-    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
-    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
-    textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
     gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
+    gotoxy(40,6);cout <<"                                           "<<endl;
+    gotoxy(40,7);cout <<"                                           "<<endl;
+    gotoxy(40,8);cout <<"                                           "<<endl;
     fechaFin.cargarDatos();
 
     while(fechaFin<fechaInicio){
         textcolor(cROJO_CLARO,cAZUL);
-        gotoxy(20,10);cout << "LA FECHA INGRESADA DEBE SER MAYOR A LA DE INICIO."<<endl;
+        gotoxy(23,10);cout << "LA FECHA INGRESADA DEBE SER MAYOR A LA DE INICIO."<<endl;
         getch();
-        limpiar();
-        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
-        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
-        textcolor(cBLANCO,cAZUL);
-        gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+        gotoxy(23,10);cout << "                                                 "<<endl;
         textcolor(cBLANCO, cAZUL);
         gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
+        gotoxy(40,6);cout <<"                                           "<<endl;
+        gotoxy(40,7);cout <<"                                           "<<endl;
+        gotoxy(40,8);cout <<"                                           "<<endl;
         fechaFin.cargarDatos();
     }
     limpiar();
@@ -1352,18 +1342,31 @@ void reporteDePerdida(){
     DetalleMovimientos unDetalleMovimientos;
     float acumulaPC=0;
     int pos=0, pos2=0;
-    /*recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
-    textcolor(cBLANCO, cAZUL);*/
-    cout << "REPORTE DE GANANCIAS"<<endl;
-    cout <<"INDIQUE FECHA DE INICIO DE CONSULTA: "<<endl;
+    gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
+    textcolor(cBLANCO, cAZUL);
+    gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
     fechaInicio.cargarDatos();
-    cout <<"INDIQUE FECHA DE FIN DE CONSULTA: "<<endl;
+    gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
+    gotoxy(40,6);cout <<"                                           "<<endl;
+    gotoxy(40,7);cout <<"                                           "<<endl;
+    gotoxy(40,8);cout <<"                                           "<<endl;
     fechaFin.cargarDatos();
-    fechaInicio.mostrarArchivo();
-    fechaFin.mostrarArchivo();
+
+    while(fechaFin<fechaInicio){
+        textcolor(cROJO_CLARO,cAZUL);
+        gotoxy(23,10);cout << "LA FECHA INGRESADA DEBE SER MAYOR A LA DE INICIO."<<endl;
+        getch();
+        gotoxy(23,10);cout << "                                                 "<<endl;
+        textcolor(cBLANCO, cAZUL);
+        gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
+        gotoxy(40,6);cout <<"                                           "<<endl;
+        gotoxy(40,7);cout <<"                                           "<<endl;
+        gotoxy(40,8);cout <<"                                           "<<endl;
+        fechaFin.cargarDatos();
+    }
 
     while(unaCabeceraMovimiento.leerArchivo(pos)){
         if(unaCabeceraMovimiento.getFechaDeEmision()>=fechaInicio&&unaCabeceraMovimiento.getFechaDeEmision()<=fechaFin){
@@ -1382,18 +1385,46 @@ void reporteDePerdida(){
 
 }
 void backupDeArchivos(){
-
+    int opcion;
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "BACKUPS DE ARCHIVOS"<<endl;
-    textcolor(cGRIS_CLARO,cAZUL);
-    cout << "¿DE QUE DESEA HACER BACKUP?"<<endl;
-    cout << "PROVEEDORES"<<endl;
-    cout << "PRODUCTOS"<<endl;
-    //backupProductos();
-    //backupProveedores();
-    //restaurarProductos();
-    restaurarProveedor();
+    gotoxy(37,8);cout << "¿DE QUE DESEA HACER BACKUP?"<<endl;
+    recuadro(24,10,16,2, cAMARILLO, cROJO);
+    recuadro(44,10,16,2, cAMARILLO, cROJO);
+    recuadro(64,10,16,2, cAMARILLO, cROJO);
+    gotoxy(28,11);cout << "PROVEEDORES";
+    gotoxy(50,11);cout << "PRODUCTOS";
+    gotoxy(71,11);cout << "SALIR";
+    opcion=navegacionMenuHorizontal(25,11,25,65,20);
+    if(opcion==24){backupProveedores();accionAceptada();}
+    if(opcion==44){backupProductos();accionAceptada();}
+    else{accionCancelada();}
+    getch();
+    limpiar();
 }
+void restaurarArchivos(){
+
+    int opcion;
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "RESTAURACION DE ARCHIVOS"<<endl;
+    gotoxy(37,8);cout << "¿QUE ARCHIVO DESEA RESTAURAR?"<<endl;
+    recuadro(24,10,16,2, cAMARILLO, cROJO);
+    recuadro(44,10,16,2, cAMARILLO, cROJO);
+    recuadro(64,10,16,2, cAMARILLO, cROJO);
+    gotoxy(28,11);cout << "PROVEEDORES";
+    gotoxy(50,11);cout << "PRODUCTOS";
+    gotoxy(71,11);cout << "SALIR";
+    opcion=navegacionMenuHorizontal(25,11,25,65,20);
+    if(opcion==24){restaurarProveedor();accionAceptada();}
+    if(opcion==44){restaurarProductos();accionAceptada();}
+    else{accionCancelada();}
+    getch();
+    limpiar();
+
+}
+
 #endif // FUNCIONES_H_INCLUDE

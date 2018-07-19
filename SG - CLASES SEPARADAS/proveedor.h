@@ -90,17 +90,19 @@ void Proveedor::modificarArchivo(int pos){
 void Proveedor::mostrarArchivo(){
 
     if(estado==true){
-    cout<< "\t"<<codigo << "\t"<< nombre<<"\t\t"<<rubro<<"\t";
+    std::cout <<"    "<< setiosflags(ios::left)<<setw(8)<<codigo<<setw(20)<<nombre<<setw(20)<<rubro;
     porcentuales.mostrarArchivo();
     }
 
 }
 void Proveedor::mostrarEncabezado(){
 
-    cout << "====================================================================================================="<<endl;
-    cout << "                                      PROVEEDORES      "<<endl;
-    cout << "====================================================================================================="<<endl;
-    cout << "\tCODIGO\tEMPRESA\t\tRUBRO\t\tIVA\tPERCEPCION\tIB"<<endl;
+    recuadro(0, 0,102, 25, cBLANCO, cAZUL);
+    recuadro(0, 0,102, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,1);cout << "PROVEEDORES"<<endl;
+    cout<<endl;
+    cout << "   CODIGO   EMPRESA             RUBRO               IVA   P     IB"<<endl;
     cout << "====================================================================================================="<<endl;
 
 }
