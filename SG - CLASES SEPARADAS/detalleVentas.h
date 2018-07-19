@@ -116,7 +116,8 @@ int DetalleVentas::calculoConFormaDePago(){
     Validador validar;
     int cuotas,metodoDePago;
     gotoxy(35,4);cout<<"INGRESE METODO DE PAGO: ";
-    cin>>metodoDePago;
+    gotoxy(30,5);cout<<"[1-EFECTIVO 2-DEBITO 3-CREDITO]"<<endl;
+    gotoxy(59,4);cin>>metodoDePago;
 
     while(!validar.intervaloDeNumeros(metodoDePago,1,3)){
         textcolor(cROJO_CLARO,cAZUL);

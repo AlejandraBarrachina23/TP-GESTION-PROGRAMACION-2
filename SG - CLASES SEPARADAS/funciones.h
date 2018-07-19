@@ -891,15 +891,14 @@ void modificarProducto(){
         gotoxy(30,5);cout << "DESCRIPCION: "<<strcpy(descripcion,buscardescripcion(unProducto.getCodigoProducto()))<<endl;
         gotoxy(30,6);cout << "PROVEEDOR: "<<strcpy(proveedor,buscarProveedor(unProducto.getCodigoProveedor()))<<endl;
         gotoxy(37,8);cout << "¿QUE DESEA MODIFICAR?"<<endl;
-        recuadro(24,10,16,2, cAMARILLO, cROJO);
-        recuadro(44,10,16,2, cAMARILLO, cROJO);
-        recuadro(64,10,16,2, cAMARILLO, cROJO);
-        gotoxy(28,11);cout << "DESCRIPCION";
-        gotoxy(50,11);cout << "PROVEEDOR";
-        gotoxy(71,11);cout << "SALIR";
+        recuadro(30,10,16,2, cAMARILLO, cROJO);
+        recuadro(54,10,16,2, cAMARILLO, cROJO);
+        gotoxy(34,11);cout << "DESCRIPCION";
+        gotoxy(63,11);cout << "SALIR";
         fflush(stdin);
-        opcion=navegacionMenuHorizontal(25,11,25,65,20);
-        if(opcion==25){//OPCION DESCRIPCION
+        opcion=navegacionMenuHorizontal(31,11,31,55,24);
+        if(opcion==31){//OPCION DESCRIPCION
+            textcolor(cBLANCO,cAZUL);
             gotoxy(30,14);cout << "INGRESE LA NUEVA DESCRIPCION: "<<endl;
             gotoxy(60,14);cin.getline(descripcion,20);
             convierteAMiniscula(descripcion);
@@ -907,11 +906,7 @@ void modificarProducto(){
             unProducto.modificarArchivo(pos);
             accionAceptada();
         }
-        if(opcion==45)cout << "PROVEEDOR"<<endl;
-        if(opcion==65)cout << "IRSE"<<endl;
-
-
-
+        else{accionCancelada();}
     }
     else {cout << "EL CODIGO INGRESADO NO EXISTE"<<endl;}
     getch();
@@ -1237,6 +1232,7 @@ void listadoDeMovimientos(){
 
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimiento;
+    Validador validar;
     bool cabeceraActiva=false;
     int opcion;
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
@@ -1245,8 +1241,20 @@ void listadoDeMovimientos(){
     gotoxy(40,2);cout << "LISTADO DE MOVIMIENTOS"<<endl;
     textcolor(cBLANCO, cAZUL);
 
-    cout << "¿QUE DESEA LISTAR?"<<endl;
-    cin >> opcion;
+    gotoxy(40,4);cout << "¿QUE DESEA LISTAR?"<<endl;
+    gotoxy(35,5);cout << "[1-TRANSFERENCIAS 2-DEVOLUCIONES]"<<endl;
+    gotoxy(60,4);cin >> opcion;
+    while(!validar.intervaloDeNumeros(opcion,1,2)){
+        gotoxy(40,6);cout << "OPCION INCORRECTA. "<<endl;
+        getch();
+        gotoxy(40,6);cout <<"                     "<<endl;
+        gotoxy(60,4);cout<<"         "<<endl;
+        gotoxy(40,4);cout << "¿QUE DESEA LISTAR?"<<endl;
+        gotoxy(35,5);cout << "[1-TRANSFERENCIAS 2-DEVOLUCIONES]"<<endl;
+        gotoxy(60,4);cin >> opcion;
+
+    }
+
 
     limpiar();
     int pos=0, pos2=0;

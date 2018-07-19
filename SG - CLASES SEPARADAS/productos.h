@@ -56,7 +56,7 @@ void Producto::mostrarProducto(){
     strcpy(proveedor,buscarProveedor(codigoProveedor));
     if(estado==true){
     std::cout << setiosflags(ios::left)<<setw(8)<<codigoProducto<<setw(20)<<descripcion<<setw(4)<<cantidadxBulto<<setw(4)<<stockCritico;
-    std::cout << setiosflags(ios::left)<<setw(4)<< stockSucursal<<setw(4)<< stockDeposito <<setw(15)<< rubro <<setw(6)<<fixed<<setprecision(2)<<precioCosto <<setw(6)<< precioVenta<<setw(13)<<proveedor;
+    std::cout << setiosflags(ios::left)<<setw(4)<< stockSucursal<<setw(4)<< stockDeposito <<setw(15)<< rubro <<setw(6)<<fixed<<setprecision(1)<<precioCosto <<setw(6)<< precioVenta<<setw(13)<<proveedor;
     std::cout << setiosflags(ios::left)<<setw(6)<<setprecision(1)<<porcentuales.getIVA()<<setw(6)<<porcentuales.getIB()<<setw(6)<<porcentuales.getPercepcion()<<endl;
     }
 }
