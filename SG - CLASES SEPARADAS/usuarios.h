@@ -31,12 +31,14 @@ void Usuario::mostrarArchivo(){
 }
 void Usuario::mostrarEncabezado(){
 
-    recuadro(0, 0,102, 2, cBLANCO, cAZUL);
+recuadro(0, 0,100, 25, cBLANCO, cAZUL);
+recuadro(0,0,100, 2, cBLANCO, cAZUL);
+    //recuadro(0, 0,102, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,1);cout << "LISTADO DE USUARIOS"<<endl;
     cout<<endl;
     cout << "      CODIGO      NOMBRE                   CONTRASEÑA              SECTOR"<<endl;
-    cout << "   =================================================================================================="<<endl;
+    cout << "  =================================================================================================="<<endl;
 
 }
 bool Usuario::grabarArchivo(){

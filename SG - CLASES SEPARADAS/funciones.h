@@ -66,12 +66,6 @@ void borrarUsuario(){
     limpiar();
 }
 void listarUsuarios(){
-
-    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
-    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
-    textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "LISTADO DE USUARIOS"<<endl;
-
     Usuario unUsuario;
     unUsuario.mostrarEncabezado();
     int pos=0;
@@ -847,7 +841,7 @@ void borrarProducto(){
 
     Producto unProducto;
     Validador validar;
-    int cod, pos,opcion;
+    int cod, pos;
     char productoAborrar[20];
     gotoxy(30,4);cout << "INGRESE EL CODIGO DEL PRODUCTO A BORRAR: "<<endl;
     gotoxy(70,4);cin >> cod;
@@ -939,17 +933,17 @@ void agregarCompra(char *usuario){
             stockAnterior=unProducto.getStockSucursal()+unProducto.getStockDeposito();  //SUMA TODO EL STOCK ANTERIOR
             stockValorizado=stockAnterior*unProducto.getPrecioCosto();//MULTIPLICA EL PRECIO VIEJO POR EL EL STOCK ANTERIOR
             costoReal= (stockValorizado+subTotalCompra)/(stockAnterior+unDetalleCompra.getCantidad()); //TOMA LOS PRECIOS (ANTERIOR Y ACTUAL) Y REALIZA UN PROMEDIO CON EL TOTAL DE MERCADERIA, OBTENIENDO EL COSTO REAL DEL PRODUCTO.
-            unDetalleCompra.setPrecioVenta(((unProducto.getRentabilidad()/100)+1)*costoReal);//CALCULA EL PRECIO DE VENTA
-            unDetalleCompra.setPrecioVenta((int)unDetalleCompra.getPrecioVenta());//SET PRECIOVENTA.
+            unDetalleCompra.setPrecioVenta(costoReal+(costoReal*unProducto.getRentabilidad()/100));//CALCULA EL PRECIO DE VENTA  ((unProducto.getRentabilidad()/100)+1)*costoReal
+            //unDetalleCompra.setPrecioVenta((int)unDetalleCompra.getPrecioVenta());//SET PRECIOVENTA.
             unProducto.cargarDatosCompra(unDetalleCompra.getPrecioVenta(),unDetalleCompra.getPrecioBruto(),unDetalleCompra.getCantidad()+unProducto.getStockDeposito()); //SET DE STOCK-COSTO-VENTA DEL PRODUCTO CARGADO
 
-            /*cout << "STOCK ANTERIOR: " << stockAnterior <<endl;
+            cout << "STOCK ANTERIOR: " << stockAnterior <<endl;
             cout << "STOCK VALORIZADO: " << stockValorizado <<endl;
             cout << "SUBTOTAL: " << subTotalCompra <<endl;
             cout << "COSTO REAL: "<<costoReal<<endl;
             cout << "RENTABILIDAD: "<< unProducto.getRentabilidad()<<endl;
             cout << "PRECIO VENTA:" << unDetalleCompra.getPrecioVenta()<<endl;
-            */
+
             seguir=consultaParaContinuar();
             limpiar();
             unDetalleCompra.grabarArchivo();
@@ -968,8 +962,6 @@ void agregarCompra(char *usuario){
 
         }
             unaCabeceraCompra.grabarArchivo();
-
-
     }
 void listarTodasLasCompras(){
 
@@ -1034,7 +1026,6 @@ Validador validar;
 unaCabeceraVenta.cargarDatos(usuario);
 int cuentaLinea=1,pos;
 bool seguir=true;
-char continuar;
 
 while(seguir==true){
 

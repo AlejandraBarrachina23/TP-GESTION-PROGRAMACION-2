@@ -68,7 +68,7 @@ void Menues::logIn(){
         textcolor(cROJO_CLARO, cAZUL);
         gotoxy(38,18);cout << "USUARIO/PASSWORD INCORRECTO"<<endl;
         intentos++;
-        if(validar.intentosDeInicio(intentos,3)) {limpiar();exit(0);}
+        if(validar.intentosDeInicio(intentos,3)) {getch();limpiar();exit(0);}
         getch();
     }
 
