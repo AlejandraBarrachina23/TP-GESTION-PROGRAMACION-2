@@ -2,7 +2,8 @@
 #define DECLARACIONES_H_INCLUDED
 
 using namespace std;
-
+float aproximacionPrecioVenta(float precio);
+float aproximacionDecimal(float precio);
 enum Color{
 cNEGRO=0,
 cAZUL=1,
@@ -307,11 +308,11 @@ class DetalleCompra:public DetalleDocumento{
         float precioVenta;
     public:
         float getPrecioNeto(){return precioNeto;}
-        void setPrecioNeto(float _precioNeto){precioNeto=precioNeto;}
+        void setPrecioNeto(float _precioNeto){precioNeto=aproximacionDecimal(_precioNeto);}
         float getPrecioBruto(){return precioBruto;}
-        void setPrecioBruto(float _precioBruto){precioBruto=_precioBruto;}
+        void setPrecioBruto(float _precioBruto){precioBruto=aproximacionDecimal(_precioBruto);}
         float getPrecioVenta(){return precioVenta;}
-        void setPrecioVenta(float _precioVenta){precioVenta=_precioVenta;}
+        void setPrecioVenta(float _precioVenta){precioVenta=aproximacionPrecioVenta(_precioVenta);}
         void cargarDatos(int,int,int);
         void calculoPrecioBruto(Producto &unProducto);
         void stockValorizado(Producto &unProducto);
@@ -434,5 +435,6 @@ void backupProductos();
 bool advertenciaDeBorrado();
 void accionCancelada();
 void accionAceptada();
+
 
 #endif // DECLARACIONES_H_INCLUDED

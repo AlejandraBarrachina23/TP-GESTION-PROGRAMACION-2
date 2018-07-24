@@ -44,16 +44,20 @@ void DetalleVentas::cargarArchivo(int _codigoFactura,int _codigoLinea){
     gotoxy(30,8);cout<<"INGRESE CANTIDAD: ";
     gotoxy(48,8);cin>>cantidad;
 
+
     while(validar.validarStockSucursal(codigoProducto,cantidad)==false){
         textcolor(cROJO_CLARO,cAZUL);
-        gotoxy(22,9);cout << "LA CANTIDAD INGRESADA ES MAYOR AL STOCK QUE SE TIENE."<<endl;
+
+        if(cantidad<=0){ gotoxy(22,9);cout << "NUMERO INVALIDO. INGRESE UNA CANTIDAD MAYOR A CERO"<<endl;}
+        else{ gotoxy(22,9);cout << "LA CANTIDAD INGRESADA ES MAYOR AL STOCK QUE SE TIENE."<<endl;}
         getch();
-        gotoxy(22,9);cout << "                                                     "<<endl;
+        gotoxy(22,9);cout << "                                                                    "<<endl;
         gotoxy(48,8);cout << "      "<<endl;
         textcolor(cBLANCO,cAZUL);
         gotoxy(30,8);cout<<"INGRESE CANTIDAD: ";
         gotoxy(48,8);cin>>cantidad;
     }
+
     textcolor(cGRIS_CLARO,cAZUL);
     precioVenta=buscarPV(codigoProducto);
     gotoxy(30,9);cout<<"PRECIO UNITARIO: $"<<precioVenta<<endl;

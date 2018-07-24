@@ -124,6 +124,9 @@ void DetalleCompra::calculoPrecioBruto(Producto &unProducto){
     ri.setIB(unProducto.getPorcentuales().getIB()*precioNeto/100);
     cout << "PRECIO CON IB:" <<ri.getIB()<<endl;
     setPrecioBruto(ri.getIVA()+ri.getPercepcion()+ri.getIB()+precioNeto);
+
+
+
     cout << "PRECIO BRUTO:" << getPrecioBruto() <<endl;
 }
 #endif // DETALLECOMPRA_H_INCLUDED

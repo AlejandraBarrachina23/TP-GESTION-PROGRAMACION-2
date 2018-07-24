@@ -3,6 +3,7 @@
 #include "menues.h"
 #include <conio.h>
 #include <windows.h>
+#include <math.h>
 #include "declaraciones.h"
 #include "usuarios.h"
 #include "retencionesImpositivas.h"
@@ -606,6 +607,34 @@ void accionAceptada(){
     gotoxy(36,20);cout << "PRESIONE UNA TECLA PARA VOLVER"<<endl;
 
 }
+float aproximacionDecimal(float precio){
+    precio=precio*100;
+    precio=ceil(precio);
+    precio=precio/100;
+    return precio;
+}
+float aproximacionPrecioVenta(float precio){
+
+    int diferencia, precioModificado,ultimoDigito;
+    precioModificado=ceil(aproximacionDecimal(precio));
+
+    ultimoDigito=precioModificado%10;
+
+    if(precio<5) return precio;
+
+    if(ultimoDigito>5) {
+        diferencia=10-ultimoDigito;
+        precioModificado=precioModificado+diferencia;
+
+    }
+    else if(ultimoDigito<5 && ultimoDigito!=0){
+        diferencia=5-ultimoDigito;
+        precioModificado=precioModificado+diferencia;
+    }
+	precio=precioModificado;
+    return precio;
+}
+
 
 /// MENU COMPRAS - SUBMENU PROVEEDORES
 void agregarProveedor(){
@@ -934,22 +963,22 @@ void agregarCompra(char *usuario){
             stockValorizado=stockAnterior*unProducto.getPrecioCosto();//MULTIPLICA EL PRECIO VIEJO POR EL EL STOCK ANTERIOR
             costoReal= (stockValorizado+subTotalCompra)/(stockAnterior+unDetalleCompra.getCantidad()); //TOMA LOS PRECIOS (ANTERIOR Y ACTUAL) Y REALIZA UN PROMEDIO CON EL TOTAL DE MERCADERIA, OBTENIENDO EL COSTO REAL DEL PRODUCTO.
             unDetalleCompra.setPrecioVenta(costoReal+(costoReal*unProducto.getRentabilidad()/100));//CALCULA EL PRECIO DE VENTA  ((unProducto.getRentabilidad()/100)+1)*costoReal
-            //unDetalleCompra.setPrecioVenta((int)unDetalleCompra.getPrecioVenta());//SET PRECIOVENTA.
-            unProducto.cargarDatosCompra(unDetalleCompra.getPrecioVenta(),unDetalleCompra.getPrecioBruto(),unDetalleCompra.getCantidad()+unProducto.getStockDeposito()); //SET DE STOCK-COSTO-VENTA DEL PRODUCTO CARGADO
+            unProducto.cargarDatosCompra(unDetalleCompra.getPrecioVenta(),costoReal,unDetalleCompra.getCantidad()+unProducto.getStockDeposito()); //SET DE STOCK-COSTO-VENTA DEL PRODUCTO CARGADO
 
-            cout << "STOCK ANTERIOR: " << stockAnterior <<endl;
+            /*cout << "STOCK ANTERIOR: " << stockAnterior <<endl;
             cout << "STOCK VALORIZADO: " << stockValorizado <<endl;
             cout << "SUBTOTAL: " << subTotalCompra <<endl;
             cout << "COSTO REAL: "<<costoReal<<endl;
             cout << "RENTABILIDAD: "<< unProducto.getRentabilidad()<<endl;
             cout << "PRECIO VENTA:" << unDetalleCompra.getPrecioVenta()<<endl;
-
+            */
             seguir=consultaParaContinuar();
             limpiar();
             unDetalleCompra.grabarArchivo();
             unProducto.modificarArchivo(pos);
             unaCabeceraCompra.leerArchivo(unDetalleCompra.getNroFactura()-1);
             unaCabeceraCompra.mostrarArchivo();
+            unDetalleCompra.mostrarEncabezado();
 
             pos=0;
             while(unDetalleCompra.leerArchivo(pos)){

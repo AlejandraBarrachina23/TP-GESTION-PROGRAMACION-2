@@ -2,179 +2,15 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="usuarios.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="887" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="6" />
-			<Collapse line="15" />
-			<Collapse line="26" />
-			<Collapse line="31" />
-			<Collapse line="41" />
-			<Collapse line="103" />
-		</Folding>
-	</File>
-	<File name="cabeceraCompra.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2044" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="40" />
-			<Collapse line="49" />
-			<Collapse line="61" />
-		</Folding>
-	</File>
-	<File name="cabeceraVentas.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="382" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="7" />
-			<Collapse line="12" />
-			<Collapse line="21" />
-		</Folding>
-	</File>
-	<File name="retencionesImpositivas.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1956" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="9" />
-		</Folding>
-	</File>
-	<File name="detalleVentas.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4554" topLine="6" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="64" />
-			<Collapse line="70" />
-			<Collapse line="85" />
-			<Collapse line="94" />
-		</Folding>
-	</File>
-	<File name="validador.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1444" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="12" />
-			<Collapse line="21" />
-			<Collapse line="31" />
-		</Folding>
-	</File>
-	<File name="fechas.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1116" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="12" />
-			<Collapse line="19" />
-			<Collapse line="23" />
-			<Collapse line="27" />
-			<Collapse line="31" />
-			<Collapse line="76" />
-		</Folding>
-	</File>
-	<File name="funciones.h" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="31802" topLine="92" />
-		</Cursor>
-		<Folding>
-			<Collapse line="23" />
-			<Collapse line="37" />
-			<Collapse line="67" />
-			<Collapse line="83" />
-			<Collapse line="110" />
-			<Collapse line="194" />
-			<Collapse line="205" />
-			<Collapse line="213" />
-			<Collapse line="227" />
-			<Collapse line="244" />
-			<Collapse line="267" />
-			<Collapse line="270" />
-			<Collapse line="279" />
-			<Collapse line="287" />
-			<Collapse line="297" />
-			<Collapse line="307" />
-			<Collapse line="317" />
-			<Collapse line="327" />
-			<Collapse line="343" />
-			<Collapse line="357" />
-			<Collapse line="373" />
-			<Collapse line="389" />
-			<Collapse line="398" />
-			<Collapse line="405" />
-			<Collapse line="413" />
-			<Collapse line="420" />
-			<Collapse line="429" />
-			<Collapse line="436" />
-			<Collapse line="445" />
-			<Collapse line="452" />
-			<Collapse line="459" />
-			<Collapse line="477" />
-			<Collapse line="500" />
-			<Collapse line="517" />
-			<Collapse line="544" />
-			<Collapse line="570" />
-			<Collapse line="581" />
-			<Collapse line="593" />
-			<Collapse line="604" />
-			<Collapse line="616" />
-			<Collapse line="634" />
-			<Collapse line="667" />
-			<Collapse line="680" />
-			<Collapse line="708" />
-			<Collapse line="774" />
-			<Collapse line="802" />
-			<Collapse line="813" />
-			<Collapse line="840" />
-			<Collapse line="872" />
-		</Folding>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="288" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="detalleMovimientos.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="cabeceraDocumento.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="888" topLine="0" />
+			<Cursor1 position="567" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="13" />
-			<Collapse line="23" />
-			<Collapse line="33" />
-			<Collapse line="40" />
-			<Collapse line="47" />
-			<Collapse line="54" />
-		</Folding>
-	</File>
-	<File name="menues.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1716" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="10" />
-			<Collapse line="28" />
-			<Collapse line="76" />
-			<Collapse line="93" />
-			<Collapse line="141" />
-			<Collapse line="194" />
-			<Collapse line="248" />
-			<Collapse line="292" />
-			<Collapse line="345" />
-			<Collapse line="396" />
-			<Collapse line="448" />
-		</Folding>
 	</File>
 	<File name="productos.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -192,6 +28,38 @@
 			<Collapse line="192" />
 		</Folding>
 	</File>
+	<File name="menues.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1716" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="10" />
+			<Collapse line="28" />
+			<Collapse line="76" />
+			<Collapse line="93" />
+			<Collapse line="141" />
+			<Collapse line="194" />
+			<Collapse line="248" />
+			<Collapse line="292" />
+			<Collapse line="345" />
+			<Collapse line="396" />
+			<Collapse line="448" />
+		</Folding>
+	</File>
+	<File name="cabeceraMovimientos.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="160" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="retencionesImpositivas.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1956" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="9" />
+		</Folding>
+	</File>
 	<File name="proveedor.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3393" topLine="0" />
@@ -206,20 +74,18 @@
 			<Collapse line="108" />
 		</Folding>
 	</File>
-	<File name="declaraciones.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="cabeceraVentas.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8238" topLine="0" />
+			<Cursor1 position="382" topLine="0" />
 		</Cursor>
 		<Folding>
-			<Collapse line="5" />
-			<Collapse line="24" />
-			<Collapse line="27" />
-			<Collapse line="30" />
-			<Collapse line="36" />
-			<Collapse line="40" />
+			<Collapse line="3" />
+			<Collapse line="7" />
+			<Collapse line="12" />
+			<Collapse line="21" />
 		</Folding>
 	</File>
-	<File name="detalleCompra.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="detalleCompra.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="5173" topLine="0" />
 		</Cursor>
@@ -232,14 +98,108 @@
 			<Collapse line="100" />
 		</Folding>
 	</File>
-	<File name="cabeceraDocumento.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="detalleVentas.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="505" topLine="0" />
+			<Cursor1 position="6119" topLine="20" />
 		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="64" />
+			<Collapse line="70" />
+			<Collapse line="85" />
+			<Collapse line="94" />
+		</Folding>
 	</File>
-	<File name="cabeceraMovimientos.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="cabeceraCompra.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="248" topLine="0" />
+			<Cursor1 position="1923" topLine="0" />
 		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="49" />
+			<Collapse line="61" />
+		</Folding>
+	</File>
+	<File name="usuarios.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1230" topLine="6" />
+		</Cursor>
+		<Folding>
+			<Collapse line="6" />
+			<Collapse line="15" />
+		</Folding>
+	</File>
+	<File name="declaraciones.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7390" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="24" />
+			<Collapse line="27" />
+			<Collapse line="30" />
+			<Collapse line="36" />
+			<Collapse line="40" />
+			<Collapse line="79" />
+			<Collapse line="112" />
+			<Collapse line="132" />
+			<Collapse line="151" />
+			<Collapse line="206" />
+		</Folding>
+	</File>
+	<File name="validador.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1444" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="12" />
+			<Collapse line="21" />
+			<Collapse line="31" />
+		</Folding>
+	</File>
+	<File name="detalleMovimientos.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="888" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="13" />
+			<Collapse line="23" />
+			<Collapse line="33" />
+			<Collapse line="40" />
+			<Collapse line="47" />
+			<Collapse line="54" />
+		</Folding>
+	</File>
+	<File name="fechas.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1116" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="12" />
+			<Collapse line="19" />
+			<Collapse line="23" />
+			<Collapse line="27" />
+			<Collapse line="31" />
+			<Collapse line="76" />
+		</Folding>
+	</File>
+	<File name="funciones.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1512" topLine="9" />
+		</Cursor>
+		<Folding>
+			<Collapse line="23" />
+			<Collapse line="37" />
+			<Collapse line="67" />
+			<Collapse line="77" />
+			<Collapse line="104" />
+			<Collapse line="188" />
+			<Collapse line="199" />
+			<Collapse line="207" />
+			<Collapse line="221" />
+		</Folding>
 	</File>
 </CodeBlocks_layout_file>
