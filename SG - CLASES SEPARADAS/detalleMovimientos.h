@@ -13,13 +13,13 @@ bool DetalleMovimientos::leerArchivo(int pos){
 }
 void DetalleMovimientos::mostrarEncabezado(){
 cout<<endl;
-cout<<"     NRO   CODIGO    DETALLE             CANT     "<<endl;
-cout<<"  ==================================================================================================="<<endl;
+cout<<" "<<(char)186<<" NRO   CODIGO    DETALLE             CANT     "<<endl;
+cout<<" "<<(char)186<<"==================================================================================================="<<endl;
 }
 void DetalleMovimientos::mostrarArchivo(){
 char descripcion[30];
 strcpy(descripcion,buscardescripcion(codigoProducto));
-std::cout << setiosflags(ios::left)<<"     "<<setw(6)<<nroLinea<<setw(10)<<codigoProducto<<setw(20)<<descripcion<<setw(8)<<cantidad<<endl;
+std::cout << setiosflags(ios::left)<<" "<<(char)186<<" "<<setw(6)<<nroLinea<<setw(10)<<codigoProducto<<setw(20)<<descripcion<<setw(8)<<cantidad<<endl;
 }
 bool DetalleMovimientos::grabarArchivo(){
 

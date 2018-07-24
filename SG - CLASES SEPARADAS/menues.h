@@ -31,6 +31,7 @@ void Menues::logIn(){
     Usuario unUsuario,aux;
     Validador validar;
     char nombre[20], password[20];
+
     int pos,intentos=0;
     do{
         pos=0;
@@ -46,10 +47,11 @@ void Menues::logIn(){
         gotoxy(42,5);cout << "INICIO DE SESION"<<endl;
         textcolor(cBLANCO, cAZUL);
         gotoxy(45,8);cout << "-NOMBRE-";
-        gotoxy(44,13);cout << "-CONTRASEÑA-";
+        gotoxy(44,13);cout << "-CONTRASENIA-";
         recuadro(35,9,30, 2, cBLANCO, cGRIS);
         recuadro(35,14,30, 2, cBLANCO, cGRIS);
         gotoxy(46,10);cin.getline(nombre,20);
+        if (strcmp(nombre,"0/0")) exit(0);
         convierteAMiniscula(nombre);
         aux.setNombre(nombre); //CARGO EL NOMBRE
         fflush(stdin);
@@ -132,7 +134,7 @@ do{
         menuAdministrador(usuario);
         break;
     default:
-        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        cout << "LA OPCION INGRESADA ES INVALIDA."<<endl;
         break;
     }
 }
@@ -185,7 +187,7 @@ do{
         menuAdministrador(usuario);
         break;
     default:
-        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        cout << "LA OPCION INGRESADA ES INVALIDA."<<endl;
         break;
     }
 }
@@ -240,7 +242,7 @@ do{
         logIn();
         break;
     default:
-        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        cout << "LA OPCION INGRESADA ES INVALIDA."<<endl;
         break;
     }
 }
@@ -261,7 +263,7 @@ do{
     recuadro(33,13,35, 2, cBLANCO, cGRIS);
     gotoxy(43,14);cout << "CIERRE DE CAJA"<<endl;
     recuadro(33,16,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,17);cout << "CIERRE DE SESIÓN"<<endl;
+    gotoxy(43,17);cout << "CIERRE DE SESION"<<endl;
 
     cout << endl;
     recuadro(20,24,60, 2, cBLANCO, cAZUL);
@@ -284,7 +286,7 @@ do{
         logIn();
         break;
     default:
-        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        cout << "LA OPCION INGRESADA ES INVALIDA."<<endl;
         break;
     }
 }
@@ -337,7 +339,7 @@ do{
        menuCompras(usuario);
         break;
     default:
-        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        cout << "LA OPCION INGRESADA ES INVALIDA."<<endl;
         break;
     }
 }
@@ -388,7 +390,7 @@ do{
         menuCompras(usuario);
         break;
     default:
-        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        cout << "LA OPCION INGRESADA ES INVALIDA."<<endl;
         break;
     }
 }
@@ -413,7 +415,7 @@ do{
     recuadro(33,16,30, 2, cBLANCO, cGRIS);
     gotoxy(38,17);cout << "LISTAR COMPRA POR CODIGO"<<endl;
     recuadro(33,19,30, 2, cBLANCO, cGRIS);
-    gotoxy(40,20);cout << "CIERRE DE SESIÓN"<<endl;
+    gotoxy(40,20);cout << "CIERRE DE SESION"<<endl;
     recuadro(20,24,60, 2, cBLANCO, cAZUL);
     gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
@@ -440,7 +442,7 @@ do{
         logIn();
         break;
     default:
-        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        cout << "LA OPCION INGRESADA ES INVALIDA."<<endl;
         break;
     }
 }
@@ -482,7 +484,7 @@ do{
         logIn();
         break;
     default:
-        cout << "LA OPCION INGRESADA ES INVÁLIDA."<<endl;
+        cout << "LA OPCION INGRESADA ES INVALIDA."<<endl;
         break;
     }
 }

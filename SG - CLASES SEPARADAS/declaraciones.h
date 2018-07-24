@@ -251,6 +251,7 @@ class CabeceraCompra:public CabeceraDocumento{
         bool leerArchivo(int pos);
         void mostrarArchivo();
         bool grabarArchivo();
+        void mostrarDatosCargados();
 
 };
 class CabeceraMovimientos:public CabeceraDocumento{

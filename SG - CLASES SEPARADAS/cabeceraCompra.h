@@ -4,8 +4,8 @@
 void CabeceraCompra::cargarDatos(char *_usuario){
     Validador validar;
     char nombreProveedor[20];
-    gotoxy(35,4);cout << "NUMERO DE FACTURA " << cuentaRegistros(rutaCabeceraCompra,tamanioCabeceraCompra)+1<<endl;
     NrodeFactura=cuentaRegistros(rutaCabeceraCompra,tamanioCabeceraCompra)+1;
+    gotoxy(35,4);cout << "NUMERO DE FACTURA " << NrodeFactura<<endl;
     strcpy(usuario,_usuario);
     gotoxy(35,5);cout << "TIPO DE FACTURA: ";
     cin.getline(tipo,10);
@@ -71,4 +71,13 @@ bool CabeceraCompra::grabarArchivo(){
 
 }
 
+void CabeceraCompra::mostrarDatosCargados(){
+    textcolor(cGRIS_CLARO,cAZUL);
+    char nombreProveedor[20];
+    gotoxy(35,4);cout << "NUMERO DE FACTURA " <<NrodeFactura;
+    gotoxy(35,5);cout << "TIPO DE FACTURA: "<<tipo;
+    gotoxy(35,6);cout << "CODIGO DE PROVEEDOR: "<<codigoProveedor;
+    gotoxy(35,7);cout << "NOMBRE DE PROVEEDOR:"<<strcpy(nombreProveedor,buscarProveedor(codigoProveedor))<<endl;
+    textcolor(cBLANCO,cAZUL);
+}
 #endif // CABECERACOMPRA_H_INCLUDED

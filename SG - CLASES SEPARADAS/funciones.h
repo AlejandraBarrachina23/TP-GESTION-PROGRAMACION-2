@@ -958,6 +958,11 @@ void agregarCompra(char *usuario){
     unaCabeceraCompra.cargarDatos(usuario);
 
         while(seguir==true){
+            recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+            recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+            textcolor(cBLANCO,cAZUL);
+            gotoxy(40,2);cout << "AGREGAR COMPRA"<<endl;
+            unaCabeceraCompra.mostrarDatosCargados();
             unDetalleCompra.cargarDatos(unaCabeceraCompra.getNrodeFactura(),cuentaLinea,unaCabeceraCompra.getCodigoProveedor()); //SET NRO FACTURA, NRO DE LINEA, PROVEEDOR
             pos=validar.existenciaCodigo(unDetalleCompra.getcodigoProducto());//BUSCA EL PRODUCTO A TRAVES DEL CODIGO
             unProducto.leerArchivo(pos);//CARGA OBJETO

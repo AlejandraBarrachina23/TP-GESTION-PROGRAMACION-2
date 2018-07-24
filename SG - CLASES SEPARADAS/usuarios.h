@@ -26,7 +26,7 @@ bool Usuario::leerArchivo(int pos){
 }
 void Usuario::mostrarArchivo(){
     if(estado==true){
-    std::cout << setiosflags(ios::left)<<"      "<<setw(12)<<codigo<<setw(25)<<nombre<<setw(25)<<password<<setw(12)<<sector<<endl;
+    std::cout << setiosflags(ios::left)<<(char)186<<" "<<setw(12)<<codigo<<setw(25)<<nombre<<setw(25)<<password<<setw(12)<<sector<<endl;
     }
 }
 void Usuario::mostrarEncabezado(){
@@ -37,8 +37,8 @@ recuadro(0,0,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,1);cout << "LISTADO DE USUARIOS"<<endl;
     cout<<endl;
-    cout << "      CODIGO      NOMBRE                   CONTRASEÑA              SECTOR"<<endl;
-    cout << "  =================================================================================================="<<endl;
+    cout <<(char)186<< " CODIGO      NOMBRE                   CONTRASENIA               SECTOR"<<endl;
+    cout <<(char)186<< "==================================================================================================="<<endl;
 
 }
 bool Usuario::grabarArchivo(){

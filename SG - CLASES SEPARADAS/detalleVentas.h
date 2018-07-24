@@ -68,8 +68,8 @@ void DetalleVentas::cargarArchivo(int _codigoFactura,int _codigoLinea){
 }
 void DetalleVentas::mostrarEncabezado(){
 
-cout<<"    NRO  CODIGO    DETALLE             CANT      PU        SUBT      TOTAL"<<endl;
-cout<<"  ==================================================================================================="<<endl;
+cout<<" "<<(char)186<<" NRO  CODIGO    DETALLE             CANT      PU        SUBT      TOTAL"<<endl;
+cout<<" "<<(char)186<<"==================================================================================================="<<endl;
 
 }
 void DetalleVentas::mostrarPieDePagina(int nroFactura){
@@ -92,7 +92,7 @@ void DetalleVentas::mostrarArchivo(){
 float pv=buscarPV(codigoProducto);
 char descripcion[30];
 strcpy(descripcion,buscardescripcion(codigoProducto));
-std::cout << setiosflags(ios::left)<<"     "<<setw(4)<<nroLinea<<setw(10)<<codigoProducto<<setw(20)<<descripcion<<setw(10)<<cantidad;
+std::cout << setiosflags(ios::left)<<" "<<(char)186<<" "<<setw(4)<<nroLinea<<setw(10)<<codigoProducto<<setw(20)<<descripcion<<setw(10)<<cantidad;
 std::cout << setiosflags(ios::left)<<setw(10)<<buscarPV(codigoProducto)<<setw(10)<<pv*cantidad<<setw(10)<<subtotal<<endl;
 
 }

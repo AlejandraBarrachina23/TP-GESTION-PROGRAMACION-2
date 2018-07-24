@@ -44,9 +44,9 @@ void Producto::mostrarEncabezado(){
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,1);cout << "LISTADO DE PRODUCTOS"<<endl;
     cout << endl;
-    cout << "====================================================================================================="<<endl;
-    cout << "CODIGO\tDETALLE\t\t    B   SC  SS  SD  RUBRO    \t   PC\t PV   PROVEEDOR      IVA   IB    P"<<endl;
-    cout << "====================================================================================================="<<endl;
+    cout <<(char)186<< "===================================================================================================="<<endl;
+    cout <<(char)186<< "CODIGO\tDETALLE\t\t    B   SC  SS  SD  RUBRO    \t   PC\t PV   PROVEEDOR      IVA   IB    P"<<endl;
+    cout <<(char)186<< "===================================================================================================="<<endl;
 
 
 }
@@ -55,9 +55,9 @@ void Producto::mostrarProducto(){
     char proveedor[20];
     strcpy(proveedor,buscarProveedor(codigoProveedor));
     if(estado==true){
-    std::cout << setiosflags(ios::left)<<setw(8)<<codigoProducto<<setw(20)<<descripcion<<setw(4)<<cantidadxBulto<<setw(4)<<stockCritico;
+    std::cout << setiosflags(ios::left)<<(char)186<<setw(8)<<codigoProducto<<setw(20)<<descripcion<<setw(4)<<cantidadxBulto<<setw(4)<<stockCritico;
     std::cout << setiosflags(ios::left)<<setw(4)<< stockSucursal<<setw(4)<< stockDeposito <<setw(15)<< rubro <<setw(6)<<fixed<<setprecision(1)<<precioCosto <<setw(6)<< precioVenta<<setw(13)<<proveedor;
-    std::cout << setiosflags(ios::left)<<setw(6)<<setprecision(1)<<porcentuales.getIVA()<<setw(6)<<porcentuales.getIB()<<setw(6)<<porcentuales.getPercepcion()<<endl;
+    std::cout << setiosflags(ios::left)<<setw(6)<<setprecision(1)<<porcentuales.getIVA()<<setw(6)<<porcentuales.getIB()<<setw(5)<<porcentuales.getPercepcion()<<endl;
     }
 }
 void Producto::mostrarStock(){
@@ -117,7 +117,7 @@ bool Producto::cargarDatos(){
     gotoxy(35,8);cout << "STOCK CRITICO: ";
     cin >> stockCritico;
     cin.ignore();
-    while(!validar.multiplos(cantidadxBulto,stockCritico)){
+    while(!validar.multiplos(cantidadxBulto,stockCritico)||stockCritico<cantidadxBulto){
         textcolor(cROJO_CLARO,cAZUL);
         gotoxy(7,9);cout << "NUMERO INVALIDO. EL STOCK CRITICO DEBE SER IGUAL O MULTIPLO DE LO QUE CONTIENE LA CAJA."<<endl;
         getch();
