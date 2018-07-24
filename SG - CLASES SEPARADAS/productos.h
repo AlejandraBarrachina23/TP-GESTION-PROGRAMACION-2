@@ -39,14 +39,14 @@ void Producto::modificarArchivo(int cod){
 }
 void Producto::mostrarEncabezado(){
 
-    recuadro(0, 0,102, 25, cBLANCO, cAZUL);
-    recuadro(0, 0,102, 2, cBLANCO, cAZUL);
+    recuadro(0, 0,103, 25, cBLANCO, cAZUL);
+    recuadro(0, 0,103, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,1);cout << "LISTADO DE PRODUCTOS"<<endl;
     cout << endl;
-    cout <<(char)186<< "===================================================================================================="<<endl;
-    cout <<(char)186<< "CODIGO\tDETALLE\t\t    B   SC  SS  SD  RUBRO    \t   PC\t PV   PROVEEDOR      IVA   IB    P"<<endl;
-    cout <<(char)186<< "===================================================================================================="<<endl;
+    cout <<(char)186<< "======================================================================================================"<<endl;
+    cout <<(char)186<< "CODIGO DETALLE             B   SC  SS  SD  RUBRO    \t   PC\t PV   PROVEEDOR     IVA  IB   P    RENT"<<endl;
+    cout <<(char)186<< "======================================================================================================"<<endl;
 
 
 }
@@ -55,9 +55,9 @@ void Producto::mostrarProducto(){
     char proveedor[20];
     strcpy(proveedor,buscarProveedor(codigoProveedor));
     if(estado==true){
-    std::cout << setiosflags(ios::left)<<(char)186<<setw(8)<<codigoProducto<<setw(20)<<descripcion<<setw(4)<<cantidadxBulto<<setw(4)<<stockCritico;
+    std::cout << setiosflags(ios::left)<<(char)186<<setw(7)<<codigoProducto<<setw(20)<<descripcion<<setw(4)<<cantidadxBulto<<setw(4)<<stockCritico;
     std::cout << setiosflags(ios::left)<<setw(4)<< stockSucursal<<setw(4)<< stockDeposito <<setw(15)<< rubro <<setw(6)<<fixed<<setprecision(1)<<precioCosto <<setw(6)<< precioVenta<<setw(13)<<proveedor;
-    std::cout << setiosflags(ios::left)<<setw(6)<<setprecision(1)<<porcentuales.getIVA()<<setw(6)<<porcentuales.getIB()<<setw(5)<<porcentuales.getPercepcion()<<endl;
+    std::cout << setiosflags(ios::left)<<setw(5)<<setprecision(1)<<porcentuales.getIVA()<<setw(5)<<porcentuales.getIB()<<setw(5)<<porcentuales.getPercepcion()<<int(rentabilidad)<<endl;
     }
 }
 void Producto::mostrarStock(){
