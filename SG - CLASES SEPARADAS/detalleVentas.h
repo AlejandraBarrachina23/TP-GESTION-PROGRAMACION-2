@@ -134,19 +134,7 @@ int DetalleVentas::calculoConFormaDePago(){
         gotoxy(59,4);cin>>metodoDePago;
     }
     if(metodoDePago==3){
-    gotoxy(35,5);cout <<"INGRESE CUOTAS: ";
-    cin >> cuotas;
-    while(cuotas!=3){
-        textcolor(cROJO_CLARO,cAZUL);
-        gotoxy(30,6);cout <<"SOLO SE ADMITE 3 CUOTAS."<<endl;
-        getch();
-        gotoxy(30,6);cout<< "                         "<<endl;
-        gotoxy(51,5);cout<< "         "<<endl;
-        textcolor(cBLANCO,cAZUL);
-        gotoxy(35,5);cout << "INGRESE CUOTAS: ";
-        gotoxy(51,5);cin >> cuotas;
-    }
-    subtotal=subtotal*1.08;
+        subtotal=subtotal*1.08;
     }
     gotoxy(35,6);cout << "EL TOTAL AL PAGAR ES: $"<<subtotal<<endl;
 

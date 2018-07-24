@@ -424,7 +424,7 @@ char *buscarUsuario(int cod);
 int buscarSumatoriaVentas(int cod);
 bool advertenciaDeBorrado();
 float buscarPC(int cod);
-void cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario, int *pEfectivo, int *pDebito, int *pCredito);
+void cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario, int &pEfectivo, int &pDebito, int &pCredito,int &contadorEfectivo, int &contadorDebito, int &contadorCredito);
 int cuentaRegistros(char *ruta, int tamanio);
 void ocultarContrasenia(char *password);
 void pantallaBienvenida(char *nombre,int sector);

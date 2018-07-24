@@ -452,13 +452,17 @@ float buscarPC(int cod){
         if (unProducto.getCodigoProducto()==cod) return unProducto.getPrecioCosto();
     }
 }
-void cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario, int &pEfectivo, int &pDebito, int &pCredito){
+void cuentaVentaUsuario(Fecha fechaDeHoy, char *usuario, int &pEfectivo, int &pDebito, int &pCredito,int &contadorEfectivo, int &contadorDebito, int &contadorCredito){
 
     int pos=0,pos2=0;
     CabeceraVentas unaCabeceraVenta;
     DetalleVentas unDetalleVenta;
     while(unaCabeceraVenta.leerenDisco(pos++)){
         if(unaCabeceraVenta.getFechaDeEmision()==fechaDeHoy&&(strcmp(usuario,unaCabeceraVenta.getUsuario())==0)){//COINCIDEN LA FECHA Y EL USUARIO
+            if(unaCabeceraVenta.getMetodoDePago()==1) contadorEfectivo++;
+            else if(unaCabeceraVenta.getMetodoDePago()==2)  contadorDebito++;
+            else contadorCredito++;
+
             while(unDetalleVenta.leerenDisco(pos2++)){
                 if(unDetalleVenta.getNroFactura()==unaCabeceraVenta.getNrodeFactura()){
                     if(unaCabeceraVenta.getMetodoDePago()==1) pEfectivo+=(unDetalleVenta.getPrecioVenta()*unDetalleVenta.getCantidad());
@@ -1090,7 +1094,7 @@ while(seguir==true){
 
     unaCabeceraVenta.setMetodoDePago(unDetalleVenta.calculoConFormaDePago());
     unaCabeceraVenta.grabarenDisco();
-    unDetalleVenta.calculoDeVuelto();
+    if(unaCabeceraVenta.getMetodoDePago()==1){unDetalleVenta.calculoDeVuelto();};
     getch();
     unaCabeceraVenta.mostrarArchivo();
     unDetalleVenta.mostrarEncabezado();
@@ -1107,7 +1111,7 @@ void cierreDeCaja(char *usuario){
 
     Fecha fechaDeHoy;
     int inicioDeCaja;
-    int totalVentasEfectivo=0, totalVentasDebito=0, totalVentasCredito=0;
+    int totalVentasEfectivo=0, totalVentasDebito=0, totalVentasCredito=0, cantidadVentasEfectivo=0, cantidadVentasDebito=0, cantidadVentasCredito=0;
 
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
@@ -1119,12 +1123,15 @@ void cierreDeCaja(char *usuario){
     textcolor(cBLANCO, cAZUL);
     gotoxy(40,7);cout << "INICIO DE CAJA: ";
     cin >> inicioDeCaja;
-    cuentaVentaUsuario(fechaDeHoy,usuario,totalVentasEfectivo,totalVentasDebito,totalVentasCredito);
+    cuentaVentaUsuario(fechaDeHoy,usuario,totalVentasEfectivo,totalVentasDebito,totalVentasCredito,cantidadVentasEfectivo, cantidadVentasDebito, cantidadVentasCredito);
     textcolor(cGRIS_CLARO,cAZUL);
-    gotoxy(40,8);cout << "TOTAL VENTAS EN EFECTIVO: "<<totalVentasEfectivo<<endl;
-    gotoxy(40,9);cout << "TOTAL VENTAS EN CON TARJETA DE DEBITO: "<<totalVentasDebito<<endl;
-    gotoxy(40,10);cout << "TOTAL VENTAS CON TARJETA DE CREDITO: "<<int(totalVentasCredito*1.08)<<endl;
-    gotoxy(40,11);cout << "TOTAL A ENTREGAR: "<< inicioDeCaja+totalVentasEfectivo+totalVentasDebito+totalVentasCredito<<endl;
+    gotoxy(40,8);cout << "CANTIDAD VENTAS EFECTIVO: "<<cantidadVentasEfectivo<<endl;
+    gotoxy(40,9);cout << "TOTAL VENTAS EN EFECTIVO: "<<totalVentasEfectivo<<endl;
+    gotoxy(40,10);cout << "CANTIDAD VENTAS DEBITO: "<<cantidadVentasDebito<<endl;
+    gotoxy(40,11);cout << "TOTAL VENTAS CON TARJETA DE DEBITO: "<<totalVentasDebito<<endl;
+    gotoxy(40,12);cout << "CANTIDAD DE VENTAS CON TARJETA DE CREDITO: "<<cantidadVentasCredito<<endl;
+    gotoxy(40,13);cout << "TOTAL VENTAS CON TARJETA DE CREDITO: "<<int(totalVentasCredito*1.08)<<endl;
+    gotoxy(40,14);cout << "TOTAL A ENTREGAR: "<< inicioDeCaja+totalVentasEfectivo+totalVentasDebito+totalVentasCredito<<endl;
     getch();
     system("cls");
 }
