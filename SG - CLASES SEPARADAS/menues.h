@@ -51,7 +51,7 @@ void Menues::logIn(){
         recuadro(35,9,30, 2, cBLANCO, cGRIS);
         recuadro(35,14,30, 2, cBLANCO, cGRIS);
         gotoxy(46,10);cin.getline(nombre,20);
-        if (strcmp(nombre,"0/0")) exit(0);
+        if (nombre[0]=='0' && nombre[1]==0) exit(0);
         convierteAMiniscula(nombre);
         aux.setNombre(nombre); //CARGO EL NOMBRE
         fflush(stdin);
