@@ -267,8 +267,8 @@ void gotoxy(int x, int y){
 
     HANDLE hcon = GetStdHandle(STD_OUTPUT_HANDLE); //IDENTIFICADOR DE OBJETO
     COORD dwPos;
-    dwPos.X= x;
-    dwPos.Y=y;
+    dwPos.X = x;
+    dwPos.Y = y;
     SetConsoleCursorPosition(hcon,dwPos);
 
 }
@@ -587,6 +587,7 @@ bool consultaParaContinuar(){
     gotoxy(44,16);cout << "SI"<<endl;
     gotoxy(54,16);cout << "NO"<<endl;
     opcion=navegacionMenuHorizontal(41,16,41,51,10);
+    textcolor(cBLANCO,cAZUL);
     if(opcion==41)return true;
     return false;
 }
@@ -598,8 +599,7 @@ void accionCancelada(){
     textcolor(cBLANCO,cROJO);
     gotoxy(38,17);cout << "LA ACCION HA SIDO CANCELADA."<<endl;
     gotoxy(37,18);cout << "PRESIONE UNA TECLA PARA VOLVER"<<endl;
-
-
+    textcolor(cBLANCO,cAZUL);
 }
 void accionAceptada(){
 
@@ -609,7 +609,7 @@ void accionAceptada(){
     textcolor(cBLANCO,cROJO);
     gotoxy(38,19);cout << "LA ACCION HA SIDO EXITOSA."<<endl;
     gotoxy(36,20);cout << "PRESIONE UNA TECLA PARA VOLVER"<<endl;
-
+    textcolor(cBLANCO,cAZUL);
 }
 float aproximacionDecimal(float precio){
     precio=precio*100;
@@ -835,7 +835,7 @@ void listarProductos(){
     while(unProducto.leerArchivo(pos++)){
         unProducto.mostrarProducto();
     }
-    system("pause");
+    getch();
     system("cls");
 }
 void listarProductoPorCodigo(){

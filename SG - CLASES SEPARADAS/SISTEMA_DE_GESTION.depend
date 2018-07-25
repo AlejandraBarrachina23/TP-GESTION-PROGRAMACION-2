@@ -126,7 +126,7 @@
 
 1531320860 c:\users\alejandra\desktop\sg - clases separadas\proveedor.h
 
-1531996483 source:c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\main.cpp
+1532476825 source:c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\main.cpp
 	<iostream>
 	<stdio.h>
 	<stdlib.h>
@@ -139,14 +139,14 @@
 	"menues.h"
 	"funciones.h"
 
-1532458347 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
+1532476896 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\menues.h
 	"funciones.h"
 	<stdlib.h>
 	<conio.h>
 	<iostream>
 	<windows.h>
 
-1532457269 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
+1532479342 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\funciones.h
 	"menues.h"
 	<conio.h>
 	<windows.h>
@@ -168,12 +168,12 @@
 
 1532455101 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\declaraciones.h
 
-1532452787 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\usuarios.h
+1532477601 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\usuarios.h
 	"funciones.h"
 
 1531992590 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\retencionesimpositivas.h
 
-1532459473 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\productos.h
+1532476511 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\productos.h
 
 1531939240 c:\users\alejandra\documents\github\tp-gestion-programacion-2\sg - clases separadas\validador.h
 

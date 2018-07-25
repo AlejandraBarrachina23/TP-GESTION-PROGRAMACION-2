@@ -83,7 +83,7 @@ void Usuario::cargarDatos(){
         convierteAMiniscula(nombre);
     }
         fflush(stdin);
-        gotoxy(35,10);cout << "CONTRASEÑA: ";
+        gotoxy(35,10);cout << "CONTRASENIA: ";
         cin >> password;
         gotoxy(35,11);cout << "SECTOR: ";
         textcolor(cGRIS_CLARO,cAZUL);
