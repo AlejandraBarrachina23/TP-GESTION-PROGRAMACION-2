@@ -49,7 +49,6 @@ bool Validador::intentosDeInicio(int intentos, int valorLimite){
 bool Validador::intervaloDeNumeros(int numero, int base, int tope){
     if(numero<base || numero>tope) return false;
     return true;
-
 }
 int Validador::existenciaProveedor(char *proveedor){
 

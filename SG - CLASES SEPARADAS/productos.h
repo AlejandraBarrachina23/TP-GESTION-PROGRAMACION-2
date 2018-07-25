@@ -45,7 +45,7 @@ void Producto::mostrarEncabezado(){
     gotoxy(40,1);cout << "LISTADO DE PRODUCTOS"<<endl;
     cout << endl;
     cout <<(char)186<< "======================================================================================================"<<endl;
-    cout <<(char)186<< "CODIGO DETALLE             B   SC  SS  SD  RUBRO          PC    PV    PROVEEDOR    IVA  P    IB   RENT"<<endl;
+    cout <<(char)186<< "CODIGO DETALLE             B   SC  SS  SD  RUBRO          PC     PV     PROVEEDOR  IVA  P    IB   RENT"<<endl;
     cout <<(char)186<< "======================================================================================================"<<endl;
 
 
@@ -56,7 +56,7 @@ void Producto::mostrarProducto(){
     strcpy(proveedor,buscarProveedor(codigoProveedor));
     if(estado==true){
     std::cout << setiosflags(ios::left)<<(char)186<<setw(7)<<codigoProducto<<setw(20)<<descripcion<<setw(4)<<cantidadxBulto<<setw(4)<<stockCritico;
-    std::cout << setiosflags(ios::left)<<setw(4)<< stockSucursal<<setw(4)<< stockDeposito <<setw(15)<< rubro <<setw(6)<<fixed<<setprecision(1)<<precioCosto <<setw(6)<< precioVenta<<setw(13)<<proveedor;
+    std::cout << setiosflags(ios::left)<<setw(4)<< stockSucursal<<setw(4)<< stockDeposito <<setw(15)<< rubro <<setw(7)<<fixed<<setprecision(2)<<precioCosto <<setw(7)<< precioVenta<<setw(11)<<proveedor;
     std::cout << setiosflags(ios::left)<<setw(5)<<setprecision(1)<<porcentuales.getIVA()<<setw(5)<<porcentuales.getPercepcion()<<setw(5)<<porcentuales.getIB()<<int(rentabilidad)<<endl;
     }
 }
@@ -162,7 +162,7 @@ bool Producto::cargarDatos(){
         gotoxy(50,12);cin >> rentabilidad;
         cin.ignore();
     }
-    accionAceptada();
+    accionAceptada(15);
     estado=true;
     return true;
 }

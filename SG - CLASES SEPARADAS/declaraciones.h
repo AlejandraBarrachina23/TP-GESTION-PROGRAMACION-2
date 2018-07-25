@@ -146,6 +146,7 @@ public:
     void setIB(float _IB){IB=_IB;}
     void setIVA(float _IVA){IVA=_IVA;}
     void cargarDatos();
+    void cargarDatosVertical();
     void mostrarArchivo();
     bool grabarArchivo();
     bool leerArchivo(int pos);
@@ -436,6 +437,8 @@ void backupProductos();
 bool advertenciaDeBorrado();
 void accionCancelada();
 void accionAceptada();
+void accionCancelada(int);
+void accionAceptada(int);
 
 
 #endif // DECLARACIONES_H_INCLUDED

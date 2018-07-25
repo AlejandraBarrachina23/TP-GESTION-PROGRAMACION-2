@@ -601,15 +601,36 @@ void accionCancelada(){
     gotoxy(37,18);cout << "PRESIONE UNA TECLA PARA VOLVER"<<endl;
     textcolor(cBLANCO,cAZUL);
 }
+void accionCancelada(int a){
+
+    recuadro(33,a,35,5, cBLANCO, cROJO);
+    textcolor(cAMARILLO,cROJO);
+    gotoxy(48,a);cout << " AVISO "<<endl;
+    textcolor(cBLANCO,cROJO);
+    gotoxy(38,a+2);cout << "LA ACCION HA SIDO CANCELADA."<<endl;
+    gotoxy(37,a+3);cout << "PRESIONE UNA TECLA PARA VOLVER"<<endl;
+    textcolor(cBLANCO,cAZUL);
+}
 void accionAceptada(){
 
-    recuadro(33,17,35,5, cBLANCO, cROJO);
-    textcolor(cAMARILLO,cROJO);
+    recuadro(33,17,35,5, cBLANCO, cVERDE);
+    textcolor(cAMARILLO,cVERDE);
     gotoxy(48,17);cout << " AVISO "<<endl;
-    textcolor(cBLANCO,cROJO);
+    textcolor(cBLANCO,cVERDE);
     gotoxy(38,19);cout << "LA ACCION HA SIDO EXITOSA."<<endl;
     gotoxy(36,20);cout << "PRESIONE UNA TECLA PARA VOLVER"<<endl;
     textcolor(cBLANCO,cAZUL);
+}
+void accionAceptada(int a){
+
+    recuadro(33,a,35,5, cBLANCO, cVERDE);
+    textcolor(cAMARILLO,cVERDE);
+    gotoxy(48,a);cout << " AVISO "<<endl;
+    textcolor(cBLANCO,cVERDE);
+    gotoxy(38,a+2);cout << "LA ACCION HA SIDO EXITOSA."<<endl;
+    gotoxy(36,a+3);cout << "PRESIONE UNA TECLA PARA VOLVER"<<endl;
+    textcolor(cBLANCO,cAZUL);
+
 }
 float aproximacionDecimal(float precio){
     precio=precio*100;
@@ -652,7 +673,7 @@ void agregarProveedor(){
     unProveedor.cargarDatos();
 
     if(unProveedor.grabarArchivo()){
-        accionAceptada();
+        accionAceptada(13);
     }
     else {cout <<"HA OCURRIDO UN ERROR DURANTE LA GRABACION."<<endl;}
     getch();
@@ -682,7 +703,7 @@ void borrarProveedor(){
 
             unProveedor.setEstado(false);
             unProveedor.modificarArchivo(pos);
-            accionAceptada();
+            accionAceptada(15);
         }
         else accionCancelada();//NO SE BORRA
     }
@@ -757,7 +778,7 @@ void modificarProveedor(){
         gotoxy(35,7);cout << "IVA: "<<unProveedor.getPorcentuales().getIVA()<<endl;
         gotoxy(35,8);cout << "IB: "<<unProveedor.getPorcentuales().getIB()<<endl;
         gotoxy(35,9);cout << "PERCEPCION: "<<unProveedor.getPorcentuales().getPercepcion()<<endl;
-        textcolor(cBLANCO,cAZUL);gotoxy(40,11);cout << "¿QUE DESEA MODIFICAR?"<<endl;
+        textcolor(cBLANCO,cAZUL);gotoxy(40,11);cout << "QUE DESEA MODIFICAR?"<<endl;
         recuadro(24,13,16,2, cAMARILLO, cROJO);
         recuadro(44,13,16,2, cAMARILLO, cROJO);
         recuadro(64,13,16,2, cAMARILLO, cROJO);
@@ -772,10 +793,10 @@ void modificarProveedor(){
             cin.getline(nombre,20);
             unProveedor.setNombre(nombre);
             unProveedor.modificarArchivo(pos);
-            accionAceptada();
+            accionAceptada(19);
         }
         else if(opcion==45){
-            ri.cargarDatos();
+            ri.cargarDatosVertical();
             unProveedor.setPorcentuales(ri);
             unProveedor.modificarArchivo(pos);
             pos=0;
@@ -786,9 +807,9 @@ void modificarProveedor(){
                 }
                 pos++;
             }
-            accionAceptada();
+            accionAceptada(19);
         }
-        else {accionCancelada();}
+        else {accionCancelada(19);}
 
     }
     else {cout << "EL CODIGO INGRESADO NO EXISTE"<<endl;}
@@ -886,9 +907,9 @@ void borrarProducto(){
         if(advertenciaDeBorrado()){//SE BORRA
             unProducto.setEstado(false);
             unProducto.modificarArchivo(pos);
-            accionAceptada();
+            accionAceptada(13);
         }
-        else accionCancelada();//NO SE BORRA
+        else accionCancelada(13);//NO SE BORRA
     }
     else{
         textcolor(cROJO_CLARO,cAZUL);
@@ -1186,7 +1207,6 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
     textcolor(cBLANCO, cAZUL);
 
     int cantidadATransferir, pos=0, nroLinea=1, totalATransferir=0;
-    char descripcion[20];
     bool continuar;
     bool mostrarCabecera=false, muestraCabecera=false;
     Producto unProducto;
@@ -1319,58 +1339,103 @@ void reporteDeganancia(){
     DetalleVentas unDetalleVenta;
     int acumulaPV=0;
     float acumulaPC=0.00;
-    int pos=0, pos2=0;
+    int pos=0, pos2=0, opcion;
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
     textcolor(cBLANCO, cAZUL);
-    gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
-    fechaInicio.cargarDatos();
-    gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
-    gotoxy(40,6);cout <<"                                           "<<endl;
-    gotoxy(40,7);cout <<"                                           "<<endl;
-    gotoxy(40,8);cout <<"                                           "<<endl;
-    fechaFin.cargarDatos();
+    textcolor(cBLANCO,cAZUL);gotoxy(40,11);cout << "QUE DESEA CONSULTAR?"<<endl;
+    recuadro(24,13,16,2, cAMARILLO, cROJO);
+    recuadro(44,13,16,2, cAMARILLO, cROJO);
+    recuadro(64,13,16,2, cAMARILLO, cROJO);
+    gotoxy(30,14);cout << "FECHA";
+    gotoxy(48,14);cout << "INTERVALO";
+    gotoxy(73,14);cout << "SALIR";
+    opcion=navegacionMenuHorizontal(25,14,25,65,20);
+    limpiar();
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
+    textcolor(cBLANCO, cAZUL);
 
-    while(fechaFin<fechaInicio){
-        textcolor(cROJO_CLARO,cAZUL);
-        gotoxy(23,10);cout << "LA FECHA INGRESADA DEBE SER MAYOR A LA DE INICIO."<<endl;
-        getch();
-        gotoxy(23,10);cout << "                                                 "<<endl;
-        textcolor(cBLANCO, cAZUL);
+    if(opcion==45){
+        gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
+        fechaInicio.cargarDatos();
         gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
         gotoxy(40,6);cout <<"                                           "<<endl;
         gotoxy(40,7);cout <<"                                           "<<endl;
         gotoxy(40,8);cout <<"                                           "<<endl;
         fechaFin.cargarDatos();
-    }
-    limpiar();
-    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
-    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
-    textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
-    textcolor(cBLANCO, cAZUL);
-    gotoxy(30,5);cout << "FECHA INICIO: "; fechaInicio.mostrarArchivo();
-    gotoxy(30,6);cout << "FECHA DE FINALIZACION: ";fechaFin.mostrarArchivo();
 
-    while(unaCabeceraVenta.leerenDisco(pos)){
-        if(unaCabeceraVenta.getFechaDeEmision()>=fechaInicio&&unaCabeceraVenta.getFechaDeEmision()<=fechaFin){
-
-            while(unDetalleVenta.leerenDisco(pos2++)){
-                if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) {
-                    acumulaPV+=(buscarPV(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
-                    acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*(float)unDetalleVenta.getCantidad());
-                }
-            }
-            pos2=0;
+        while(fechaFin<fechaInicio){
+            textcolor(cROJO_CLARO,cAZUL);
+            gotoxy(23,10);cout << "LA FECHA INGRESADA DEBE SER MAYOR A LA DE INICIO."<<endl;
+            getch();
+            gotoxy(23,10);cout << "                                                 "<<endl;
+            textcolor(cBLANCO, cAZUL);
+            gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
+            gotoxy(40,6);cout <<"                                           "<<endl;
+            gotoxy(40,7);cout <<"                                           "<<endl;
+            gotoxy(40,8);cout <<"                                           "<<endl;
+            fechaFin.cargarDatos();
         }
-        pos++;
-    }
-    gotoxy(30,7);cout<<"PRECIO COSTO: "<< acumulaPC<<endl;
-    gotoxy(30,8);cout<<"PRECIO VENTA: "<< acumulaPV<<endl;
-    gotoxy(30,9);cout << "GANANCIA: "<<acumulaPV-acumulaPC;
+        limpiar();
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+        textcolor(cBLANCO, cAZUL);
+        gotoxy(30,5);cout << "FECHA INICIO: "; fechaInicio.mostrarArchivo();
+        gotoxy(30,6);cout << "FECHA DE FINALIZACION: ";fechaFin.mostrarArchivo();
 
+        while(unaCabeceraVenta.leerenDisco(pos)){
+            if(unaCabeceraVenta.getFechaDeEmision()>=fechaInicio&&unaCabeceraVenta.getFechaDeEmision()<=fechaFin){
+
+                while(unDetalleVenta.leerenDisco(pos2++)){
+                    if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) {
+                        acumulaPV+=(buscarPV(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
+                        cout <<"pv"<< acumulaPV<<endl;
+                        acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
+                        cout <<"pc"<< acumulaPC<<endl;
+                    }
+                }
+                pos2=0;
+            }
+            pos++;
+        }
+        gotoxy(30,10);cout<<"PRECIO COSTO: "<< acumulaPC<<endl;
+        gotoxy(30,11);cout<<"PRECIO VENTA: "<< acumulaPV<<endl;
+        gotoxy(30,12);cout << "GANANCIA: "<<acumulaPV-acumulaPC;
+
+        }
+
+    else if(opcion==25){
+
+        gotoxy(30,5);cout <<"-->>INDIQUE FECHA DE CONSULTA<<--"<<endl;
+        fechaInicio.cargarDatos();
+        gotoxy(30,9);cout << "FECHA DE CONSULTA: ";
+        fechaInicio.mostrarArchivo();
+
+        while(unaCabeceraVenta.leerenDisco(pos)){
+            if(unaCabeceraVenta.getFechaDeEmision()==fechaInicio){
+                while(unDetalleVenta.leerenDisco(pos2++)){
+                    if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) {
+                        acumulaPV+=(buscarPV(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
+                        cout <<"pv"<< acumulaPV<<endl;
+                        acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
+                        cout <<"pc"<< acumulaPC<<endl;
+                    }
+                }
+                pos2=0;
+            }
+            pos++;
+        }
+        gotoxy(30,10);cout<<"PRECIO COSTO: "<< acumulaPC<<endl;
+        gotoxy(30,11);cout<<"PRECIO VENTA: "<< acumulaPV<<endl;
+        gotoxy(30,12);cout << "GANANCIA: "<<acumulaPV-acumulaPC;
+    }
     getch();
     limpiar();
 }
@@ -1381,45 +1446,89 @@ void reporteDePerdida(){
     CabeceraMovimientos unaCabeceraMovimiento;
     DetalleMovimientos unDetalleMovimientos;
     float acumulaPC=0;
-    int pos=0, pos2=0;
+    int pos=0, pos2=0,opcion;
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
-    textcolor(cBLANCO, cAZUL);
-    gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
-    fechaInicio.cargarDatos();
-    gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
-    gotoxy(40,6);cout <<"                                           "<<endl;
-    gotoxy(40,7);cout <<"                                           "<<endl;
-    gotoxy(40,8);cout <<"                                           "<<endl;
-    fechaFin.cargarDatos();
+    textcolor(cBLANCO,cAZUL);gotoxy(40,11);cout << "QUE DESEA CONSULTAR?"<<endl;
+    recuadro(24,13,16,2, cAMARILLO, cROJO);
+    recuadro(44,13,16,2, cAMARILLO, cROJO);
+    recuadro(64,13,16,2, cAMARILLO, cROJO);
+    gotoxy(30,14);cout << "FECHA";
+    gotoxy(48,14);cout << "INTERVALO";
+    gotoxy(73,14);cout << "SALIR";
+    opcion=navegacionMenuHorizontal(25,14,25,65,20);
+    limpiar();
+    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+    textcolor(cBLANCO,cAZUL);
+    gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
 
-    while(fechaFin<fechaInicio){
-        textcolor(cROJO_CLARO,cAZUL);
-        gotoxy(23,10);cout << "LA FECHA INGRESADA DEBE SER MAYOR A LA DE INICIO."<<endl;
-        getch();
-        gotoxy(23,10);cout << "                                                 "<<endl;
-        textcolor(cBLANCO, cAZUL);
+    if(opcion==45){
+        gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
+        fechaInicio.cargarDatos();
         gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
         gotoxy(40,6);cout <<"                                           "<<endl;
         gotoxy(40,7);cout <<"                                           "<<endl;
         gotoxy(40,8);cout <<"                                           "<<endl;
         fechaFin.cargarDatos();
+
+        while(fechaFin<fechaInicio){
+            textcolor(cROJO_CLARO,cAZUL);
+            gotoxy(23,10);cout << "LA FECHA INGRESADA DEBE SER MAYOR A LA DE INICIO."<<endl;
+            getch();
+            gotoxy(23,10);cout << "                                                 "<<endl;
+            textcolor(cBLANCO, cAZUL);
+            gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
+            gotoxy(40,6);cout <<"                                           "<<endl;
+            gotoxy(40,7);cout <<"                                           "<<endl;
+            gotoxy(40,8);cout <<"                                           "<<endl;
+            fechaFin.cargarDatos();
+        }
+        limpiar();
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+        textcolor(cBLANCO, cAZUL);
+        gotoxy(30,5);cout << "FECHA INICIO: "; fechaInicio.mostrarArchivo();
+        gotoxy(30,6);cout << "FECHA DE FINALIZACION: ";fechaFin.mostrarArchivo();
+        while(unaCabeceraMovimiento.leerArchivo(pos)){
+            if(unaCabeceraMovimiento.getFechaDeEmision()>=fechaInicio&&unaCabeceraMovimiento.getFechaDeEmision()<=fechaFin){
+                while(unDetalleMovimientos.leerArchivo(pos2++)){
+                    if(unaCabeceraMovimiento.getNrodeFactura()==unDetalleMovimientos.getNroFactura()) {
+                        acumulaPC+=(unDetalleMovimientos.getPrecioCosto()*unDetalleMovimientos.getCantidad());
+                    }
+                }
+                pos2=0;
+            }
+            pos++;
+        }
+        gotoxy(33,7);cout << "TOTAL PERDIDA: "<<acumulaPC<<endl;
     }
 
-    while(unaCabeceraMovimiento.leerArchivo(pos)){
-        if(unaCabeceraMovimiento.getFechaDeEmision()>=fechaInicio&&unaCabeceraMovimiento.getFechaDeEmision()<=fechaFin){
-            while(unDetalleMovimientos.leerArchivo(pos++)){
-                if(unaCabeceraMovimiento.getNrodeFactura()==unDetalleMovimientos.getNroFactura()) {
-                    acumulaPC+=(unDetalleMovimientos.getPrecioCosto()*unDetalleMovimientos.getCantidad());
+    else if(opcion==25){
+
+        gotoxy(30,5);cout <<"-->>INDIQUE FECHA DE CONSULTA<<--"<<endl;
+        fechaInicio.cargarDatos();
+        gotoxy(30,9);cout << "FECHA DE CONSULTA: ";
+        fechaInicio.mostrarArchivo();
+
+        while(unaCabeceraMovimiento.leerArchivo(pos)){
+            if(unaCabeceraMovimiento.getFechaDeEmision()>=fechaInicio&&unaCabeceraMovimiento.getFechaDeEmision()<=fechaFin){
+                while(unDetalleMovimientos.leerArchivo(pos2++)){
+                    if(unaCabeceraMovimiento.getNrodeFactura()==unDetalleMovimientos.getNroFactura()) {
+                        acumulaPC+=(unDetalleMovimientos.getPrecioCosto()*unDetalleMovimientos.getCantidad());
+                    }
                 }
+                pos2=0;
             }
-            pos2=0;
+            pos++;
         }
-        pos++;
+        gotoxy(33,10);cout << "TOTAL PERDIDA: "<<acumulaPC<<endl;
     }
-    cout << "TOTAL PERDIDA: "<<acumulaPC<<endl;
+
     getch();
     limpiar();
 
