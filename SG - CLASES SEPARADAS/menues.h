@@ -36,6 +36,7 @@ void Menues::logIn(){
     do{
         pos=0;
         fflush(stdin);
+
         recuadro(1, 1,100, 25, cBLANCO, cAZUL);
         recuadro(1, 1,100, 2, cBLANCO, cAZUL);
         recuadro(1, 25,100, 2, cBLANCO, cAZUL);
@@ -50,6 +51,9 @@ void Menues::logIn(){
         gotoxy(44,13);cout << "-CONTRASENIA-";
         recuadro(35,9,30, 2, cBLANCO, cGRIS);
         recuadro(35,14,30, 2, cBLANCO, cGRIS);
+        textcolor(cBLANCO, cAZUL);
+        gotoxy(40,20);cout << "PRESIONE 0 PARA SALIR"<<endl;
+        textcolor(cBLANCO, cGRIS);
         gotoxy(46,10);cin.getline(nombre,20);
         if (nombre[0]=='0' && nombre[1]==0) exit(0);
         convierteAMiniscula(nombre);
@@ -102,13 +106,13 @@ do{
     gotoxy(43,2);cout << "SUBMENU REPORTES"<<endl;
     recuadro(33, 6,35, 2, cBLANCO, cGRIS);
     textcolor(cBLANCO, cGRIS);
-    gotoxy(45,7);cout << "GANANCIAS"<<endl;
+    gotoxy(42,7);cout << "GANANCIAS"<<endl;
     recuadro(33,9,35, 2, cBLANCO, cGRIS);
-    gotoxy(45,10);cout << "PERDIDAS"<<endl;
+    gotoxy(42,10);cout << "PERDIDAS"<<endl;
     recuadro(33,12,35, 2, cBLANCO, cGRIS);
-    gotoxy(45,13);cout << "BACKUPS"<<endl;
+    gotoxy(42,13);cout << "BACKUPS"<<endl;
     recuadro(33,15,35, 2, cBLANCO, cGRIS);
-    gotoxy(45,16);cout << "RESTAURACIONES"<<endl;
+    gotoxy(42,16);cout << "RESTAURACIONES"<<endl;
     recuadro(33,18,35, 2, cBLANCO, cGRIS);
     gotoxy(42,19);cout << "VOLVER AL MENU ANTERIOR"<<endl;
     recuadro(20,24,60, 2, cBLANCO, cAZUL);
@@ -150,17 +154,17 @@ do{
     gotoxy(43,2);cout << "SUBMENU CONFIGURACION"<<endl;
     recuadro(33, 4,35, 2, cBLANCO, cGRIS);
     textcolor(cBLANCO, cGRIS);
-    gotoxy(43,5);cout << "AGREGAR USUARIO"<<endl;
+    gotoxy(38,5);cout << "AGREGAR USUARIO"<<endl;
     recuadro(33,7,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,8);cout << "BORRAR USUARIO"<<endl;
+    gotoxy(38,8);cout << "BORRAR USUARIO"<<endl;
     recuadro(33,10,35, 2, cBLANCO, cGRIS);
-    gotoxy(38,11);cout << "LISTAR TODOS LOS USUARIOS"<<endl;
+    gotoxy(38,11);cout << "MODIFICAR USUARIO"<<endl;
     recuadro(33,13,35, 2, cBLANCO, cGRIS);
-    gotoxy(38,14);cout << "LISTAR USUARIO POR CODIGO"<<endl;
+    gotoxy(38,14);cout << "BUSCAR USUARIO POR CODIGO"<<endl;
     recuadro(33,16,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,17);cout << "MODIFICAR USUARIO"<<endl;
+    gotoxy(38,17);cout << "LISTAR TODOS LOS USUARIOS"<<endl;
     recuadro(33,19,35, 2, cBLANCO, cGRIS);
-    gotoxy(40,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
+    gotoxy(38,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
     recuadro(20,24,60, 2, cBLANCO, cAZUL);
     gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
@@ -175,13 +179,13 @@ do{
         borrarUsuario();
         break;
     case 11:
-        listarUsuarios();
+        modificarUsuario();
         break;
     case 14:
         listarUsuarioPorCodigo();
         break;
     case 17:
-        modificarUsuario();
+        listarUsuarios();
         break;
     case 20:
         menuAdministrador(usuario);
@@ -204,15 +208,15 @@ do{
     gotoxy(43,2);cout << "MENU ADMINISTRADOR"<<endl;
     recuadro(33, 4,35, 2, cBLANCO, cGRIS);
     textcolor(cBLANCO, cGRIS);
-    gotoxy(43,5);cout << "MENU COMPRAS"<<endl;
+    gotoxy(40,5);cout << "MENU COMPRAS"<<endl;
     recuadro(33,7,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,8);cout << "MENU VENTAS"<<endl;
+    gotoxy(40,8);cout << "MENU VENTAS"<<endl;
     recuadro(33,10,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,11);cout << "MENU MOVIMIENTOS"<<endl;
+    gotoxy(40,11);cout << "MENU MOVIMIENTOS"<<endl;
     recuadro(33,13,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,14);cout << "CONFIGURACION"<<endl;
+    gotoxy(40,14);cout << "USUARIOS"<<endl;
     recuadro(33,16,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,17);cout << "REPORTES"<<endl;
+    gotoxy(40,17);cout << "REPORTES"<<endl;
     recuadro(33,19,35, 2, cBLANCO, cGRIS);
     gotoxy(40,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
     recuadro(20,24,60, 2, cBLANCO, cAZUL);
@@ -302,17 +306,17 @@ do{
     gotoxy(43,2);cout << "SUBMENU PROVEEDORES"<<endl;
     recuadro(33, 4,35, 2, cBLANCO, cGRIS);
     textcolor(cBLANCO, cGRIS);
-    gotoxy(43,5);cout << "AGREGAR PROVEDOR"<<endl;
+    gotoxy(38,5);cout << "AGREGAR PROVEDOR"<<endl;
     recuadro(33,7,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,8);cout << "BORRAR PROVEEDOR"<<endl;
+    gotoxy(38,8);cout << "BORRAR PROVEEDOR"<<endl;
     recuadro(33,10,35, 2, cBLANCO, cGRIS);
-    gotoxy(38,11);cout << "LISTAR TODOS LOS PROVEEDORES"<<endl;
+    gotoxy(38,11);cout << "MODIFICAR PROVEEDOR"<<endl;
     recuadro(33,13,35, 2, cBLANCO, cGRIS);
-    gotoxy(38,14);cout << "LISTAR PROVEEDOR POR CODIGO"<<endl;
+    gotoxy(38,14);cout << "BUSCAR PROVEEDOR POR CODIGO"<<endl;
     recuadro(33,16,35, 2, cBLANCO, cGRIS);
-    gotoxy(43,17);cout << "MODIFICAR PROVEEDOR"<<endl;
+    gotoxy(38,17);cout << "LISTAR TODOS LOS PROVEEDORES"<<endl;
     recuadro(33,19,35, 2, cBLANCO, cGRIS);
-    gotoxy(40,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
+    gotoxy(38,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
     recuadro(20,24,60, 2, cBLANCO, cAZUL);
     gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
@@ -327,13 +331,13 @@ do{
         borrarProveedor();
         break;
     case 11:
-        listarProveedores();
+        modificarProveedor();
         break;
     case 14:
         listarProveedorPorCodigo();
         break;
     case 17:
-        modificarProveedor();
+        listarProveedores();
         break;
     case 20:
        menuCompras(usuario);
@@ -354,17 +358,17 @@ do{
     gotoxy(43,2);cout << "SUBMENU PRODUCTOS"<<endl;
     recuadro(33, 4,35, 2, cBLANCO, cGRIS);
     textcolor(cBLANCO, cGRIS);
-    gotoxy(43,5);cout << "AGREGAR PRODUCTO"<<endl;
+    gotoxy(38,5);cout << "AGREGAR PRODUCTO"<<endl;
     recuadro(33,7,35, 2, cBLANCO, cGRIS);
-    gotoxy(42,8);cout << "BORRAR PRODUCTO"<<endl;
+    gotoxy(38,8);cout << "BORRAR PRODUCTO"<<endl;
     recuadro(33,10,35, 2, cBLANCO, cGRIS);
-    gotoxy(41,11);cout << "LISTAR TODOS LOS PRODUCTOS"<<endl;
+    gotoxy(38,11);cout << "MODIFICAR PRODUCTO"<<endl;
     recuadro(33,13,35, 2, cBLANCO, cGRIS);
     gotoxy(38,14);cout << "LISTAR PRODUCTOS POR CODIGO"<<endl;
     recuadro(33,16,35, 2, cBLANCO, cGRIS);
-    gotoxy(38,17);cout << "MODIFICAR PRODUCTO"<<endl;
+    gotoxy(38,17);cout << "LISTAR TODOS LOS PRODUCTOS"<<endl;
     recuadro(33,19,35, 2, cBLANCO, cGRIS);
-    gotoxy(40,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
+    gotoxy(38,20);cout << "VOLVER AL MENU ANTERIOR"<<endl;
     recuadro(20,24,60, 2, cBLANCO, cAZUL);
     gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;
@@ -379,13 +383,14 @@ do{
         borrarProducto();
         break;
     case 11:
-        listarProductos();
+          modificarProducto();
         break;
     case 14:
         listarProductoPorCodigo();
         break;
     case 17:
-        modificarProducto();
+        listarProductos();
+
     case 20:
         menuCompras(usuario);
         break;
@@ -405,17 +410,17 @@ do{
     gotoxy(43,2);cout << "MENU COMPRAS"<<endl;
     recuadro(33, 4,30, 2, cBLANCO, cGRIS);
     textcolor(cBLANCO, cGRIS);
-    gotoxy(43,5);cout << "PRODUCTOS"<<endl;
+    gotoxy(38,5);cout << "PRODUCTOS"<<endl;
     recuadro(33,7,30, 2, cBLANCO, cGRIS);
-    gotoxy(42,8);cout << "PROVEEDORES"<<endl;
+    gotoxy(38,8);cout << "PROVEEDORES"<<endl;
     recuadro(33,10,30, 2, cBLANCO, cGRIS);
-    gotoxy(41,11);cout << "AGREGAR COMPRA"<<endl;
+    gotoxy(38,11);cout << "AGREGAR COMPRA"<<endl;
     recuadro(33,13,30, 2, cBLANCO, cGRIS);
     gotoxy(38,14);cout << "LISTAR TODAS LAS COMPRAS"<<endl;
     recuadro(33,16,30, 2, cBLANCO, cGRIS);
-    gotoxy(38,17);cout << "LISTAR COMPRA POR CODIGO"<<endl;
+    gotoxy(38,17);cout << "BUSCAR COMPRA POR CODIGO"<<endl;
     recuadro(33,19,30, 2, cBLANCO, cGRIS);
-    gotoxy(40,20);cout << "CIERRE DE SESION"<<endl;
+    gotoxy(38,20);cout << "CIERRE DE SESION"<<endl;
     recuadro(20,24,60, 2, cBLANCO, cAZUL);
     gotoxy(24,24); cout << "UTILICE LAS TECLAS DE ARRIBA Y ABAJO PARA DESPLAZARSE.";
     cout << endl;

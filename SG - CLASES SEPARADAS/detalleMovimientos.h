@@ -94,6 +94,7 @@ void DetalleMovimientos::cargarDatosDevoluciones(int _nroFactura, int _nroLinea)
         getch();
         gotoxy(25,9);cout << "                                                      "<<endl;
         gotoxy(48,8);cout << "                 "<<endl;
+        textcolor(cBLANCO,cAZUL);
         gotoxy(30,8);cout<<"INGRESE CANTIDAD: ";
         gotoxy(48,8);cin>>cantidad;
     }

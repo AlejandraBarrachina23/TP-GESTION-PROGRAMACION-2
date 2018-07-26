@@ -116,13 +116,13 @@ void DetalleCompra::calculoPrecioBruto(Producto &unProducto){
         gotoxy(46,12);cin >> descuento;
         }
     precioNeto=precioNeto-(precioNeto*descuento/100);
-    cout << "PRECIO NETO-DESCUENTO: "<<precioNeto<<endl;
+    //cout << "PRECIO NETO-DESCUENTO: "<<precioNeto<<endl;
     ri.setIVA(unProducto.getPorcentuales().getIVA()*precioNeto/100);
-    cout << "PRECIO CON IVA: "<< ri.getIVA()<<endl;
+    //cout << "PRECIO CON IVA: "<< ri.getIVA()<<endl;
     ri.setPercepcion(unProducto.getPorcentuales().getPercepcion()*ri.getIVA()/100);
-    cout << "PRECIO PERCEPCION SOBRE IVA: "<<ri.getPercepcion()<<endl;
+    //cout << "PRECIO PERCEPCION SOBRE IVA: "<<ri.getPercepcion()<<endl;
     ri.setIB(unProducto.getPorcentuales().getIB()*precioNeto/100);
-    cout << "PRECIO CON IB:" <<ri.getIB()<<endl;
+    //cout << "PRECIO CON IB:" <<ri.getIB()<<endl;
     setPrecioBruto(ri.getIVA()+ri.getPercepcion()+ri.getIB()+precioNeto);
 
 

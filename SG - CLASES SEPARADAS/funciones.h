@@ -581,7 +581,7 @@ bool advertenciaDeBorrado(){
 bool consultaParaContinuar(){
 
     int opcion;
-    gotoxy(40,13);cout << "¿DESEA CONTINUAR?"<<endl;
+    gotoxy(40,13);cout << "DESEA CONTINUAR?"<<endl;
     recuadro(40,15,7,2, cAMARILLO, cROJO);
     recuadro(50,15,7,2, cAMARILLO, cROJO);
     gotoxy(44,16);cout << "SI"<<endl;
@@ -1396,9 +1396,7 @@ void reporteDeganancia(){
                 while(unDetalleVenta.leerenDisco(pos2++)){
                     if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) {
                         acumulaPV+=(buscarPV(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
-                        cout <<"pv"<< acumulaPV<<endl;
                         acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
-                        cout <<"pc"<< acumulaPC<<endl;
                     }
                 }
                 pos2=0;
