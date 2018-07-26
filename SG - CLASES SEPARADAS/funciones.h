@@ -92,9 +92,6 @@ void listarUsuarioPorCodigo(){
 
     if((pos=validar.existenciaCodigoUsuario(codigo))>=0){
         limpiar();
-        recuadro(0, 0,102, 2, cBLANCO, cAZUL);
-        textcolor(cBLANCO,cAZUL);
-        gotoxy(40,1);cout << "LISTAR USUARIO POR CODIGO"<<endl;
         Unusuario.leerArchivo(pos);
         Unusuario.mostrarEncabezado();
         Unusuario.mostrarArchivo();
@@ -591,6 +588,19 @@ bool consultaParaContinuar(){
     if(opcion==41)return true;
     return false;
 }
+bool consultaParaContinuar(int a){
+
+    int opcion;
+    gotoxy(40,a);cout << "DESEA CONTINUAR?"<<endl;
+    recuadro(40,a+2,7,2, cAMARILLO, cROJO);
+    recuadro(50,a+2,7,2, cAMARILLO, cROJO);
+    gotoxy(44,a+3);cout << "SI"<<endl;
+    gotoxy(54,a+3);cout << "NO"<<endl;
+    opcion=navegacionMenuHorizontal(41,a+3,41,51,10);
+    textcolor(cBLANCO,cAZUL);
+    if(opcion==41)return true;
+    return false;
+}
 void accionCancelada(){
 
     recuadro(33,15,35,5, cBLANCO, cROJO);
@@ -659,7 +669,6 @@ float aproximacionPrecioVenta(float precio){
 	precio=precioModificado;
     return precio;
 }
-
 
 /// MENU COMPRAS - SUBMENU PROVEEDORES
 void agregarProveedor(){
@@ -1222,7 +1231,7 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
         pos++;
     }
     if(muestraCabecera==true){
-    continuar=consultaParaContinuar();
+    continuar=consultaParaContinuar(18);
     if(continuar==true){ //REALIZA LA TRANSFERENCIA DE TODOS LOS PROUDCTOS QUE HACE FALTA
     pos=0;
         while(unProducto.leerArchivo(pos)){
@@ -1244,9 +1253,9 @@ void transferenciaDeMercaderia(char*usuario, int tipo){
             pos++;
         }
         unaCabeceraMovimiento.grabarArchivo();
-        accionAceptada();
+        accionAceptada(18);
     }
-    else {accionCancelada();}
+    else {accionCancelada(18);}
     }
     else {gotoxy(38,5);textcolor(cROJO_CLARO,cAZUL);cout << "NO HAY PRODUCTOS A TRANSFERIR"<<endl;}
     getch();
@@ -1343,7 +1352,7 @@ void reporteDeganancia(){
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
+    gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
     textcolor(cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);gotoxy(40,11);cout << "QUE DESEA CONSULTAR?"<<endl;
     recuadro(24,13,16,2, cAMARILLO, cROJO);
@@ -1353,14 +1362,15 @@ void reporteDeganancia(){
     gotoxy(48,14);cout << "INTERVALO";
     gotoxy(73,14);cout << "SALIR";
     opcion=navegacionMenuHorizontal(25,14,25,65,20);
-    limpiar();
-    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
-    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
-    textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
-    textcolor(cBLANCO, cAZUL);
+
 
     if(opcion==45){
+        limpiar();
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+        textcolor(cBLANCO, cAZUL);
         gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
         fechaInicio.cargarDatos();
         gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
@@ -1411,6 +1421,12 @@ void reporteDeganancia(){
 
     else if(opcion==25){
 
+        limpiar();
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "REPORTE DE GANANCIAS"<<endl;
+        textcolor(cBLANCO, cAZUL);
         gotoxy(30,5);cout <<"-->>INDIQUE FECHA DE CONSULTA<<--"<<endl;
         fechaInicio.cargarDatos();
         gotoxy(30,9);cout << "FECHA DE CONSULTA: ";
@@ -1421,9 +1437,7 @@ void reporteDeganancia(){
                 while(unDetalleVenta.leerenDisco(pos2++)){
                     if(unaCabeceraVenta.getNrodeFactura()==unDetalleVenta.getNroFactura()) {
                         acumulaPV+=(buscarPV(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
-                        cout <<"pv"<< acumulaPV<<endl;
                         acumulaPC+=(buscarPC(unDetalleVenta.getcodigoProducto())*unDetalleVenta.getCantidad());
-                        cout <<"pc"<< acumulaPC<<endl;
                     }
                 }
                 pos2=0;
@@ -1434,6 +1448,7 @@ void reporteDeganancia(){
         gotoxy(30,11);cout<<"PRECIO VENTA: "<< acumulaPV<<endl;
         gotoxy(30,12);cout << "GANANCIA: "<<acumulaPV-acumulaPC;
     }
+    else{accionCancelada(18);}
     getch();
     limpiar();
 }
@@ -1457,13 +1472,14 @@ void reporteDePerdida(){
     gotoxy(48,14);cout << "INTERVALO";
     gotoxy(73,14);cout << "SALIR";
     opcion=navegacionMenuHorizontal(25,14,25,65,20);
-    limpiar();
-    recuadro(1, 1,100, 25, cBLANCO, cAZUL);
-    recuadro(1, 1,100, 2, cBLANCO, cAZUL);
-    textcolor(cBLANCO,cAZUL);
-    gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
+
 
     if(opcion==45){
+        limpiar();
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
         gotoxy(25,5);cout <<"-->>INDIQUE FECHA DE INICIO DE CONSULTA<<--"<<endl;
         fechaInicio.cargarDatos();
         gotoxy(25,5);cout <<"-->>INDIQUE FECHA DEL FINAL DE LA CONSULTA<<--"<<endl;
@@ -1508,6 +1524,11 @@ void reporteDePerdida(){
 
     else if(opcion==25){
 
+        limpiar();
+        recuadro(1, 1,100, 25, cBLANCO, cAZUL);
+        recuadro(1, 1,100, 2, cBLANCO, cAZUL);
+        textcolor(cBLANCO,cAZUL);
+        gotoxy(40,2);cout << "REPORTE DE PERDIDAS"<<endl;
         gotoxy(30,5);cout <<"-->>INDIQUE FECHA DE CONSULTA<<--"<<endl;
         fechaInicio.cargarDatos();
         gotoxy(30,9);cout << "FECHA DE CONSULTA: ";
@@ -1527,6 +1548,8 @@ void reporteDePerdida(){
         gotoxy(33,10);cout << "TOTAL PERDIDA: "<<acumulaPC<<endl;
     }
 
+    else{accionCancelada(18);}
+
     getch();
     limpiar();
 
@@ -1538,12 +1561,12 @@ void backupDeArchivos(){
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "BACKUPS DE ARCHIVOS"<<endl;
-    gotoxy(25,8);cout << "SE REALIZARA EL BACKUP DE PRODUCTOS Y PROVEEDORES"<<endl;
-    seguir=consultaParaContinuar();
+    gotoxy(25,6);cout << "SE REALIZARA EL BACKUP DE PRODUCTOS Y PROVEEDORES"<<endl;
+    seguir=consultaParaContinuar(8);
     if(seguir==true){
         backupProveedores();
         backupProductos();
-        accionAceptada();
+        accionAceptada(15);
     }
     else{accionCancelada();}
     getch();
@@ -1556,12 +1579,12 @@ void restaurarArchivos(){
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "RESTAURACION DE ARCHIVOS"<<endl;
-    gotoxy(25,8);cout << "SE REALIZARA LA RESTAURACION DE PRODUCTOS Y PROVEEDORES"<<endl;
-    seguir=consultaParaContinuar();
+    gotoxy(25,6);cout << "SE REALIZARA LA RESTAURACION DE PRODUCTOS Y PROVEEDORES"<<endl;
+    seguir=consultaParaContinuar(8);
     if(seguir==true){
         restaurarProveedor();
         restaurarProductos();
-        accionAceptada();
+        accionAceptada(15);
     }
     else{accionCancelada();}
 
