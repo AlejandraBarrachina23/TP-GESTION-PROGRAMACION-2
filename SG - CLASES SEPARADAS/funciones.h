@@ -1534,43 +1534,39 @@ void reporteDePerdida(){
 
 }
 void backupDeArchivos(){
-    int opcion;
+
+    bool seguir;
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "BACKUPS DE ARCHIVOS"<<endl;
-    gotoxy(37,8);cout << "¿DE QUE DESEA HACER BACKUP?"<<endl;
-    recuadro(24,10,16,2, cAMARILLO, cROJO);
-    recuadro(44,10,16,2, cAMARILLO, cROJO);
-    recuadro(64,10,16,2, cAMARILLO, cROJO);
-    gotoxy(28,11);cout << "PROVEEDORES";
-    gotoxy(50,11);cout << "PRODUCTOS";
-    gotoxy(71,11);cout << "SALIR";
-    opcion=navegacionMenuHorizontal(25,11,25,65,20);
-    if(opcion==24){backupProveedores();accionAceptada();}
-    if(opcion==44){backupProductos();accionAceptada();}
+    gotoxy(25,8);cout << "SE REALIZARA EL BACKUP DE PRODUCTOS Y PROVEEDORES"<<endl;
+    seguir=consultaParaContinuar();
+    if(seguir==true){
+        backupProveedores();
+        backupProductos();
+        accionAceptada();
+    }
     else{accionCancelada();}
     getch();
     limpiar();
 }
 void restaurarArchivos(){
 
-    int opcion;
+    bool seguir;
     recuadro(1, 1,100, 25, cBLANCO, cAZUL);
     recuadro(1, 1,100, 2, cBLANCO, cAZUL);
     textcolor(cBLANCO,cAZUL);
     gotoxy(40,2);cout << "RESTAURACION DE ARCHIVOS"<<endl;
-    gotoxy(37,8);cout << "¿QUE ARCHIVO DESEA RESTAURAR?"<<endl;
-    recuadro(24,10,16,2, cAMARILLO, cROJO);
-    recuadro(44,10,16,2, cAMARILLO, cROJO);
-    recuadro(64,10,16,2, cAMARILLO, cROJO);
-    gotoxy(28,11);cout << "PROVEEDORES";
-    gotoxy(50,11);cout << "PRODUCTOS";
-    gotoxy(71,11);cout << "SALIR";
-    opcion=navegacionMenuHorizontal(25,11,25,65,20);
-    if(opcion==24){restaurarProveedor();accionAceptada();}
-    if(opcion==44){restaurarProductos();accionAceptada();}
+    gotoxy(25,8);cout << "SE REALIZARA LA RESTAURACION DE PRODUCTOS Y PROVEEDORES"<<endl;
+    seguir=consultaParaContinuar();
+    if(seguir==true){
+        restaurarProveedor();
+        restaurarProductos();
+        accionAceptada();
+    }
     else{accionCancelada();}
+
     getch();
     limpiar();
 
